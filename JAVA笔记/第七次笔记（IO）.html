@@ -1,0 +1,497 @@
+<html>
+<head>
+  <title>第七次笔记（IO）</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600667 (zh-CN, DDL); Windows/10.0.0 (Win64);"/>
+  <meta name="content-class" content="yinxiang.markdown"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="694"/>
+<h1>第七次笔记（IO）</h1>
+
+<div><span><div style="font-size: 14px; margin: 0; padding: 0; width: 100%;"><div style="line-height: 160%; box-sizing: content-box;"><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">IO
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">File
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">IO Stream
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Reader / Writer
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">ByteArray IO
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">装饰设计模式
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">字节缓冲流
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">字符缓冲流
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">转换流
+</a></li></ul></li></ul></div><h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">IO</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第七次笔记（IO）_files/Image.png" type="image/png" data-filename="Image.png"/></p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">File</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第七次笔记（IO）_files/Image [1].png" type="image/png" data-filename="Image.png"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第七次笔记（IO）_files/Image [2].png" type="image/png" data-filename="Image.png"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">mkdir： 必须有上级目录<br/>
+mkdirs ：上级目录可以不存在，一起创建</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">list （） 返回下级名称<br/>
+listFiles（） 返回下级对象<br/>
+listRoots（）返回</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第七次笔记（IO）_files/Image [3].png" type="image/png" data-filename="Image.png"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第七次笔记（IO）_files/Image [4].png" type="image/png" data-filename="Image.png"/></p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">IO Stream</h4>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">文件输入：</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String []args)</span>
+     </span>{
+          <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//1.源</span>
+          File src = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> File(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;a.txt&quot;</span>);
+          InputStream is =<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+          <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+              <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//2、流</span>
+              is = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileInputStream(src);
+              <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//3、操作</span>
+              <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span> []flush = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1024</span>*<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">50</span>];<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//每次读多少</span>
+              <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> len=-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>;
+              <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span> ((len=is.read(flush))!=-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>)
+              {
+                   <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//字节数组-&gt;字符串（解码）</span>
+                   String str=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> String(flush,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>,len);
+                   System.out.println(str);
+              }
+          } <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span> (FileNotFoundException e) { 
+              e.printStackTrace();
+          } <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span> (IOException e) {
+              <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated catch block</span>
+              e.printStackTrace();
+          }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">finally</span> {
+              <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//4.释放资源</span>
+              <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                   <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span> != is)
+                        is.close();
+              } <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span> (IOException e) {
+                   <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated catch block</span>
+                   e.printStackTrace();
+              } 
+          }
+     }
+</code></pre>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">文件输出：</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">     <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String []args)</span>
+     </span>{
+          <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//1.源</span>
+          File src = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> File(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;b.txt&quot;</span>);
+          <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//2。流</span>
+          OutputStream os=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+          <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+              <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//os=new FileOutputStream(src);</span>
+              os=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileOutputStream(src,<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">true</span>); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//true 末尾追加</span>
+              <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//3 操作</span>
+              String msg=<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;IO is so easy&quot;</span>;
+              <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[] datas=msg.getBytes(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// 字符串-&gt;字节数组（编码）</span>
+              os.write(datas, <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>, datas.length);
+              os.flush(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//刷新</span>
+          }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(Exception e){
+              e.printStackTrace();
+          }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">finally</span>{
+             <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//4 释放资源</span>
+              <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                   <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span> != os)
+                        os.close();
+              }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(Exception e) {
+                   e.printStackTrace();
+              }
+          }
+     }
+</code></pre>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">文件拷贝</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">copy</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String srcPath, String deatPath)</span>
+    </span>{
+        File src = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> File (srcPath);
+        File dest = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> File (deatPath);
+        
+        InputStream is=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+        OutputStream os=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+        
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+            is=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileInputStream (src);
+            os=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileOutputStream(dest,<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">true</span>);
+            
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[] flush = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1024</span>*<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">10</span>]; 
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> len=-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>;
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span>((len=is.read(flush))!=-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>)
+            {
+                String str=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> String(flush,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>,len);
+                <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//System.out.println(str);</span>
+                os.write(flush, <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>, len);
+            }
+        } <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span> (IOException e) {
+            <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated catch block</span>
+            e.printStackTrace();
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">finally</span> {
+            <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//释放资源，先打开的后关闭</span>
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(os!=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>) {
+                    os.close();
+                }
+            }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e) {
+                e.printStackTrace();
+            }
+            
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(is != <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>) {
+                    is.close();
+                }
+            }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e) {
+                e.printStackTrace();
+            }
+
+        }   
+    }
+</code></pre>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">文件夹拷贝</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//Todo</span>
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">Reader / Writer</h4>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span>
+    </span>{
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/*文件字符输入*/</span>
+        File src=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> File(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;a.txt&quot;</span>); 
+        Reader reader=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>; 
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+            reader = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileReader(src);
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">char</span>[] flush = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">char</span>[<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">2</span>]; 
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> len=-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>;
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span>((len = reader.read(flush))!=-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>) {
+                 String str=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> String(flush,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>,len);
+                 System.out.println(str);
+            } 
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e)
+        {
+            e.printStackTrace();
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">finally</span> {
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(reader != <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>)
+                    reader.close();
+            }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/*文件字符输出*/</span>
+        File dest=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> File(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;dest.txt&quot;</span>);
+        Writer write =<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+        
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+            write=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileWriter(dest);
+            String msg=<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;你就是不相信我说的&quot;</span>;
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">char</span>[] datas=msg.toCharArray();
+            write.write(datas, <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>, datas.length); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//三种写法：</span>
+            write.write(msg);
+            writer.appeng(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;哈哈哈哈&quot;</span>);
+            writer.flush();
+            
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e) {
+            e.printStackTrace();
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">finally</span> {
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(write != <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>)
+                    write.close();
+            }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+</code></pre>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">文本拷贝</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//Todo</span>
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">ByteArray IO</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">任何对象都可以转成字节数组，存在内存而不是硬盘，不宜太大，IO不用关闭。</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span>
+    </span>{
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/*字节数组输入*/</span>
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[] src=<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;talk is cheap show me the code&quot;</span>.getBytes(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//转字节数组</span>
+        InputStream is =<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+            is=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> ByteArrayInputStream(src);
+            
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[] flush=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">5</span>];
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> len=-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>;
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span>((len=is.read(flush))!=-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>) {
+                String str=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> String(flush);
+                System.out.println(str);
+            }
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e)
+        {
+            e.printStackTrace();
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">finally</span> {
+            <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//也可以不关闭</span>
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(is!=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>)
+                    is.close();
+            }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/*字节数组输出*/</span>
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[] dest = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+        ByteArrayOutputStream baos = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+            baos=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> ByteArrayOutputStream(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//不需要关联源</span>
+            String msg=<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;show me your code&quot;</span>;
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[]datas = msg.getBytes();
+            baos.write(datas,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>,datas.length);
+            baos.flush();
+            dest=baos.toByteArray(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//从缓冲区获取数据</span>
+            System.out.println(dest.length + <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;-&gt;&gt;&gt;&quot;</span> + <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> String(dest,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>,baos.size()));
+            
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(FileNotFoundException e) {
+            e.printStackTrace();
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e) {
+            e.printStackTrace();
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">finally</span> {
+            <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//也可以不关闭</span>
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(baos!=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>)
+                    baos.close();
+            }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
+    }
+</code></pre>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">文件-&gt;字节数组 -&gt;文件</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[] fileToByteArray(String filePath)
+    {
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/*
+         * 图片读取到字节数组
+         * 1.图片到程序 FileInputStream
+         * 2.程序到字节数组 ByteArrayOutputStream
+         */</span>
+        File src=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> File(filePath);
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[] dest=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+        
+        InputStream is = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+        ByteArrayOutputStream baos = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+            is = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileInputStream(src);
+            baos = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> ByteArrayOutputStream();
+            
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[] flush = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1024</span>*<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">10</span>];
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> len=-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>;
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span>((len=is.read(flush))!=-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>)
+            {
+                <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//写出到字节数组中</span>
+                baos.write(flush,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>,len);
+            }
+            baos.flush();
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span>  baos.toByteArray();
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(FileNotFoundException e) {
+            e.printStackTrace();
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e){
+            e.printStackTrace();
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">finally</span> {
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(is!= <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>)
+                    is.close();
+            }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e) {
+                e.printStackTrace();
+            }           
+        }
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+    }
+    
+    
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">byteArrayToArray</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[] src, String filePath)</span>
+    </span>{
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/**
+         * 字节数组写出到图片
+         * 1.字节数组到程序 ByteArrayInputStream
+         * 2.程序到文件 FileOutputStream
+         */</span>
+        File dest= <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> File(filePath);
+        InputStream is=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+        OutputStream os =<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+            is=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> ByteArrayInputStream(src);
+            os=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileOutputStream(dest);
+            
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[] flush = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">5</span>];
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> len=-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>;
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span>((len=is.read(flush))!=-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>)
+            {
+                os.write(flush, <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>, len);
+            }
+            os.flush();
+            
+            
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e) {
+        
+            e.printStackTrace();
+        }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">finally</span> {
+            
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(os != <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>)
+                    os.close();
+            }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">装饰设计模式</h4>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">package</span> cn.lc.IO;
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/**
+ * 模拟咖啡
+ * 1.抽象组件：需要装饰的抽象对象（接口 或 抽象父类）
+ * 2.具体组件：要装饰的对象
+ * 3.抽象装饰类：包含了对抽象组件的引用 和 装饰者共有方法
+ * 4.具体装饰类： 被装饰的对象
+ * <span style="color: #608b4e; line-height: 160%; box-sizing: content-box;">@author</span> Trail
+ *
+ */</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">DecorateTest2</span> </span>{
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> </span>{
+        Drink coffee=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Coffee();
+        
+        Drink suger=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Suger(coffee);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//装饰</span>
+        System.out.println(suger.info() + <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;-&gt;&gt;&quot;</span> + suger.cost());
+        
+        Drink milk=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Milk(coffee);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//装饰</span>
+        System.out.println(milk.info() + <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;-&gt;&gt;&quot;</span> + milk .cost());
+        
+        milk = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Milk(suger);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//装饰</span>
+        System.out.println(milk.info() + <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;-&gt;&gt;&quot;</span> + milk .cost());
+    }
+}
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//具体装饰类</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Suger</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">extends</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Decorate</span></span>{
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Suger</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(Drink drink)</span>
+    </span>{
+         <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">super</span>(drink);
+    }
+    
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">double</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">cost</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">super</span>.cost()*<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">2</span>;
+    }
+
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> String <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">info</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">super</span>.info()+<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;加入了蔗糖&quot;</span>;
+    }
+    
+}
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Milk</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">extends</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Decorate</span></span>{
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Milk</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(Drink drink)</span>
+    </span>{
+         <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">super</span>(drink);
+    }
+    
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">double</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">cost</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">super</span>.cost()*<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">4</span>;
+    }
+
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> String <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">info</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">super</span>.info()+<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;加入了牛奶&quot;</span>;
+    }
+    
+}
+
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//抽象装饰类</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">abstract</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Decorate</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">implements</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Drink</span></span>{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> Drink drink;
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Decorate</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(Drink drink)</span>
+    </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.drink = drink;
+    }
+    
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">double</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">cost</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.drink.cost();
+    }
+
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> String <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">info</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.drink.info();
+    }
+    
+}
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//具体组件</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Coffee</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">implements</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Drink</span></span>{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> String name= <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;原味咖啡&quot;</span>;
+    
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">double</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">cost</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">10</span>;
+    }
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> String <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">info</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> name;
+    }
+}
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//抽象组件</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">interface</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Drink</span></span>{
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">double</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">cost</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span></span>;
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">String <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">info</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span></span>;
+    
+}
+
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">字节缓冲流</h4>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">通过缓冲区提升了性能</li>
+<li style="line-height: 160%; box-sizing: content-box;">底层必须是节点流</li>
+<li style="line-height: 160%; box-sizing: content-box;">释放外层的BufferedInputStream，会自动释放底层的InputStream。 如果手动释放，要从里到外依次释放。</li>
+</ol>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//嵌套使用， 可以提升性能</span>
+BufferedInputStream is = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> BufferedInputStream(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileInputStream(src));
+BufferedOutputStream os=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> BufferedOutputStream(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileOutputStream(dest));
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">字符缓冲流</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">BufferedReader &amp; BufferedWriter</code><br/>
+这两个流提供了新增方法，所以避免用多态的方式使用他们。</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">BufferedReader reader=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> BufferedReader(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileReader(src));
+BufferWriter writer= <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> BufferWriter(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileWriter(dest));
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//Reader</span>
+String line = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span>((line= reader.readLine())!= <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>)  <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//新方法，每次读一行</span>
+{
+    System.out.println(line);
+}
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//Writer</span>
+writer.append(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;hello&quot;</span>);
+writer.newLine();
+writer.append(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;world&quot;</span>);
+writer.newLine();
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">转换流</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">InputStreamReader &amp; InputStreamWriter</code></p>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">字节流转换成字符流。</li>
+<li style="line-height: 160%; box-sizing: content-box;">可以指定字符集。</li>
+</ol>
+</div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%5BTOC%5D%0A%23%23%20IO%0A!%5Bbe4ff81795d8febc10b292b9970f3e94.png%5D(en-resource%3A%2F%2Fdatabase%2F704%3A1)%0A%0A%23%23%23%23%20File%0A%0A!%5B89681fe2c196cc84f3d043428c590768.png%5D(en-resource%3A%2F%2Fdatabase%2F696%3A1)%0A%0A!%5B36805bca6e72feb8ae1ce5e5e6046d49.png%5D(en-resource%3A%2F%2Fdatabase%2F698%3A1)%0A%0Amkdir%EF%BC%9A%20%E5%BF%85%E9%A1%BB%E6%9C%89%E4%B8%8A%E7%BA%A7%E7%9B%AE%E5%BD%95%0Amkdirs%20%EF%BC%9A%E4%B8%8A%E7%BA%A7%E7%9B%AE%E5%BD%95%E5%8F%AF%E4%BB%A5%E4%B8%8D%E5%AD%98%E5%9C%A8%EF%BC%8C%E4%B8%80%E8%B5%B7%E5%88%9B%E5%BB%BA%0A%0A%0Alist%20%EF%BC%88%EF%BC%89%20%E8%BF%94%E5%9B%9E%E4%B8%8B%E7%BA%A7%E5%90%8D%E7%A7%B0%0AlistFiles%EF%BC%88%EF%BC%89%20%E8%BF%94%E5%9B%9E%E4%B8%8B%E7%BA%A7%E5%AF%B9%E8%B1%A1%0AlistRoots%EF%BC%88%EF%BC%89%E8%BF%94%E5%9B%9E%0A%0A!%5B52bf97e833c41d05bb786c991cb5f63a.png%5D(en-resource%3A%2F%2Fdatabase%2F700%3A1)%0A%0A!%5B625891842ec35db175e1d8d1776e1f8b.png%5D(en-resource%3A%2F%2Fdatabase%2F702%3A1)%0A%0A%0A%23%23%23%23%20IO%20Stream%0A-%20%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%EF%BC%9A%0A%60%60%60java%0A%C2%A0%C2%A0%C2%A0%C2%A0public%20static%20void%20main(String%20%5B%5Dargs)%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2F1.%E6%BA%90%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0File%20src%20%3D%20new%20File(%22a.txt%22)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0InputStream%20is%20%3Dnull%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0try%20%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2F2%E3%80%81%E6%B5%81%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0is%20%3D%20new%20FileInputStream(src)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2F3%E3%80%81%E6%93%8D%E4%BD%9C%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0byte%20%5B%5Dflush%20%3D%20new%20byte%5B1024*50%5D%3B%2F%2F%E6%AF%8F%E6%AC%A1%E8%AF%BB%E5%A4%9A%E5%B0%91%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0int%20len%3D-1%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0while%20((len%3Dis.read(flush))!%3D-1)%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2F%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84-%3E%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88%E8%A7%A3%E7%A0%81%EF%BC%89%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0String%20str%3Dnew%20String(flush%2C0%2Clen)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0System.out.println(str)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7D%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7D%20catch%20(FileNotFoundException%20e)%20%7B%20%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0e.printStackTrace()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7D%20catch%20(IOException%20e)%20%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2F%20TODO%20Auto-generated%20catch%20block%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0e.printStackTrace()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7Dfinally%20%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2F4.%E9%87%8A%E6%94%BE%E8%B5%84%E6%BA%90%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0try%20%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0if(null%20!%3D%20is)%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0is.close()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7D%20catch%20(IOException%20e)%20%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2F%20TODO%20Auto-generated%20catch%20block%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0e.printStackTrace()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7D%20%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7D%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7D%0A%60%60%60%0A%0A-%20%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%EF%BC%9A%0A%60%60%60java%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0public%20static%20void%20main(String%20%5B%5Dargs)%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2F1.%E6%BA%90%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0File%20src%20%3D%20new%20File(%22b.txt%22)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2F2%E3%80%82%E6%B5%81%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0OutputStream%20os%3Dnull%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0try%20%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2Fos%3Dnew%20FileOutputStream(src)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20os%3Dnew%20FileOutputStream(src%2Ctrue)%3B%20%2F%2Ftrue%20%E6%9C%AB%E5%B0%BE%E8%BF%BD%E5%8A%A0%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2F3%20%E6%93%8D%E4%BD%9C%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0String%20msg%3D%22IO%20is%20so%20easy%22%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0byte%5B%5D%20datas%3Dmsg.getBytes()%3B%20%2F%2F%20%E5%AD%97%E7%AC%A6%E4%B8%B2-%3E%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0os.write(datas%2C%200%2C%20datas.length)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0os.flush()%3B%20%2F%2F%E5%88%B7%E6%96%B0%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7Dcatch(Exception%20e)%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0e.printStackTrace()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7Dfinally%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F4%20%E9%87%8A%E6%94%BE%E8%B5%84%E6%BA%90%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0try%20%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0if(null%20!%3D%20os)%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0os.close()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7Dcatch(Exception%20e)%20%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0e.printStackTrace()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7D%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7D%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7D%0A%60%60%60%0A%0A%0A-%20%E6%96%87%E4%BB%B6%E6%8B%B7%E8%B4%9D%0A%60%60%60java%0Apublic%20static%20void%20copy(String%20srcPath%2C%20String%20deatPath)%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20File%20src%20%3D%20new%20File%20(srcPath)%3B%0A%20%20%20%20%20%20%20%20File%20dest%20%3D%20new%20File%20(deatPath)%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20InputStream%20is%3Dnull%3B%0A%20%20%20%20%20%20%20%20OutputStream%20os%3Dnull%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20is%3Dnew%20FileInputStream%20(src)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20os%3Dnew%20FileOutputStream(dest%2Ctrue)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20byte%5B%5D%20flush%20%3D%20new%20byte%5B1024*10%5D%3B%20%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20len%3D-1%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20while((len%3Dis.read(flush))!%3D-1)%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20String%20str%3Dnew%20String(flush%2C0%2Clen)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2FSystem.out.println(str)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20os.write(flush%2C%200%2C%20len)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%20catch%20(IOException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20TODO%20Auto-generated%20catch%20block%0A%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%7Dfinally%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%E9%87%8A%E6%94%BE%E8%B5%84%E6%BA%90%EF%BC%8C%E5%85%88%E6%89%93%E5%BC%80%E7%9A%84%E5%90%8E%E5%85%B3%E9%97%AD%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if(os!%3Dnull)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20os.close()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if(is%20!%3D%20null)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20is.close()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%20%20%20%20%7D%20%20%20%0A%20%20%20%20%7D%0A%60%60%60%0A-%20%E6%96%87%E4%BB%B6%E5%A4%B9%E6%8B%B7%E8%B4%9D%0A%60%60%60java%0A%2F%2FTodo%0A%60%60%60%0A%0A%20%0A%23%23%23%23%20Reader%20%2F%20Writer%0A%0A%60%60%60java%0A%20%20%20%20public%20static%20void%20main(String%5B%5D%20args)%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%2F*%E6%96%87%E4%BB%B6%E5%AD%97%E7%AC%A6%E8%BE%93%E5%85%A5*%2F%0A%20%20%20%20%20%20%20%20File%20src%3Dnew%20File(%22a.txt%22)%3B%20%0A%20%20%20%20%20%20%20%20Reader%20reader%3Dnull%3B%20%0A%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20reader%20%3D%20new%20FileReader(src)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20char%5B%5D%20flush%20%3D%20new%20char%5B2%5D%3B%20%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20len%3D-1%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20while((len%20%3D%20reader.read(flush))!%3D-1)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20String%20str%3Dnew%20String(flush%2C0%2Clen)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20System.out.println(str)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%20%0A%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%7Dfinally%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if(reader%20!%3D%20null)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20reader.close()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%2F*%E6%96%87%E4%BB%B6%E5%AD%97%E7%AC%A6%E8%BE%93%E5%87%BA*%2F%0A%20%20%20%20%20%20%20%20File%20dest%3Dnew%20File(%22dest.txt%22)%3B%0A%20%20%20%20%20%20%20%20Writer%20write%20%3Dnull%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20write%3Dnew%20FileWriter(dest)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20String%20msg%3D%22%E4%BD%A0%E5%B0%B1%E6%98%AF%E4%B8%8D%E7%9B%B8%E4%BF%A1%E6%88%91%E8%AF%B4%E7%9A%84%22%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20char%5B%5D%20datas%3Dmsg.toCharArray()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20write.write(datas%2C%200%2C%20datas.length)%3B%20%2F%2F%E4%B8%89%E7%A7%8D%E5%86%99%E6%B3%95%EF%BC%9A%0A%20%20%20%20%20%20%20%20%20%20%20%20write.write(msg)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20writer.appeng(%22%E5%93%88%E5%93%88%E5%93%88%E5%93%88%22)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20writer.flush()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%7Dfinally%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if(write%20!%3D%20null)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write.close()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%0A%60%60%60%0A-%20%E6%96%87%E6%9C%AC%E6%8B%B7%E8%B4%9D%0A%60%60%60java%0A%2F%2FTodo%0A%60%60%60%0A%23%23%23%23%20ByteArray%20IO%20%0A%E4%BB%BB%E4%BD%95%E5%AF%B9%E8%B1%A1%E9%83%BD%E5%8F%AF%E4%BB%A5%E8%BD%AC%E6%88%90%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%EF%BC%8C%E5%AD%98%E5%9C%A8%E5%86%85%E5%AD%98%E8%80%8C%E4%B8%8D%E6%98%AF%E7%A1%AC%E7%9B%98%EF%BC%8C%E4%B8%8D%E5%AE%9C%E5%A4%AA%E5%A4%A7%EF%BC%8CIO%E4%B8%8D%E7%94%A8%E5%85%B3%E9%97%AD%E3%80%82%0A%60%60%60java%0A%20%20%20%20public%20static%20void%20main(String%5B%5D%20args)%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%2F*%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%E8%BE%93%E5%85%A5*%2F%0A%20%20%20%20%20%20%20%20byte%5B%5D%20src%3D%22talk%20is%20cheap%20show%20me%20the%20code%22.getBytes()%3B%20%2F%2F%E8%BD%AC%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%0A%20%20%20%20%20%20%20%20InputStream%20is%20%3Dnull%3B%0A%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20is%3Dnew%20ByteArrayInputStream(src)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20byte%5B%5D%20flush%3Dnew%20byte%5B5%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20len%3D-1%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20while((len%3Dis.read(flush))!%3D-1)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20String%20str%3Dnew%20String(flush)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20System.out.println(str)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%7Dfinally%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%B8%8D%E5%85%B3%E9%97%AD%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if(is!%3Dnull)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20is.close()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%2F*%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%E8%BE%93%E5%87%BA*%2F%0A%20%20%20%20%20%20%20%20byte%5B%5D%20dest%20%3D%20null%3B%0A%20%20%20%20%20%20%20%20ByteArrayOutputStream%20baos%20%3D%20null%3B%0A%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20baos%3Dnew%20ByteArrayOutputStream()%3B%20%2F%2F%E4%B8%8D%E9%9C%80%E8%A6%81%E5%85%B3%E8%81%94%E6%BA%90%0A%20%20%20%20%20%20%20%20%20%20%20%20String%20msg%3D%22show%20me%20your%20code%22%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20byte%5B%5Ddatas%20%3D%20msg.getBytes()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20baos.write(datas%2C0%2Cdatas.length)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20baos.flush()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20dest%3Dbaos.toByteArray()%3B%20%2F%2F%E4%BB%8E%E7%BC%93%E5%86%B2%E5%8C%BA%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%0A%20%20%20%20%20%20%20%20%20%20%20%20System.out.println(dest.length%20%2B%20%22-%3E%3E%3E%22%20%2B%20new%20String(dest%2C0%2Cbaos.size()))%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%7Dcatch(FileNotFoundException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%7Dfinally%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%B8%8D%E5%85%B3%E9%97%AD%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if(baos!%3Dnull)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20baos.close()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%7D%0A%60%60%60%0A%0A-%20%E6%96%87%E4%BB%B6-%3E%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%20-%3E%E6%96%87%E4%BB%B6%20%0A%60%60%60java%0A%20%20%20%20public%20static%20byte%5B%5D%20fileToByteArray(String%20filePath)%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%2F*%0A%20%20%20%20%20%20%20%20%20*%20%E5%9B%BE%E7%89%87%E8%AF%BB%E5%8F%96%E5%88%B0%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%0A%20%20%20%20%20%20%20%20%20*%201.%E5%9B%BE%E7%89%87%E5%88%B0%E7%A8%8B%E5%BA%8F%20FileInputStream%0A%20%20%20%20%20%20%20%20%20*%202.%E7%A8%8B%E5%BA%8F%E5%88%B0%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%20ByteArrayOutputStream%0A%20%20%20%20%20%20%20%20%20*%2F%0A%20%20%20%20%20%20%20%20File%20src%3Dnew%20File(filePath)%3B%0A%20%20%20%20%20%20%20%20byte%5B%5D%20dest%3Dnull%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20InputStream%20is%20%3D%20null%3B%0A%20%20%20%20%20%20%20%20ByteArrayOutputStream%20baos%20%3D%20null%3B%0A%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20is%20%3D%20new%20FileInputStream(src)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20baos%20%3D%20new%20ByteArrayOutputStream()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20byte%5B%5D%20flush%20%3D%20new%20byte%5B1024*10%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20len%3D-1%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20while((len%3Dis.read(flush))!%3D-1)%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%E5%86%99%E5%87%BA%E5%88%B0%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%E4%B8%AD%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20baos.write(flush%2C0%2Clen)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20baos.flush()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20%20baos.toByteArray()%3B%0A%20%20%20%20%20%20%20%20%7Dcatch(FileNotFoundException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%7Dfinally%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if(is!%3D%20null)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20is.close()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20return%20null%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20%0A%20%20%20%20public%20static%20void%20byteArrayToArray(byte%5B%5D%20src%2C%20String%20filePath)%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%2F**%0A%20%20%20%20%20%20%20%20%20*%20%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%E5%86%99%E5%87%BA%E5%88%B0%E5%9B%BE%E7%89%87%0A%20%20%20%20%20%20%20%20%20*%201.%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%E5%88%B0%E7%A8%8B%E5%BA%8F%20ByteArrayInputStream%0A%20%20%20%20%20%20%20%20%20*%202.%E7%A8%8B%E5%BA%8F%E5%88%B0%E6%96%87%E4%BB%B6%20FileOutputStream%0A%20%20%20%20%20%20%20%20%20*%2F%0A%20%20%20%20%20%20%20%20File%20dest%3D%20new%20File(filePath)%3B%0A%20%20%20%20%20%20%20%20InputStream%20is%3Dnull%3B%0A%20%20%20%20%20%20%20%20OutputStream%20os%20%3Dnull%3B%0A%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20is%3Dnew%20ByteArrayInputStream(src)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20os%3Dnew%20FileOutputStream(dest)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20byte%5B%5D%20flush%20%3D%20new%20byte%5B5%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20int%20len%3D-1%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20while((len%3Dis.read(flush))!%3D-1)%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20os.write(flush%2C%200%2C%20len)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20os.flush()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%7Dcatch(FileNotFoundException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20catch(IOException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%7Dfinally%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if(os%20!%3D%20null)%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20os.close()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Dcatch(IOException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%60%60%60%0A%0A%0A%23%23%23%23%20%E8%A3%85%E9%A5%B0%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%0A%0A%60%60%60java%0Apackage%20cn.lc.IO%3B%0A%2F**%0A%20*%20%E6%A8%A1%E6%8B%9F%E5%92%96%E5%95%A1%0A%20*%201.%E6%8A%BD%E8%B1%A1%E7%BB%84%E4%BB%B6%EF%BC%9A%E9%9C%80%E8%A6%81%E8%A3%85%E9%A5%B0%E7%9A%84%E6%8A%BD%E8%B1%A1%E5%AF%B9%E8%B1%A1%EF%BC%88%E6%8E%A5%E5%8F%A3%20%E6%88%96%20%E6%8A%BD%E8%B1%A1%E7%88%B6%E7%B1%BB%EF%BC%89%0A%20*%202.%E5%85%B7%E4%BD%93%E7%BB%84%E4%BB%B6%EF%BC%9A%E8%A6%81%E8%A3%85%E9%A5%B0%E7%9A%84%E5%AF%B9%E8%B1%A1%0A%20*%203.%E6%8A%BD%E8%B1%A1%E8%A3%85%E9%A5%B0%E7%B1%BB%EF%BC%9A%E5%8C%85%E5%90%AB%E4%BA%86%E5%AF%B9%E6%8A%BD%E8%B1%A1%E7%BB%84%E4%BB%B6%E7%9A%84%E5%BC%95%E7%94%A8%20%E5%92%8C%20%E8%A3%85%E9%A5%B0%E8%80%85%E5%85%B1%E6%9C%89%E6%96%B9%E6%B3%95%0A%20*%204.%E5%85%B7%E4%BD%93%E8%A3%85%E9%A5%B0%E7%B1%BB%EF%BC%9A%20%E8%A2%AB%E8%A3%85%E9%A5%B0%E7%9A%84%E5%AF%B9%E8%B1%A1%0A%20*%20%40author%20Trail%0A%20*%0A%20*%2F%0Apublic%20class%20DecorateTest2%20%7B%0A%20%20%20%20public%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%20%20%20%20%20%20%20%20Drink%20coffee%3Dnew%20Coffee()%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20Drink%20suger%3Dnew%20Suger(coffee)%3B%2F%2F%E8%A3%85%E9%A5%B0%0A%20%20%20%20%20%20%20%20System.out.println(suger.info()%20%2B%20%22-%3E%3E%22%20%2B%20suger.cost())%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20Drink%20milk%3Dnew%20Milk(coffee)%3B%2F%2F%E8%A3%85%E9%A5%B0%0A%20%20%20%20%20%20%20%20System.out.println(milk.info()%20%2B%20%22-%3E%3E%22%20%2B%20milk%20.cost())%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20milk%20%3D%20new%20Milk(suger)%3B%2F%2F%E8%A3%85%E9%A5%B0%0A%20%20%20%20%20%20%20%20System.out.println(milk.info()%20%2B%20%22-%3E%3E%22%20%2B%20milk%20.cost())%3B%0A%20%20%20%20%7D%0A%7D%0A%2F%2F%E5%85%B7%E4%BD%93%E8%A3%85%E9%A5%B0%E7%B1%BB%0Aclass%20Suger%20extends%20Decorate%7B%0A%20%20%20%20public%20Suger(Drink%20drink)%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20super(drink)%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20%40Override%0A%20%20%20%20public%20double%20cost()%20%7B%0A%20%20%20%20%20%20%20%20return%20super.cost()*2%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20%40Override%0A%20%20%20%20public%20String%20info()%20%7B%0A%20%20%20%20%20%20%20%20return%20super.info()%2B%22%E5%8A%A0%E5%85%A5%E4%BA%86%E8%94%97%E7%B3%96%22%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%7D%0Aclass%20Milk%20extends%20Decorate%7B%0A%20%20%20%20public%20Milk(Drink%20drink)%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20super(drink)%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20%40Override%0A%20%20%20%20public%20double%20cost()%20%7B%0A%20%20%20%20%20%20%20%20return%20super.cost()*4%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20%40Override%0A%20%20%20%20public%20String%20info()%20%7B%0A%20%20%20%20%20%20%20%20return%20super.info()%2B%22%E5%8A%A0%E5%85%A5%E4%BA%86%E7%89%9B%E5%A5%B6%22%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%7D%0A%0A%0A%2F%2F%E6%8A%BD%E8%B1%A1%E8%A3%85%E9%A5%B0%E7%B1%BB%0Aabstract%20class%20Decorate%20implements%20Drink%7B%0A%20%20%20%20private%20Drink%20drink%3B%0A%20%20%20%20public%20Decorate(Drink%20drink)%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20this.drink%20%3D%20drink%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20%40Override%0A%20%20%20%20public%20double%20cost()%20%7B%0A%20%20%20%20%20%20%20%20return%20this.drink.cost()%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20%40Override%0A%20%20%20%20public%20String%20info()%20%7B%0A%20%20%20%20%20%20%20%20return%20this.drink.info()%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%7D%0A%0A%2F%2F%E5%85%B7%E4%BD%93%E7%BB%84%E4%BB%B6%0Aclass%20Coffee%20implements%20Drink%7B%0A%20%20%20%20private%20String%20name%3D%20%22%E5%8E%9F%E5%91%B3%E5%92%96%E5%95%A1%22%3B%0A%20%20%20%20%0A%20%20%20%20%40Override%0A%20%20%20%20public%20double%20cost()%20%7B%0A%20%20%20%20%20%20%20%20return%2010%3B%0A%20%20%20%20%7D%0A%20%20%20%20%40Override%0A%20%20%20%20public%20String%20info()%20%7B%0A%20%20%20%20%20%20%20%20return%20name%3B%0A%20%20%20%20%7D%0A%7D%0A%0A%2F%2F%E6%8A%BD%E8%B1%A1%E7%BB%84%E4%BB%B6%0Ainterface%20Drink%7B%0A%20%20%20%20double%20cost()%3B%0A%20%20%20%20String%20info()%3B%0A%20%20%20%20%0A%7D%0A%0A%60%60%60%0A%0A%23%23%23%23%20%E5%AD%97%E8%8A%82%E7%BC%93%E5%86%B2%E6%B5%81%0A1.%20%E9%80%9A%E8%BF%87%E7%BC%93%E5%86%B2%E5%8C%BA%E6%8F%90%E5%8D%87%E4%BA%86%E6%80%A7%E8%83%BD%0A2.%20%E5%BA%95%E5%B1%82%E5%BF%85%E9%A1%BB%E6%98%AF%E8%8A%82%E7%82%B9%E6%B5%81%0A3.%20%E9%87%8A%E6%94%BE%E5%A4%96%E5%B1%82%E7%9A%84BufferedInputStream%EF%BC%8C%E4%BC%9A%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E5%BA%95%E5%B1%82%E7%9A%84InputStream%E3%80%82%20%E5%A6%82%E6%9E%9C%E6%89%8B%E5%8A%A8%E9%87%8A%E6%94%BE%EF%BC%8C%E8%A6%81%E4%BB%8E%E9%87%8C%E5%88%B0%E5%A4%96%E4%BE%9D%E6%AC%A1%E9%87%8A%E6%94%BE%E3%80%82%0A%60%60%60java%0A%2F%2F%E5%B5%8C%E5%A5%97%E4%BD%BF%E7%94%A8%EF%BC%8C%20%E5%8F%AF%E4%BB%A5%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%0ABufferedInputStream%20is%20%3D%20new%20BufferedInputStream(new%20FileInputStream(src))%3B%0ABufferedOutputStream%20os%3Dnew%20BufferedOutputStream(new%20FileOutputStream(dest))%3B%0A%60%60%60%0A%0A%23%23%23%23%20%E5%AD%97%E7%AC%A6%E7%BC%93%E5%86%B2%E6%B5%81%0A%60BufferedReader%20%26%20BufferedWriter%60%0A%E8%BF%99%E4%B8%A4%E4%B8%AA%E6%B5%81%E6%8F%90%E4%BE%9B%E4%BA%86%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95%EF%BC%8C%E6%89%80%E4%BB%A5%E9%81%BF%E5%85%8D%E7%94%A8%E5%A4%9A%E6%80%81%E7%9A%84%E6%96%B9%E5%BC%8F%E4%BD%BF%E7%94%A8%E4%BB%96%E4%BB%AC%E3%80%82%0A%60%60%60java%0ABufferedReader%20reader%3Dnew%20BufferedReader(new%20FileReader(src))%3B%0ABufferWriter%20writer%3D%20new%20BufferWriter(new%20FileWriter(dest))%3B%0A%2F%2FReader%0AString%20line%20%3D%20null%3B%0Awhile((line%3D%20reader.readLine())!%3D%20null)%20%20%2F%2F%E6%96%B0%E6%96%B9%E6%B3%95%EF%BC%8C%E6%AF%8F%E6%AC%A1%E8%AF%BB%E4%B8%80%E8%A1%8C%0A%7B%0A%20%20%20%20System.out.println(line)%3B%0A%7D%0A%2F%2FWriter%0Awriter.append(%22hello%22)%3B%0Awriter.newLine()%3B%0Awriter.append(%22world%22)%3B%0Awriter.newLine()%3B%0A%60%60%60%0A%0A%0A%23%23%23%23%20%E8%BD%AC%E6%8D%A2%E6%B5%81%0A%20%60InputStreamReader%20%26%20InputStreamWriter%60%0A1.%20%E5%AD%97%E8%8A%82%E6%B5%81%E8%BD%AC%E6%8D%A2%E6%88%90%E5%AD%97%E7%AC%A6%E6%B5%81%E3%80%82%0A2.%20%E5%8F%AF%E4%BB%A5%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E9%9B%86%E3%80%82%0A</center></span>
+</div></body></html> 

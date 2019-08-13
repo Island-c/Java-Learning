@@ -1,0 +1,762 @@
+<html>
+<head>
+  <title>第八次笔记（多线程）</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600667 (zh-CN, DDL); Windows/10.0.0 (Win64);"/>
+  <meta name="content-class" content="yinxiang.markdown"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="715"/>
+<h1>第八次笔记（多线程）</h1>
+
+<div><span><div style="font-size: 14px; margin: 0; padding: 0; width: 100%;"><div style="line-height: 160%; box-sizing: content-box;"><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">程序、进程和线程
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">程序
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">进程（Process）
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">线程
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">区别
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">多线程
+</a></li></ul></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">多线程程序
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">静态代理设计模式
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">lamda
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">线程状态
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">线程停止
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">sleep()
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">yield()
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">join()
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">优先级
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">守护线程 deamon
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">其他常用方法
+</a></li></ul></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">并发、同步
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">死锁
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">生产者、消费者模式
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">管程法
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">信号灯法
+</a></li></ul></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">高级
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">任务定时调度
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">HappenBefore
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">volatile
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">DCL单例模式
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">ThreadLocal
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">可重入锁
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">CAS 原子操作 (compare and swap)。
+</a></li></ul></li></ul></div><h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">程序、进程和线程</h2>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">程序</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">是一个静态概念，对应操作系统中一个可执行文件。</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">进程（Process）</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">执行中的程序叫进程，是一个动态概念。</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">在windows中使用任务管理器 ，在UNIX中使用ps or top可以查看进程</li>
+</ul>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">线程</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">一个进程可以产生多个线程。</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">区别</h4>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">进程是资源分配的最小单位；线程是程序执行的最小单位。</li>
+<li style="line-height: 160%; box-sizing: content-box;">进程有自己独立的地址空间，每启动一个进程，系统都为其分配地址空间，建立数据表维护代码段、堆栈段和数据段； 线程没有独立的地址空间，它使用相同的地址空间共享数据。</li>
+<li style="line-height: 160%; box-sizing: content-box;">CPU切换一个线程比切换进程花费小；创建一个线程比创建进程开销小；线程占用资源比进程少很多。</li>
+<li style="line-height: 160%; box-sizing: content-box;">线程之间通信更方便，同一个进程下，线程共享全局变量、静态变量等数据（但同步和互斥问题较难处理）。而进程间的通信要用通信的方式进行（IPC）。</li>
+<li style="line-height: 160%; box-sizing: content-box;">多进程程序更安全，生命力更强，一个进程死掉不会对其他进程造成影响（因为有独立的地址空间）； 而多线程程序不易维护，一个线程死掉，整个进程就死掉了（因为共享地址空间）。</li>
+<li style="line-height: 160%; box-sizing: content-box;">进程对资源保护要求高，开销大，效率较低；线程对资源保护要求不高，开销小，效率高，可频繁切换。</li>
+</ol>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第八次笔记（多线程）_files/Image.png" type="image/png" data-filename="Image.png"/></p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">多线程</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">很多多线程是模拟出来的。真正的多线程是有多个cpu的情况。如果是模拟出来的多线程，在同一时间，cpu只能执行一个代码，切换速度很快，所以有同时执行的错觉。</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">多线程程序</h2>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">继承Thread类 ,重写run方法（不用</li>
+<li style="line-height: 160%; box-sizing: content-box;">*实现Runnable接口,重写run方法  （常用</li>
+<li style="line-height: 160%; box-sizing: content-box;">实现Callable接口 ,重写run方法 (属于高并发编程juc的一部分</li>
+</ol>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">多用实现，少用继承。（因为java有单继承限制）<br/>
+使用implements，oop多实现，灵活方便，方便同一份对象的代理。</p>
+</blockquote>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//方法1</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">PrimeThread</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">extends</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Thread</span></span>{ <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//继承Thead</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">run</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span></span>{  <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//重写run方法</span>
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//do something </span>
+    }
+}
+
+PrimeThread p = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> PrimeThread();
+p.start(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//开始执行</span>
+</code></pre>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//方法2</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">PrimeRun</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">implements</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Runnable</span></span>{
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">run</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span></span>{
+    
+    }
+}
+
+PrimeRun p = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> PrimeRun();
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(p).start(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//通过创建Thread对象调用start方法。</span>
+
+</code></pre>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// 使用implements，oop多实现，灵活方便，方便同一份对象的代理</span>
+     <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> </span>{
+          <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//一份资源</span>
+          Web12306 web=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Web12306();
+          <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//多个代理</span>
+          <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(web,<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;码畜&quot;</span>).start(); 
+          <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(web,<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;码农&quot;</span>).start();
+          <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(web,<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;码蟥&quot;</span>).start();
+     }
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第八次笔记（多线程）_files/Image [1].png" type="image/png" data-filename="Image.png"/></p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">静态代理设计模式</h2>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">StaticProxy</span> </span>{
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> WeddingCompany(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> You()).happyMarry();
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//同new Thread(线程对象).start();  </span>
+    }
+}
+
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">interface</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Marry</span></span>{
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">happyMarry</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span></span>;
+}
+
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">You</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">implements</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Marry</span></span>{
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">happyMarry</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated method stub</span>
+        System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;you and 嫦娥奔月了&quot;</span>);
+    }
+}
+
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">WeddingCompany</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">implements</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Marry</span></span>{
+
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//真实角色</span>
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> Marry target;
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">WeddingCompany</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(Marry target)</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.target=target;
+    }
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">happyMarry</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated method stub</span>
+        ready();
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.target.happyMarry();
+        after();
+    }
+    
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">ready</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;布置猪窝&quot;</span>);
+    }
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">after</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;闹洞房&quot;</span>);
+    } 
+}
+</code></pre>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">lamda</h2>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// 局部内部类</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Test2</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">implements</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Runnable</span></span>{
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">run</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span>
+    </span>{
+       <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>; i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">20</span> ;++i) {
+           System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;听歌&quot;</span>);
+        }
+    }
+}
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Test2()).start(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//匿名引用</span>
+        
+        
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//匿名内部类</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Runnable() {
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">run</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span>
+    </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>; i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">20</span> ;++i) {
+            System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;听歌&quot;</span>);
+        }
+    }
+}).start();
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//lambda表达式</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(()-&gt;{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>; i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">20</span> ;++i) {
+        System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;听歌&quot;</span>);
+    }
+}).start();
+
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(()-&gt;System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;多线程学习....&quot;</span>)).start();
+</code></pre>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">线程状态</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">new -&gt; runnable -&gt; runnning -&gt;blocked -&gt;terminated</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第八次笔记（多线程）_files/Image [2].png" type="image/png" data-filename="Image.png"/></p>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">线程死亡后不能重新开启</li>
+<li style="line-height: 160%; box-sizing: content-box;">线程阻塞后 不能直接运行</li>
+</ol>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第八次笔记（多线程）_files/Image [3].png" type="image/png" data-filename="Image.png"/></p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">就绪状态四种原因</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">start方法</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">阻塞状态解除</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">yield</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">jvm将cpu从本地线程切换到其他线程</li>
+</ul>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">阻塞状态四种原因</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">sleep</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">wait</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">join</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">read write等io操作</li>
+</ul>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">死亡原因</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">线程执行结束</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">强制终止方法 stop destory 等</li>
+</ul>
+</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第八次笔记（多线程）_files/Image [4].png" type="image/png" data-filename="Image.png"/></p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">线程停止</h4>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">不能使用stop  destroy方法<br/>
+2.使用Boolean类型的中止变量，将其设为false时线程停止</li>
+</ol>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">sleep()</h4>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">sleep(time) 指定当前进程组设的毫秒数</li>
+<li style="line-height: 160%; box-sizing: content-box;">slepp存在异常InterruptedException</li>
+<li style="line-height: 160%; box-sizing: content-box;">sleep时间达到后线程进入就绪状态<br/>
+4.sleep可以模拟网络延时、倒计时等</li>
+<li style="line-height: 160%; box-sizing: content-box;">每个对象都有一个锁，sleep不会释放锁</li>
+</ol>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">throws</span> InterruptedException </span>{
+    Date endTime = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Date(System.currentTimeMillis()+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1000</span>*<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">10</span>);
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">long</span> end=endTime.getTime();
+    
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">true</span>) {
+        System.out.println(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> SimpleDateFormat(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;mm:ss&quot;</span>).format(endTime));
+        Thread.sleep(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1000</span>);
+        endTime=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Date(endTime.getTime()-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1000</span>);
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(end-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">10000</span> &gt; endTime.getTime())
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">break</span>;
+    }
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">yield()</h4>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">礼让：让当前正在执行的线程暂停</li>
+<li style="line-height: 160%; box-sizing: content-box;">将线程从运行状态转为就绪状态，让cpu调度器重新调度。并没有转成阻塞状态。</li>
+</ol>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> </span>{
+   <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(()-&gt;{
+       <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>;i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">100</span>;i++) {
+           System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;lambda...&quot;</span>+i);
+       }
+   }).start();
+   
+   <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>;i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">100</span>;i++) {
+       <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(i%<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">20</span> ==<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>) {
+           Thread.yield(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//main礼让</span>
+       }
+       System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;main&quot;</span>+i);
+   }   
+}
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">join()</h4>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">join合并线程，该线程执行完成后才执行其他线程。其他线程阻塞</li>
+</ol>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">throws</span> InterruptedException </span>{
+    Thread t =<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(()-&gt;{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>;i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">100</span>;i++) {
+            System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;lambda...&quot;</span>+i);
+        }
+    });
+    t.start();
+    
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>;i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">100</span>;i++) {
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(i==<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">20</span>) {
+            t.join(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//插队 main主线程被阻塞 ，写在哪,哪被阻塞</span>
+        }
+        System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;main&quot;</span>+i);
+    }   
+}
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">优先级</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">java提供一个线程调度器监控程序中启动后进入就绪状态的所有线程。 线程调度器按照线程优先级决定应调度哪个线程来执行。</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">优先级低只是被调度的概率低。并不是绝对先调用优先级高的后调用优先级低的线程。<br/>
+<img src="第八次笔记（多线程）_files/Image [5].png" type="image/png" data-filename="Image.png"/></li>
+</ul>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">守护线程 deamon</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">守护线程是为用户线程服务的。 JVM停止不用等待守护线程执行完毕。<br/>
+默认情况下，所有线程都是用户线程，jvm等待所有用户线程执行完毕才会停止。</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> </span>{
+    God god=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> God();
+    You you=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> You();
+    Thread t = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(god);
+    t.setDaemon(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">true</span>);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//将用户线程调整为守护线程</span>
+    t.start();
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(you).start();
+}
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">其他常用方法</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第八次笔记（多线程）_files/Image [6].png" type="image/png" data-filename="Image.png"/></p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">并发、同步</h2>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">线程同步是一种等待机制。多个需要同时访问此对象的线程进入这个对象的等待池形成队列，等前面的线程使用完毕后，下一个线程再使用。</p>
+</blockquote>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">锁机制 synchronized
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">synchronized方法 (若将一个方法声明为synchronized 会极大的影响效率）</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">synchronized块</li>
+</ul>
+</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//同步方法</span>
+<span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">run</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated method stub</span>
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span>(flag) {
+        test();
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+            Thread.sleep(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">50</span>);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//加了网络延迟 ，出现并发问题</span>
+        } <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span> (InterruptedException e) {
+            <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated catch block</span>
+            e.printStackTrace();
+        }
+    }
+}
+<span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">test</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span>
+</span>{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(ticketNums &lt;= <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span> ) {
+        flag=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">false</span>;
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span>;
+    }
+    System.out.println(Thread.currentThread().getName()+<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;--&gt;&quot;</span>+ticketNums--);
+}
+</code></pre>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//同步块</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span> (obj) {   }
+ <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//obj是同步监视器， 锁定obj才能执行{}中的代码。</span>
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">synchronized方法，锁定的是this。<br/>
+synchronized块，自己指定锁定的对象。</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">死锁</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">* 死锁：过多的同步可能造成相互不是放资源 从而相互等待。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">* 一般发生于同步中持有多个对象的锁。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">为了避免死锁，不要在一个代码块中，同时持有多个对象的锁。</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">生产者、消费者模式</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">线程通信 ： 管程法，信号灯法。</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">管程法</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">生产者 --&gt;  缓冲区 --&gt; 消费者</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">CoTest1</span> </span>{
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> </span>{
+        SynContainer container = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> SynContainer();
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Productor(container).start(); 
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Consumer(container).start(); 
+    }
+}
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//生产者</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Productor</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">extends</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Thread</span></span>{
+    SynContainer container;
+    
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Productor</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(SynContainer container)</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.container = container;
+    }
+
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">run</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated method stub</span>
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//生产</span>
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>;i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">100</span>;i++) {
+            System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;生产--&gt;&quot;</span>+i+<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;个馒头&quot;</span>);
+            container.push( <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Steamedbun(i));
+        }
+    }
+}
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//消费者</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Consumer</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">extends</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Thread</span></span>{
+    SynContainer container;
+    
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Consumer</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(SynContainer container)</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.container = container;
+    }
+
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">run</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated method stub</span>
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//消费</span>
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>; i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">100</span>; i++) {
+            System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;消费--&gt;&quot;</span>+i+<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;个馒头&quot;</span>);
+            container.pop();
+        }
+    }
+}
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//缓冲区</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">SynContainer</span></span>{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> count=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>; <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//计数器</span>
+    Steamedbun[] buns = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Steamedbun[<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">10</span>];<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//容器</span>
+    
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//存</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">push</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(Steamedbun bun)</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(count == buns.length) {
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.wait(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//阻塞， 消费者通知生产则解除</span>
+            } <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span> (InterruptedException e) {
+                <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated catch block</span>
+                e.printStackTrace();
+            }
+        }
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.notifyAll();
+        buns[count++]=bun;
+    }
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//取</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span> Steamedbun <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">pop</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(count == <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>) {
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.wait(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//线程阻塞， 生产者通知消费则解除</span>
+            } <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span> (InterruptedException e) {
+                <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated catch block</span>
+                e.printStackTrace();
+            }
+        }
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.notifyAll();
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> buns[--count];
+    }
+}
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//馒头</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Steamedbun</span></span>{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> id;
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Steamedbun</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> id)</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.id = id;
+    }
+    
+
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">信号灯法</h4>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">package</span> cooperation;
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/**
+ * 信号灯 借助标志位
+ * <span style="color: #608b4e; line-height: 160%; box-sizing: content-box;">@author</span> Trail
+ *
+ */</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">CoTest1</span> </span>{
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> </span>{
+        Tv tv = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Tv();
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Player(tv).start();
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Watcher(tv).start();
+    }
+}
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//生产者  演员</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Player</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">extends</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Thread</span></span>{
+    Tv tv;
+
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Player</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(Tv tv)</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.tv = tv;
+    }
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">run</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated method stub</span>
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>;i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">20</span> ;i++) {
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(i%<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">2</span> ==<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>) {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.tv.play(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;哈哈哈&quot;</span>);
+            }<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">else</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.tv.play(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;立白&quot;</span>);
+            }
+        }
+    }
+    
+}
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//消费者  观众</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Watcher</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">extends</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Thread</span></span>{
+    Tv tv;
+
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Watcher</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(Tv tv)</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.tv = tv;
+    }
+    <span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">@Override</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">run</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>;i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">20</span> ;i++) {
+            tv.watch();
+        }
+    }
+}
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//同一个资源 电视</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Tv</span></span>{
+    String voice;
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//信号灯</span>
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//t 演员表演 观众等待  F观众观看 演员等待</span>
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">boolean</span> flag= <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">true</span>;
+    
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">play</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String voice)</span> </span>{
+        
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(!flag) {
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.wait();
+            } <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span> (InterruptedException e) {
+                <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated catch block</span>
+                e.printStackTrace();
+            }
+        }
+        System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;表演了--&gt;&quot;</span>+voice);
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.voice = voice;
+        
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.notifyAll();
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.flag= ! <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.flag;
+    }
+    
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">watch</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(flag) {
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.wait();
+            } <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span> (InterruptedException e) {
+                <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated catch block</span>
+                e.printStackTrace();
+            }
+        }
+        System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;听到了--&gt;&quot;</span>+voice);
+        
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.notifyAll();
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.flag=!<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.flag;
+    }
+    
+    
+}
+</code></pre>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">高级</h2>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">任务定时调度</h4>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">使用Timer</li>
+</ol>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">Timer  timer = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Timer();
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//timer.schedule(new MyTask(), 1000);//1s后执行任务一次</span>
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//timer.schedule(new MyTask() ,1000, 200); // 1s后，每隔200ms执行一次</span>
+Calendar cal = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> GregorianCalendar(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">2019</span>,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">8</span>,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">12</span>,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">6</span>,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">40</span>,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">50</span>);
+System.out.println(cal.get(Calendar.YEAR)+<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;  &quot;</span>+cal.get(Calendar.MONTH));
+timer.schedule(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> MyTask(),cal.getTime(), <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">200</span>);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//指定日期开始，每200ms执行一次</span>
+</code></pre>
+<ol start="2" style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">使用quartz</li>
+</ol>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">HappenBefore</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">代码可能没有按照期望的顺序执行。 因为会发生“指令重排”，编译器和CPU会尝试重排指令（上下无关的代码）使代码更快的运行。<br/>
+<img src="第八次笔记（多线程）_files/Image [7].png" type="image/png" data-filename="Image.png"/></p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">指令重排会影响多线程操作。</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第八次笔记（多线程）_files/Image [8].png" type="image/png" data-filename="Image.png"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第八次笔记（多线程）_files/Image [9].png" type="image/png" data-filename="Image.png"/></p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">volatile</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">（不常见）<br/>
+<img src="第八次笔记（多线程）_files/Image [10].png" type="image/png" data-filename="Image.png"/></p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">VolatileTest</span> </span>{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">volatile</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> num =<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>; <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//加了volatile，就算满cpu，也要读取改动的数据。</span>
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//private static int num =0;</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">throws</span> InterruptedException </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(()-&gt;{
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span>(num ==<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span> ) {
+                <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//占用cpu</span>
+            }
+        }).start();
+        Thread.sleep(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1000</span>);
+        num=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>;
+    }
+}
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">DCL单例模式</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">对外只能有一个对象，对内不限。</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">volatile</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">double_checking</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">* 单例模式 ：懒汉式套路基础上加入并发控制，保证在多线程环境下，对外存在一个对象</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">* 1. 构造器私有化 --》 避免外部new构造器</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">* 2. 提供私有的静态属性--》存储对象的地址</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">* 3. 提供公共的静态方法--》获取属性</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">DoubleCheckedLocking</span> </span>{
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//2，提供私有的静态属性</span>
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">volatile</span> DoubleCheckedLocking instance; <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//加volatile避免指令重排，导致instance还没有返回给引用，就已经被其他线程get了。</span>
+    
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//构造器私有化</span>
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">DoubleCheckedLocking</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        
+    }
+    
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> DoubleCheckedLocking <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">getInstance</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">long</span> time)</span> </span>{
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//再次检测</span>
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span> == instance ) { <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//避免不必要的同步</span>
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                Thread.sleep(time);
+            } <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span> (InterruptedException e) {
+                <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// TODO Auto-generated catch block</span>
+                e.printStackTrace();
+            }
+            instance = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> DoubleCheckedLocking();
+        }
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> instance;
+    }
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> DoubleCheckedLocking <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">getInstance1</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//再次检测</span>
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span> != instance ) { <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//避免不必要的同步</span>
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> instance;
+        }
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span>(DoubleCheckedLocking.class) {
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span> == instance) {
+                instance = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> DoubleCheckedLocking();
+                <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//new一个对象时：  1. 开辟空间  2 初始化对象信息 3.返回对象地址给引用</span>
+            }
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> instance;
+        }
+    }
+    
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> </span>{
+        Thread t=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(()-&gt;{
+            System.out.println(DoubleCheckedLocking.getInstance(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">500</span>));
+            
+            
+        });
+        
+        t.start();
+        System.out.println(DoubleCheckedLocking.getInstance(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1000</span>));
+    }
+    
+}
+
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">ThreadLocal</h4>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">线程的本地存储区<br/>
+<img src="第八次笔记（多线程）_files/Image [11].png" type="image/png" data-filename="Image.png"/></li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//写法：</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> ThreadLocal&lt;Integer&gt; threadLocal = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> ThreadLocal&lt;&gt;(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//一个巨大的线程空间 </span>
+
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//更改初始值</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> ThreadLocal&lt;Integer&gt; threadLocal = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> ThreadLocal&lt;&gt;() {
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">protected</span> Integer <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">initialValue</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">200</span>;
+    };
+}; <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//一个巨大的线程空间</span>
+
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> ThreadLocal&lt;Integer&gt; threadLocal = ThreadLocal.withInitial(()-&gt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>);
+
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//InheritableTHreadLocal&lt;&gt;(); //延续上下文的数据，将父线程的数据拷贝一份给子线程</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> ThreadLocal&lt;Integer&gt; threadLocal = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> InheritableThreadLocal&lt;&gt;();
+
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">可重入锁</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第八次笔记（多线程）_files/Image [12].png" type="image/png" data-filename="Image.png"/><br/>
+<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">ReentrantLock lock = new ReentrantLock() //可重入锁</code></p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">实现如下：</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">LockTest</span> </span>{
+   Lock lock=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Lock();
+   
+   <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">a</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">throws</span> InterruptedException </span>{
+       lock.lock();
+       doSomething();
+       lock.unlock();
+   }
+   <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">doSomething</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">throws</span> InterruptedException </span>{
+       lock.lock();
+       lock.unlock();
+   }
+
+   <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">throws</span> InterruptedException </span>{
+       LockTest test=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> LockTest();
+       test.a();
+       test.doSomething();
+   }
+}
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//不可重入锁</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Lock</span></span>{
+   <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//是否占用</span>
+   <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">boolean</span> isLocked = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">false</span>;
+   <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//使用锁</span>
+   <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">lock</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">throws</span> InterruptedException </span>{
+       <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span>(isLocked) {
+           wait();
+       }
+       isLocked=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">true</span>;  
+   }
+   <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">unlock</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+       isLocked=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">false</span>;
+       notify();
+   }
+}
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//可重入锁</span>
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">ReLock</span></span>{
+   <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//是否占用</span>
+   <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">boolean</span> isLocked = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">false</span>;
+   <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> Thread lockedBy=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//存储线程</span>
+   <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> holdCount=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>;
+   <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//使用锁</span>
+   <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">lock</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">throws</span> InterruptedException </span>{
+       Thread t = Thread.currentThread();
+       <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span>(isLocked &amp;&amp; lockedBy != Thread.currentThread()) {
+           wait();
+       }
+       isLocked=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">true</span>;  
+       lockedBy=t;
+       holdCount++;
+   }
+   <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">getHoldCount</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+       <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> holdCount;
+   }
+
+   <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">unlock</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+       <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(Thread.currentThread() == lockedBy) {
+           holdCount--;
+           <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(holdCount == <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>) {
+               isLocked=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">false</span>;
+               notify();
+               lockedBy=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">null</span>;
+           }
+       }
+
+   }
+}
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">CAS 原子操作 (compare and swap)。</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第八次笔记（多线程）_files/Image [13].png" type="image/png" data-filename="Image.png"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第八次笔记（多线程）_files/Image [14].png" type="image/png" data-filename="Image.png"/></p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">CAS</span> </span>{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> AtomicInteger stock = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> AtomicInteger(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">5</span>);
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span> ; i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">5</span> ;i++) {
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Thread(()-&gt;{
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+                    Thread.sleep(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1000</span>);
+                } <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span> (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Integer left = stock.decrementAndGet();<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//操作</span>
+                <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(left&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>) {
+                    System.out.println(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;抢完了&quot;</span>);
+                    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> ;
+                }
+                    System.out.println(Thread.currentThread().getName()+<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;--&gt;抢到了一件&quot;</span>+<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;--&gt;&gt;还剩&quot;</span>+left);      
+            }).start();
+        }
+    }
+}
+</code></pre>
+</div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%5BTOC%5D%0A%0A%23%23%20%E7%A8%8B%E5%BA%8F%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%0A%23%23%23%23%20%E7%A8%8B%E5%BA%8F%0A%E6%98%AF%E4%B8%80%E4%B8%AA%E9%9D%99%E6%80%81%E6%A6%82%E5%BF%B5%EF%BC%8C%E5%AF%B9%E5%BA%94%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E4%B8%80%E4%B8%AA%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E3%80%82%0A%23%23%23%23%20%E8%BF%9B%E7%A8%8B%EF%BC%88Process%EF%BC%89%0A%E6%89%A7%E8%A1%8C%E4%B8%AD%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%8F%AB%E8%BF%9B%E7%A8%8B%EF%BC%8C%E6%98%AF%E4%B8%80%E4%B8%AA%E5%8A%A8%E6%80%81%E6%A6%82%E5%BF%B5%E3%80%82%0A-%20%E5%9C%A8windows%E4%B8%AD%E4%BD%BF%E7%94%A8%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E5%99%A8%20%EF%BC%8C%E5%9C%A8UNIX%E4%B8%AD%E4%BD%BF%E7%94%A8ps%20or%20top%E5%8F%AF%E4%BB%A5%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%0A%0A%23%23%23%23%20%E7%BA%BF%E7%A8%8B%0A%E4%B8%80%E4%B8%AA%E8%BF%9B%E7%A8%8B%E5%8F%AF%E4%BB%A5%E4%BA%A7%E7%94%9F%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%E3%80%82%0A%0A%23%23%23%23%20%E5%8C%BA%E5%88%AB%0A1.%20%E8%BF%9B%E7%A8%8B%E6%98%AF%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E7%9A%84%E6%9C%80%E5%B0%8F%E5%8D%95%E4%BD%8D%EF%BC%9B%E7%BA%BF%E7%A8%8B%E6%98%AF%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E7%9A%84%E6%9C%80%E5%B0%8F%E5%8D%95%E4%BD%8D%E3%80%82%0A2.%20%E8%BF%9B%E7%A8%8B%E6%9C%89%E8%87%AA%E5%B7%B1%E7%8B%AC%E7%AB%8B%E7%9A%84%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%EF%BC%8C%E6%AF%8F%E5%90%AF%E5%8A%A8%E4%B8%80%E4%B8%AA%E8%BF%9B%E7%A8%8B%EF%BC%8C%E7%B3%BB%E7%BB%9F%E9%83%BD%E4%B8%BA%E5%85%B6%E5%88%86%E9%85%8D%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%EF%BC%8C%E5%BB%BA%E7%AB%8B%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%BB%B4%E6%8A%A4%E4%BB%A3%E7%A0%81%E6%AE%B5%E3%80%81%E5%A0%86%E6%A0%88%E6%AE%B5%E5%92%8C%E6%95%B0%E6%8D%AE%E6%AE%B5%EF%BC%9B%20%E7%BA%BF%E7%A8%8B%E6%B2%A1%E6%9C%89%E7%8B%AC%E7%AB%8B%E7%9A%84%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%EF%BC%8C%E5%AE%83%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%90%8C%E7%9A%84%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE%E3%80%82%0A3.%20CPU%E5%88%87%E6%8D%A2%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%AF%94%E5%88%87%E6%8D%A2%E8%BF%9B%E7%A8%8B%E8%8A%B1%E8%B4%B9%E5%B0%8F%EF%BC%9B%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%AF%94%E5%88%9B%E5%BB%BA%E8%BF%9B%E7%A8%8B%E5%BC%80%E9%94%80%E5%B0%8F%EF%BC%9B%E7%BA%BF%E7%A8%8B%E5%8D%A0%E7%94%A8%E8%B5%84%E6%BA%90%E6%AF%94%E8%BF%9B%E7%A8%8B%E5%B0%91%E5%BE%88%E5%A4%9A%E3%80%82%0A4.%20%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%9B%B4%E6%96%B9%E4%BE%BF%EF%BC%8C%E5%90%8C%E4%B8%80%E4%B8%AA%E8%BF%9B%E7%A8%8B%E4%B8%8B%EF%BC%8C%E7%BA%BF%E7%A8%8B%E5%85%B1%E4%BA%AB%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E3%80%81%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E7%AD%89%E6%95%B0%E6%8D%AE%EF%BC%88%E4%BD%86%E5%90%8C%E6%AD%A5%E5%92%8C%E4%BA%92%E6%96%A5%E9%97%AE%E9%A2%98%E8%BE%83%E9%9A%BE%E5%A4%84%E7%90%86%EF%BC%89%E3%80%82%E8%80%8C%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1%E8%A6%81%E7%94%A8%E9%80%9A%E4%BF%A1%E7%9A%84%E6%96%B9%E5%BC%8F%E8%BF%9B%E8%A1%8C%EF%BC%88IPC%EF%BC%89%E3%80%82%0A5.%20%E5%A4%9A%E8%BF%9B%E7%A8%8B%E7%A8%8B%E5%BA%8F%E6%9B%B4%E5%AE%89%E5%85%A8%EF%BC%8C%E7%94%9F%E5%91%BD%E5%8A%9B%E6%9B%B4%E5%BC%BA%EF%BC%8C%E4%B8%80%E4%B8%AA%E8%BF%9B%E7%A8%8B%E6%AD%BB%E6%8E%89%E4%B8%8D%E4%BC%9A%E5%AF%B9%E5%85%B6%E4%BB%96%E8%BF%9B%E7%A8%8B%E9%80%A0%E6%88%90%E5%BD%B1%E5%93%8D%EF%BC%88%E5%9B%A0%E4%B8%BA%E6%9C%89%E7%8B%AC%E7%AB%8B%E7%9A%84%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%EF%BC%89%EF%BC%9B%20%E8%80%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%A8%8B%E5%BA%8F%E4%B8%8D%E6%98%93%E7%BB%B4%E6%8A%A4%EF%BC%8C%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%AD%BB%E6%8E%89%EF%BC%8C%E6%95%B4%E4%B8%AA%E8%BF%9B%E7%A8%8B%E5%B0%B1%E6%AD%BB%E6%8E%89%E4%BA%86%EF%BC%88%E5%9B%A0%E4%B8%BA%E5%85%B1%E4%BA%AB%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%EF%BC%89%E3%80%82%0A6.%20%E8%BF%9B%E7%A8%8B%E5%AF%B9%E8%B5%84%E6%BA%90%E4%BF%9D%E6%8A%A4%E8%A6%81%E6%B1%82%E9%AB%98%EF%BC%8C%E5%BC%80%E9%94%80%E5%A4%A7%EF%BC%8C%E6%95%88%E7%8E%87%E8%BE%83%E4%BD%8E%EF%BC%9B%E7%BA%BF%E7%A8%8B%E5%AF%B9%E8%B5%84%E6%BA%90%E4%BF%9D%E6%8A%A4%E8%A6%81%E6%B1%82%E4%B8%8D%E9%AB%98%EF%BC%8C%E5%BC%80%E9%94%80%E5%B0%8F%EF%BC%8C%E6%95%88%E7%8E%87%E9%AB%98%EF%BC%8C%E5%8F%AF%E9%A2%91%E7%B9%81%E5%88%87%E6%8D%A2%E3%80%82%0A%0A!%5Be09611d07f8273bda6f5f2e0fd075427.png%5D(en-resource%3A%2F%2Fdatabase%2F717%3A1)%0A%0A%23%23%23%23%20%E5%A4%9A%E7%BA%BF%E7%A8%8B%0A%E5%BE%88%E5%A4%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%98%AF%E6%A8%A1%E6%8B%9F%E5%87%BA%E6%9D%A5%E7%9A%84%E3%80%82%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%98%AF%E6%9C%89%E5%A4%9A%E4%B8%AAcpu%E7%9A%84%E6%83%85%E5%86%B5%E3%80%82%E5%A6%82%E6%9E%9C%E6%98%AF%E6%A8%A1%E6%8B%9F%E5%87%BA%E6%9D%A5%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%8C%E5%9C%A8%E5%90%8C%E4%B8%80%E6%97%B6%E9%97%B4%EF%BC%8Ccpu%E5%8F%AA%E8%83%BD%E6%89%A7%E8%A1%8C%E4%B8%80%E4%B8%AA%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%88%87%E6%8D%A2%E9%80%9F%E5%BA%A6%E5%BE%88%E5%BF%AB%EF%BC%8C%E6%89%80%E4%BB%A5%E6%9C%89%E5%90%8C%E6%97%B6%E6%89%A7%E8%A1%8C%E7%9A%84%E9%94%99%E8%A7%89%E3%80%82%0A%0A%0A%23%23%20%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%A8%8B%E5%BA%8F%0A%0A1.%20%E7%BB%A7%E6%89%BFThread%E7%B1%BB%20%2C%E9%87%8D%E5%86%99run%E6%96%B9%E6%B3%95%EF%BC%88%E4%B8%8D%E7%94%A8%0A2.%20%5C*%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3%2C%E9%87%8D%E5%86%99run%E6%96%B9%E6%B3%95%20%20%EF%BC%88%E5%B8%B8%E7%94%A8%0A3.%20%E5%AE%9E%E7%8E%B0Callable%E6%8E%A5%E5%8F%A3%20%2C%E9%87%8D%E5%86%99run%E6%96%B9%E6%B3%95%20(%E5%B1%9E%E4%BA%8E%E9%AB%98%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8Bjuc%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86%0A%3E%20%E5%A4%9A%E7%94%A8%E5%AE%9E%E7%8E%B0%EF%BC%8C%E5%B0%91%E7%94%A8%E7%BB%A7%E6%89%BF%E3%80%82%EF%BC%88%E5%9B%A0%E4%B8%BAjava%E6%9C%89%E5%8D%95%E7%BB%A7%E6%89%BF%E9%99%90%E5%88%B6%EF%BC%89%0A%3E%20%E4%BD%BF%E7%94%A8implements%EF%BC%8Coop%E5%A4%9A%E5%AE%9E%E7%8E%B0%EF%BC%8C%E7%81%B5%E6%B4%BB%E6%96%B9%E4%BE%BF%EF%BC%8C%E6%96%B9%E4%BE%BF%E5%90%8C%E4%B8%80%E4%BB%BD%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%BB%A3%E7%90%86%E3%80%82%0A%0A%60%60%60%20java%0A%2F%2F%E6%96%B9%E6%B3%951%0Aclass%20PrimeThread%20extends%20Thread%7B%20%2F%2F%E7%BB%A7%E6%89%BFThead%0A%20%20%20%20public%20void%20run()%7B%20%20%2F%2F%E9%87%8D%E5%86%99run%E6%96%B9%E6%B3%95%0A%20%20%20%20%20%20%20%20%2F%2Fdo%20something%20%0A%20%20%20%20%7D%0A%7D%0A%0APrimeThread%20p%20%3D%20new%20PrimeThread()%3B%0Ap.start()%3B%20%2F%2F%E5%BC%80%E5%A7%8B%E6%89%A7%E8%A1%8C%0A%60%60%60%0A%60%60%60java%0A%2F%2F%E6%96%B9%E6%B3%952%0Aclass%20PrimeRun%20implements%20Runnable%7B%0A%20%20%20%20public%20void%20run()%7B%0A%20%20%20%20%0A%20%20%20%20%7D%0A%7D%0A%0APrimeRun%20p%20%3D%20new%20PrimeRun()%3B%0Anew%20Thread(p).start()%3B%20%2F%2F%E9%80%9A%E8%BF%87%E5%88%9B%E5%BB%BAThread%E5%AF%B9%E8%B1%A1%E8%B0%83%E7%94%A8start%E6%96%B9%E6%B3%95%E3%80%82%0A%0A%60%60%60%0A%60%60%60%20java%0A%2F%2F%20%E4%BD%BF%E7%94%A8implements%EF%BC%8Coop%E5%A4%9A%E5%AE%9E%E7%8E%B0%EF%BC%8C%E7%81%B5%E6%B4%BB%E6%96%B9%E4%BE%BF%EF%BC%8C%E6%96%B9%E4%BE%BF%E5%90%8C%E4%B8%80%E4%BB%BD%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%BB%A3%E7%90%86%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0public%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2F%E4%B8%80%E4%BB%BD%E8%B5%84%E6%BA%90%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0Web12306%20web%3Dnew%20Web12306()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%2F%2F%E5%A4%9A%E4%B8%AA%E4%BB%A3%E7%90%86%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0new%20Thread(web%2C%22%E7%A0%81%E7%95%9C%22).start()%3B%20%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0new%20Thread(web%2C%22%E7%A0%81%E5%86%9C%22).start()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0new%20Thread(web%2C%22%E7%A0%81%E8%9F%A5%22).start()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7D%0A%60%60%60%0A!%5Ba5cf70801ebe820ae79cc0ccd019c402.png%5D(en-resource%3A%2F%2Fdatabase%2F719%3A1)%0A%0A%0A%23%23%20%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%0A%60%60%60%20java%0Apublic%20class%20StaticProxy%20%7B%0A%20%20%20%20public%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%20%20%20%20%20%20%20%20new%20WeddingCompany(new%20You()).happyMarry()%3B%0A%20%20%20%20%20%20%20%20%2F%2F%E5%90%8Cnew%20Thread(%E7%BA%BF%E7%A8%8B%E5%AF%B9%E8%B1%A1).start()%3B%20%20%0A%20%20%20%20%7D%0A%7D%0A%0Ainterface%20Marry%7B%0A%20%20%20%20void%20happyMarry()%3B%0A%7D%0A%0Aclass%20You%20implements%20Marry%7B%0A%20%20%20%20%40Override%0A%20%20%20%20public%20void%20happyMarry()%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%20TODO%20Auto-generated%20method%20stub%0A%20%20%20%20%20%20%20%20System.out.println(%22you%20and%20%E5%AB%A6%E5%A8%A5%E5%A5%94%E6%9C%88%E4%BA%86%22)%3B%0A%20%20%20%20%7D%0A%7D%0A%0Aclass%20WeddingCompany%20implements%20Marry%7B%0A%0A%20%20%20%20%2F%2F%E7%9C%9F%E5%AE%9E%E8%A7%92%E8%89%B2%0A%20%20%20%20private%20Marry%20target%3B%0A%20%20%20%20public%20WeddingCompany(Marry%20target)%20%7B%0A%20%20%20%20%20%20%20%20this.target%3Dtarget%3B%0A%20%20%20%20%7D%0A%20%20%20%20%40Override%0A%20%20%20%20public%20void%20happyMarry()%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%20TODO%20Auto-generated%20method%20stub%0A%20%20%20%20%20%20%20%20ready()%3B%0A%20%20%20%20%20%20%20%20this.target.happyMarry()%3B%0A%20%20%20%20%20%20%20%20after()%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20private%20void%20ready()%20%7B%0A%20%20%20%20%20%20%20%20System.out.println(%22%E5%B8%83%E7%BD%AE%E7%8C%AA%E7%AA%9D%22)%3B%0A%20%20%20%20%7D%0A%20%20%20%20private%20void%20after()%20%7B%0A%20%20%20%20%20%20%20%20System.out.println(%22%E9%97%B9%E6%B4%9E%E6%88%BF%22)%3B%0A%20%20%20%20%7D%20%0A%7D%0A%60%60%60%0A%0A%23%23%20lamda%0A%60%60%60java%0A%2F%2F%20%E5%B1%80%E9%83%A8%E5%86%85%E9%83%A8%E7%B1%BB%0Aclass%20Test2%20implements%20Runnable%7B%0A%20%20%20%20public%20void%20run()%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20for(int%20i%3D0%3B%20i%3C20%20%3B%2B%2Bi)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20System.out.println(%22%E5%90%AC%E6%AD%8C%22)%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0Anew%20Thread(new%20Test2()).start()%3B%20%2F%2F%E5%8C%BF%E5%90%8D%E5%BC%95%E7%94%A8%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%0A%2F%2F%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%0Anew%20Thread(new%20Runnable()%20%7B%0A%20%20%20%20public%20void%20run()%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20for(int%20i%3D0%3B%20i%3C20%20%3B%2B%2Bi)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20System.out.println(%22%E5%90%AC%E6%AD%8C%22)%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D).start()%3B%0A%0A%2F%2Flambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%0Anew%20Thread(()-%3E%7B%0A%20%20%20%20for(int%20i%3D0%3B%20i%3C20%20%3B%2B%2Bi)%20%7B%0A%20%20%20%20%20%20%20%20System.out.println(%22%E5%90%AC%E6%AD%8C%22)%3B%0A%20%20%20%20%7D%0A%7D).start()%3B%0A%0Anew%20Thread(()-%3ESystem.out.println(%22%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0....%22)).start()%3B%0A%60%60%60%0A%0A%23%23%20%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%0A%0Anew%20-%3E%20runnable%20-%3E%20runnning%20-%3Eblocked%20-%3Eterminated%0A%0A!%5B8ee30d9a64a811acc8d36afd823c88d8.png%5D(en-resource%3A%2F%2Fdatabase%2F721%3A1)%0A%0A1.%20%E7%BA%BF%E7%A8%8B%E6%AD%BB%E4%BA%A1%E5%90%8E%E4%B8%8D%E8%83%BD%E9%87%8D%E6%96%B0%E5%BC%80%E5%90%AF%0A2.%20%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E%E5%90%8E%20%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%BF%90%E8%A1%8C%0A%0A!%5Baa1b880d507d68561a9abf17b07ac9d0.png%5D(en-resource%3A%2F%2Fdatabase%2F723%3A1)%0A%0A-%20%E5%B0%B1%E7%BB%AA%E7%8A%B6%E6%80%81%E5%9B%9B%E7%A7%8D%E5%8E%9F%E5%9B%A0%0A%20%20%20-%20start%E6%96%B9%E6%B3%95%0A%20%20%20-%20%E9%98%BB%E5%A1%9E%E7%8A%B6%E6%80%81%E8%A7%A3%E9%99%A4%0A%20%20%20-%20yield%0A%20%20%20-%20jvm%E5%B0%86cpu%E4%BB%8E%E6%9C%AC%E5%9C%B0%E7%BA%BF%E7%A8%8B%E5%88%87%E6%8D%A2%E5%88%B0%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%0A-%20%E9%98%BB%E5%A1%9E%E7%8A%B6%E6%80%81%E5%9B%9B%E7%A7%8D%E5%8E%9F%E5%9B%A0%0A%20%20%20-%20sleep%0A%20%20%20-%20wait%0A%20%20%20-%20join%0A%20%20-%20read%20write%E7%AD%89io%E6%93%8D%E4%BD%9C%0A%0A-%20%E6%AD%BB%E4%BA%A1%E5%8E%9F%E5%9B%A0%0A%20%20-%20%E7%BA%BF%E7%A8%8B%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9D%9F%0A%20%20-%20%E5%BC%BA%E5%88%B6%E7%BB%88%E6%AD%A2%E6%96%B9%E6%B3%95%20stop%20destory%20%E7%AD%89%0A%0A!%5B2c09533c6c1d6abdc838e5b69b6326e4.png%5D(en-resource%3A%2F%2Fdatabase%2F725%3A1)%0A%0A%23%23%23%23%20%E7%BA%BF%E7%A8%8B%E5%81%9C%E6%AD%A2%0A1.%20%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8stop%20%20destroy%E6%96%B9%E6%B3%95%0A2.%E4%BD%BF%E7%94%A8Boolean%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%B8%AD%E6%AD%A2%E5%8F%98%E9%87%8F%EF%BC%8C%E5%B0%86%E5%85%B6%E8%AE%BE%E4%B8%BAfalse%E6%97%B6%E7%BA%BF%E7%A8%8B%E5%81%9C%E6%AD%A2%0A%0A%23%23%23%23%20sleep()%0A%0A1.%20sleep(time)%20%E6%8C%87%E5%AE%9A%E5%BD%93%E5%89%8D%E8%BF%9B%E7%A8%8B%E7%BB%84%E8%AE%BE%E7%9A%84%E6%AF%AB%E7%A7%92%E6%95%B0%0A2.%20slepp%E5%AD%98%E5%9C%A8%E5%BC%82%E5%B8%B8InterruptedException%0A3.%20sleep%E6%97%B6%E9%97%B4%E8%BE%BE%E5%88%B0%E5%90%8E%E7%BA%BF%E7%A8%8B%E8%BF%9B%E5%85%A5%E5%B0%B1%E7%BB%AA%E7%8A%B6%E6%80%81%0A4.sleep%E5%8F%AF%E4%BB%A5%E6%A8%A1%E6%8B%9F%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6%E3%80%81%E5%80%92%E8%AE%A1%E6%97%B6%E7%AD%89%0A5.%20%E6%AF%8F%E4%B8%AA%E5%AF%B9%E8%B1%A1%E9%83%BD%E6%9C%89%E4%B8%80%E4%B8%AA%E9%94%81%EF%BC%8Csleep%E4%B8%8D%E4%BC%9A%E9%87%8A%E6%94%BE%E9%94%81%20%0A%60%60%60java%0Apublic%20static%20void%20main(String%5B%5D%20args)%20throws%20InterruptedException%20%7B%0A%20%20%20%20Date%20endTime%20%3D%20new%20Date(System.currentTimeMillis()%2B1000*10)%3B%0A%20%20%20%20long%20end%3DendTime.getTime()%3B%0A%20%20%20%20%0A%20%20%20%20while(true)%20%7B%0A%20%20%20%20%20%20%20%20System.out.println(new%20SimpleDateFormat(%22mm%3Ass%22).format(endTime))%3B%0A%20%20%20%20%20%20%20%20Thread.sleep(1000)%3B%0A%20%20%20%20%20%20%20%20endTime%3Dnew%20Date(endTime.getTime()-1000)%3B%0A%20%20%20%20%20%20%20%20if(end-10000%20%3E%20endTime.getTime())%0A%20%20%20%20%20%20%20%20%20%20%20%20break%3B%0A%20%20%20%20%7D%0A%60%60%60%0A%0A%23%23%23%23%20yield()%0A1.%20%E7%A4%BC%E8%AE%A9%EF%BC%9A%E8%AE%A9%E5%BD%93%E5%89%8D%E6%AD%A3%E5%9C%A8%E6%89%A7%E8%A1%8C%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%9A%82%E5%81%9C%0A2.%20%E5%B0%86%E7%BA%BF%E7%A8%8B%E4%BB%8E%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%E8%BD%AC%E4%B8%BA%E5%B0%B1%E7%BB%AA%E7%8A%B6%E6%80%81%EF%BC%8C%E8%AE%A9cpu%E8%B0%83%E5%BA%A6%E5%99%A8%E9%87%8D%E6%96%B0%E8%B0%83%E5%BA%A6%E3%80%82%E5%B9%B6%E6%B2%A1%E6%9C%89%E8%BD%AC%E6%88%90%E9%98%BB%E5%A1%9E%E7%8A%B6%E6%80%81%E3%80%82%0A%20%60%60%60java%0Apublic%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%20%20%20%20new%20Thread(()-%3E%7B%0A%20%20%20%20%20%20%20%20for(int%20i%3D0%3Bi%3C100%3Bi%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20System.out.println(%22lambda...%22%2Bi)%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D).start()%3B%0A%20%20%20%20%0A%20%20%20%20for(int%20i%3D0%3Bi%3C100%3Bi%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20if(i%2520%20%3D%3D0)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20Thread.yield()%3B%20%2F%2Fmain%E7%A4%BC%E8%AE%A9%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20System.out.println(%22main%22%2Bi)%3B%0A%20%20%20%20%7D%20%20%20%0A%7D%0A%60%60%60%0A%0A%23%23%23%23%20join()%0A%0A1.%20join%E5%90%88%E5%B9%B6%E7%BA%BF%E7%A8%8B%EF%BC%8C%E8%AF%A5%E7%BA%BF%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%AE%8C%E6%88%90%E5%90%8E%E6%89%8D%E6%89%A7%E8%A1%8C%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E3%80%82%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E%0A%0A%60%60%60java%0Apublic%20static%20void%20main(String%5B%5D%20args)%20throws%20InterruptedException%20%7B%0A%20%20%20%20Thread%20t%20%3Dnew%20Thread(()-%3E%7B%0A%20%20%20%20%20%20%20%20for(int%20i%3D0%3Bi%3C100%3Bi%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20System.out.println(%22lambda...%22%2Bi)%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D)%3B%0A%20%20%20%20t.start()%3B%0A%20%20%20%20%0A%20%20%20%20for(int%20i%3D0%3Bi%3C100%3Bi%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20if(i%3D%3D20)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20t.join()%3B%20%2F%2F%E6%8F%92%E9%98%9F%20main%E4%B8%BB%E7%BA%BF%E7%A8%8B%E8%A2%AB%E9%98%BB%E5%A1%9E%20%EF%BC%8C%E5%86%99%E5%9C%A8%E5%93%AA%2C%E5%93%AA%E8%A2%AB%E9%98%BB%E5%A1%9E%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20System.out.println(%22main%22%2Bi)%3B%0A%20%20%20%20%7D%20%20%20%0A%7D%0A%60%60%60%0A%0A%23%23%23%23%20%E4%BC%98%E5%85%88%E7%BA%A7%0Ajava%E6%8F%90%E4%BE%9B%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E5%99%A8%E7%9B%91%E6%8E%A7%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%90%AF%E5%8A%A8%E5%90%8E%E8%BF%9B%E5%85%A5%E5%B0%B1%E7%BB%AA%E7%8A%B6%E6%80%81%E7%9A%84%E6%89%80%E6%9C%89%E7%BA%BF%E7%A8%8B%E3%80%82%20%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E5%99%A8%E6%8C%89%E7%85%A7%E7%BA%BF%E7%A8%8B%E4%BC%98%E5%85%88%E7%BA%A7%E5%86%B3%E5%AE%9A%E5%BA%94%E8%B0%83%E5%BA%A6%E5%93%AA%E4%B8%AA%E7%BA%BF%E7%A8%8B%E6%9D%A5%E6%89%A7%E8%A1%8C%E3%80%82%20%0A-%20%E4%BC%98%E5%85%88%E7%BA%A7%E4%BD%8E%E5%8F%AA%E6%98%AF%E8%A2%AB%E8%B0%83%E5%BA%A6%E7%9A%84%E6%A6%82%E7%8E%87%E4%BD%8E%E3%80%82%E5%B9%B6%E4%B8%8D%E6%98%AF%E7%BB%9D%E5%AF%B9%E5%85%88%E8%B0%83%E7%94%A8%E4%BC%98%E5%85%88%E7%BA%A7%E9%AB%98%E7%9A%84%E5%90%8E%E8%B0%83%E7%94%A8%E4%BC%98%E5%85%88%E7%BA%A7%E4%BD%8E%E7%9A%84%E7%BA%BF%E7%A8%8B%E3%80%82%0A!%5B850278e6bed5316d64d795a8e249c528.png%5D(en-resource%3A%2F%2Fdatabase%2F727%3A1)%0A%0A%0A%23%23%23%23%20%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%20deamon%20%20%0A%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E6%98%AF%E4%B8%BA%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E6%9C%8D%E5%8A%A1%E7%9A%84%E3%80%82%20JVM%E5%81%9C%E6%AD%A2%E4%B8%8D%E7%94%A8%E7%AD%89%E5%BE%85%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%AE%8C%E6%AF%95%E3%80%82%20%0A%E9%BB%98%E8%AE%A4%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%89%80%E6%9C%89%E7%BA%BF%E7%A8%8B%E9%83%BD%E6%98%AF%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%EF%BC%8Cjvm%E7%AD%89%E5%BE%85%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%AE%8C%E6%AF%95%E6%89%8D%E4%BC%9A%E5%81%9C%E6%AD%A2%E3%80%82%0A%60%60%60java%0Apublic%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%20%20%20%20God%20god%3Dnew%20God()%3B%0A%20%20%20%20You%20you%3Dnew%20You()%3B%0A%20%20%20%20Thread%20t%20%3D%20new%20Thread(god)%3B%0A%20%20%20%20t.setDaemon(true)%3B%2F%2F%E5%B0%86%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E8%B0%83%E6%95%B4%E4%B8%BA%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%0A%20%20%20%20t.start()%3B%0A%20%20%20%20new%20Thread(you).start()%3B%0A%7D%0A%60%60%60%0A%0A%23%23%23%23%20%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95%0A!%5B54fbcb9dd7ab5894967fbffd9a29aed0.png%5D(en-resource%3A%2F%2Fdatabase%2F729%3A1)%0A%0A%23%23%20%E5%B9%B6%E5%8F%91%E3%80%81%E5%90%8C%E6%AD%A5%0A%3E%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%98%AF%E4%B8%80%E7%A7%8D%E7%AD%89%E5%BE%85%E6%9C%BA%E5%88%B6%E3%80%82%E5%A4%9A%E4%B8%AA%E9%9C%80%E8%A6%81%E5%90%8C%E6%97%B6%E8%AE%BF%E9%97%AE%E6%AD%A4%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BA%BF%E7%A8%8B%E8%BF%9B%E5%85%A5%E8%BF%99%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%AD%89%E5%BE%85%E6%B1%A0%E5%BD%A2%E6%88%90%E9%98%9F%E5%88%97%EF%BC%8C%E7%AD%89%E5%89%8D%E9%9D%A2%E7%9A%84%E7%BA%BF%E7%A8%8B%E4%BD%BF%E7%94%A8%E5%AE%8C%E6%AF%95%E5%90%8E%EF%BC%8C%E4%B8%8B%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%86%8D%E4%BD%BF%E7%94%A8%E3%80%82%0A%0A-%20%E9%94%81%E6%9C%BA%E5%88%B6%20synchronized%0A%20%20%20%20-%20synchronized%E6%96%B9%E6%B3%95%20(%E8%8B%A5%E5%B0%86%E4%B8%80%E4%B8%AA%E6%96%B9%E6%B3%95%E5%A3%B0%E6%98%8E%E4%B8%BAsynchronized%20%E4%BC%9A%E6%9E%81%E5%A4%A7%E7%9A%84%E5%BD%B1%E5%93%8D%E6%95%88%E7%8E%87%EF%BC%89%0A%20%20%20%20-%20synchronized%E5%9D%97%0A%60%60%60java%0A%2F%2F%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95%0Apublic%20void%20run()%20%7B%0A%20%20%20%20%2F%2F%20TODO%20Auto-generated%20method%20stub%0A%20%20%20%20while(flag)%20%7B%0A%20%20%20%20%20%20%20%20test()%3B%0A%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20Thread.sleep(50)%3B%2F%2F%E5%8A%A0%E4%BA%86%E7%BD%91%E7%BB%9C%E5%BB%B6%E8%BF%9F%20%EF%BC%8C%E5%87%BA%E7%8E%B0%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%0A%20%20%20%20%20%20%20%20%7D%20catch%20(InterruptedException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20TODO%20Auto-generated%20catch%20block%0A%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0Apublic%20synchronized%20void%20test()%0A%7B%0A%20%20%20%20if(ticketNums%20%3C%3D%200%20)%20%7B%0A%20%20%20%20%20%20%20%20flag%3Dfalse%3B%0A%20%20%20%20%20%20%20%20return%3B%0A%20%20%20%20%7D%0A%20%20%20%20System.out.println(Thread.currentThread().getName()%2B%22--%3E%22%2BticketNums--)%3B%0A%7D%0A%60%60%60%0A%0A%60%60%60java%0A%2F%2F%E5%90%8C%E6%AD%A5%E5%9D%97%0Asynchronized%20(obj)%20%7B%20%20%20%7D%0A%20%2F%2Fobj%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9B%91%E8%A7%86%E5%99%A8%EF%BC%8C%20%E9%94%81%E5%AE%9Aobj%E6%89%8D%E8%83%BD%E6%89%A7%E8%A1%8C%7B%7D%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%A0%81%E3%80%82%0A%60%60%60%0A%20%0A%20synchronized%E6%96%B9%E6%B3%95%EF%BC%8C%E9%94%81%E5%AE%9A%E7%9A%84%E6%98%AFthis%E3%80%82%0A%20synchronized%E5%9D%97%EF%BC%8C%E8%87%AA%E5%B7%B1%E6%8C%87%E5%AE%9A%E9%94%81%E5%AE%9A%E7%9A%84%E5%AF%B9%E8%B1%A1%E3%80%82%0A%20%0A%20%0A%23%23%20%E6%AD%BB%E9%94%81%20%0A%C2%A0*%20%E6%AD%BB%E9%94%81%EF%BC%9A%E8%BF%87%E5%A4%9A%E7%9A%84%E5%90%8C%E6%AD%A5%E5%8F%AF%E8%83%BD%E9%80%A0%E6%88%90%E7%9B%B8%E4%BA%92%E4%B8%8D%E6%98%AF%E6%94%BE%E8%B5%84%E6%BA%90%20%E4%BB%8E%E8%80%8C%E7%9B%B8%E4%BA%92%E7%AD%89%E5%BE%85%E3%80%82%0A%0A%C2%A0*%20%E4%B8%80%E8%88%AC%E5%8F%91%E7%94%9F%E4%BA%8E%E5%90%8C%E6%AD%A5%E4%B8%AD%E6%8C%81%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%94%81%E3%80%82%0A%0A%E4%B8%BA%E4%BA%86%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81%EF%BC%8C%E4%B8%8D%E8%A6%81%E5%9C%A8%E4%B8%80%E4%B8%AA%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%AD%EF%BC%8C%E5%90%8C%E6%97%B6%E6%8C%81%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%94%81%E3%80%82%0A%0A%0A%23%23%20%E7%94%9F%E4%BA%A7%E8%80%85%E3%80%81%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F%0A%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1%20%EF%BC%9A%20%E7%AE%A1%E7%A8%8B%E6%B3%95%EF%BC%8C%E4%BF%A1%E5%8F%B7%E7%81%AF%E6%B3%95%E3%80%82%0A%0A%23%23%23%23%20%E7%AE%A1%E7%A8%8B%E6%B3%95%0A%E7%94%9F%E4%BA%A7%E8%80%85%20--%3E%20%20%E7%BC%93%E5%86%B2%E5%8C%BA%20--%3E%20%E6%B6%88%E8%B4%B9%E8%80%85%0A%0A%60%60%60java%0A%0Apublic%20class%20CoTest1%20%7B%0A%20%20%20%20public%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%20%20%20%20%20%20%20%20SynContainer%20container%20%3D%20new%20SynContainer()%3B%0A%20%20%20%20%20%20%20%20new%20Productor(container).start()%3B%20%0A%20%20%20%20%20%20%20%20new%20Consumer(container).start()%3B%20%0A%20%20%20%20%7D%0A%7D%0A%0A%2F%2F%E7%94%9F%E4%BA%A7%E8%80%85%0Aclass%20Productor%20extends%20Thread%7B%0A%20%20%20%20SynContainer%20container%3B%0A%20%20%20%20%0A%20%20%20%20public%20Productor(SynContainer%20container)%20%7B%0A%20%20%20%20%20%20%20%20this.container%20%3D%20container%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20%40Override%0A%20%20%20%20public%20void%20run()%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%20TODO%20Auto-generated%20method%20stub%0A%20%20%20%20%20%20%20%20%2F%2F%E7%94%9F%E4%BA%A7%0A%20%20%20%20%20%20%20%20for(int%20i%3D0%3Bi%3C100%3Bi%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20System.out.println(%22%E7%94%9F%E4%BA%A7--%3E%22%2Bi%2B%22%E4%B8%AA%E9%A6%92%E5%A4%B4%22)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20container.push(%20new%20Steamedbun(i))%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A%0A%2F%2F%E6%B6%88%E8%B4%B9%E8%80%85%0Aclass%20Consumer%20extends%20Thread%7B%0A%20%20%20%20SynContainer%20container%3B%0A%20%20%20%20%0A%20%20%20%20public%20Consumer(SynContainer%20container)%20%7B%0A%20%20%20%20%20%20%20%20this.container%20%3D%20container%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20%40Override%0A%20%20%20%20public%20void%20run()%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%20TODO%20Auto-generated%20method%20stub%0A%20%20%20%20%20%20%20%20%2F%2F%E6%B6%88%E8%B4%B9%0A%20%20%20%20%20%20%20%20for(int%20i%3D0%3B%20i%3C100%3B%20i%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20System.out.println(%22%E6%B6%88%E8%B4%B9--%3E%22%2Bi%2B%22%E4%B8%AA%E9%A6%92%E5%A4%B4%22)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20container.pop()%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A%0A%2F%2F%E7%BC%93%E5%86%B2%E5%8C%BA%0Aclass%20SynContainer%7B%0A%20%20%20%20int%20count%3D0%3B%20%2F%2F%E8%AE%A1%E6%95%B0%E5%99%A8%0A%20%20%20%20Steamedbun%5B%5D%20buns%20%3D%20new%20Steamedbun%5B10%5D%3B%2F%2F%E5%AE%B9%E5%99%A8%0A%20%20%20%20%0A%20%20%20%20%2F%2F%E5%AD%98%0A%20%20%20%20public%20synchronized%20void%20push(Steamedbun%20bun)%20%7B%0A%20%20%20%20%20%20%20%20if(count%20%3D%3D%20buns.length)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20this.wait()%3B%20%2F%2F%E9%98%BB%E5%A1%9E%EF%BC%8C%20%E6%B6%88%E8%B4%B9%E8%80%85%E9%80%9A%E7%9F%A5%E7%94%9F%E4%BA%A7%E5%88%99%E8%A7%A3%E9%99%A4%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%20catch%20(InterruptedException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20TODO%20Auto-generated%20catch%20block%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20this.notifyAll()%3B%0A%20%20%20%20%20%20%20%20buns%5Bcount%2B%2B%5D%3Dbun%3B%0A%20%20%20%20%7D%0A%20%20%20%20%2F%2F%E5%8F%96%0A%20%20%20%20public%20synchronized%20Steamedbun%20pop()%20%7B%0A%20%20%20%20%20%20%20%20if(count%20%3D%3D%200)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20this.wait()%3B%20%2F%2F%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E%EF%BC%8C%20%E7%94%9F%E4%BA%A7%E8%80%85%E9%80%9A%E7%9F%A5%E6%B6%88%E8%B4%B9%E5%88%99%E8%A7%A3%E9%99%A4%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%20catch%20(InterruptedException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20TODO%20Auto-generated%20catch%20block%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20this.notifyAll()%3B%0A%20%20%20%20%20%20%20%20return%20buns%5B--count%5D%3B%0A%20%20%20%20%7D%0A%7D%0A%0A%2F%2F%E9%A6%92%E5%A4%B4%0Aclass%20Steamedbun%7B%0A%20%20%20%20int%20id%3B%0A%20%20%20%20public%20Steamedbun(int%20id)%20%7B%0A%20%20%20%20%20%20%20%20this.id%20%3D%20id%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%0A%60%60%60%0A%0A%23%23%23%23%20%E4%BF%A1%E5%8F%B7%E7%81%AF%E6%B3%95%0A%60%60%60java%0Apackage%20cooperation%3B%0A%2F**%0A%20*%20%E4%BF%A1%E5%8F%B7%E7%81%AF%20%E5%80%9F%E5%8A%A9%E6%A0%87%E5%BF%97%E4%BD%8D%0A%20*%20%40author%20Trail%0A%20*%0A%20*%2F%0Apublic%20class%20CoTest1%20%7B%0A%20%20%20%20public%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%20%20%20%20%20%20%20%20Tv%20tv%20%3D%20new%20Tv()%3B%0A%20%20%20%20%20%20%20%20new%20Player(tv).start()%3B%0A%20%20%20%20%20%20%20%20new%20Watcher(tv).start()%3B%0A%20%20%20%20%7D%0A%7D%0A%0A%2F%2F%E7%94%9F%E4%BA%A7%E8%80%85%20%20%E6%BC%94%E5%91%98%0Aclass%20Player%20extends%20Thread%7B%0A%20%20%20%20Tv%20tv%3B%0A%0A%20%20%20%20public%20Player(Tv%20tv)%20%7B%0A%20%20%20%20%20%20%20%20this.tv%20%3D%20tv%3B%0A%20%20%20%20%7D%0A%20%20%20%20%40Override%0A%20%20%20%20public%20void%20run()%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%20TODO%20Auto-generated%20method%20stub%0A%20%20%20%20%20%20%20%20for(int%20i%3D0%3Bi%3C20%20%3Bi%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20if(i%252%20%3D%3D0)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20this.tv.play(%22%E5%93%88%E5%93%88%E5%93%88%22)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7Delse%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20this.tv.play(%22%E7%AB%8B%E7%99%BD%22)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20%0A%7D%0A%2F%2F%E6%B6%88%E8%B4%B9%E8%80%85%20%20%E8%A7%82%E4%BC%97%0Aclass%20Watcher%20extends%20Thread%7B%0A%20%20%20%20Tv%20tv%3B%0A%0A%20%20%20%20public%20Watcher(Tv%20tv)%20%7B%0A%20%20%20%20%20%20%20%20this.tv%20%3D%20tv%3B%0A%20%20%20%20%7D%0A%20%20%20%20%40Override%0A%20%20%20%20public%20void%20run()%20%7B%0A%20%20%20%20%20%20%20%20for(int%20i%3D0%3Bi%3C20%20%3Bi%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20tv.watch()%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A%0A%2F%2F%E5%90%8C%E4%B8%80%E4%B8%AA%E8%B5%84%E6%BA%90%20%E7%94%B5%E8%A7%86%0Aclass%20Tv%7B%0A%20%20%20%20String%20voice%3B%0A%20%20%20%20%2F%2F%E4%BF%A1%E5%8F%B7%E7%81%AF%0A%20%20%20%20%2F%2Ft%20%E6%BC%94%E5%91%98%E8%A1%A8%E6%BC%94%20%E8%A7%82%E4%BC%97%E7%AD%89%E5%BE%85%20%20F%E8%A7%82%E4%BC%97%E8%A7%82%E7%9C%8B%20%E6%BC%94%E5%91%98%E7%AD%89%E5%BE%85%0A%20%20%20%20boolean%20flag%3D%20true%3B%0A%20%20%20%20%0A%20%20%20%20public%20synchronized%20void%20play(String%20voice)%20%7B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20if(!flag)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20this.wait()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%20catch%20(InterruptedException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20TODO%20Auto-generated%20catch%20block%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20System.out.println(%22%E8%A1%A8%E6%BC%94%E4%BA%86--%3E%22%2Bvoice)%3B%0A%20%20%20%20%20%20%20%20this.voice%20%3D%20voice%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20this.notifyAll()%3B%0A%20%20%20%20%20%20%20%20this.flag%3D%20!%20this.flag%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20public%20synchronized%20void%20watch()%20%7B%0A%20%20%20%20%20%20%20%20if(flag)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20this.wait()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%20catch%20(InterruptedException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20TODO%20Auto-generated%20catch%20block%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20System.out.println(%22%E5%90%AC%E5%88%B0%E4%BA%86--%3E%22%2Bvoice)%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20this.notifyAll()%3B%0A%20%20%20%20%20%20%20%20this.flag%3D!this.flag%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20%0A%7D%0A%60%60%60%0A%0A%23%23%20%E9%AB%98%E7%BA%A7%0A%0A%23%23%23%23%20%E4%BB%BB%E5%8A%A1%E5%AE%9A%E6%97%B6%E8%B0%83%E5%BA%A6%0A%0A1.%20%E4%BD%BF%E7%94%A8Timer%0A%60%60%60%20java%0ATimer%20%20timer%20%3D%20new%20Timer()%3B%0A%2F%2Ftimer.schedule(new%20MyTask()%2C%201000)%3B%2F%2F1s%E5%90%8E%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1%E4%B8%80%E6%AC%A1%0A%2F%2Ftimer.schedule(new%20MyTask()%20%2C1000%2C%20200)%3B%20%2F%2F%201s%E5%90%8E%EF%BC%8C%E6%AF%8F%E9%9A%94200ms%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1%0ACalendar%20cal%20%3D%20new%20GregorianCalendar(2019%2C8%2C12%2C6%2C40%2C50)%3B%0ASystem.out.println(cal.get(Calendar.YEAR)%2B%22%20%20%22%2Bcal.get(Calendar.MONTH))%3B%0Atimer.schedule(new%20MyTask()%2Ccal.getTime()%2C%20200)%3B%2F%2F%E6%8C%87%E5%AE%9A%E6%97%A5%E6%9C%9F%E5%BC%80%E5%A7%8B%EF%BC%8C%E6%AF%8F200ms%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1%0A%60%60%60%0A%0A2.%20%E4%BD%BF%E7%94%A8quartz%0A%0A%23%23%23%23%20HappenBefore%0A%E4%BB%A3%E7%A0%81%E5%8F%AF%E8%83%BD%E6%B2%A1%E6%9C%89%E6%8C%89%E7%85%A7%E6%9C%9F%E6%9C%9B%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%E3%80%82%20%E5%9B%A0%E4%B8%BA%E4%BC%9A%E5%8F%91%E7%94%9F%E2%80%9C%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%E2%80%9D%EF%BC%8C%E7%BC%96%E8%AF%91%E5%99%A8%E5%92%8CCPU%E4%BC%9A%E5%B0%9D%E8%AF%95%E9%87%8D%E6%8E%92%E6%8C%87%E4%BB%A4%EF%BC%88%E4%B8%8A%E4%B8%8B%E6%97%A0%E5%85%B3%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%89%E4%BD%BF%E4%BB%A3%E7%A0%81%E6%9B%B4%E5%BF%AB%E7%9A%84%E8%BF%90%E8%A1%8C%E3%80%82%0A!%5Be58ab252b9f9bf3afcd7423808e51ae3.png%5D(en-resource%3A%2F%2Fdatabase%2F731%3A1)%0A%0A-%20%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%93%8D%E4%BD%9C%E3%80%82%0A%0A!%5B3242416b7070420c41bda08e4d5483b0.png%5D(en-resource%3A%2F%2Fdatabase%2F733%3A1)%0A%0A!%5B1494d18ed45e5f644cf1b8c0cb75e877.png%5D(en-resource%3A%2F%2Fdatabase%2F735%3A1)%0A%23%23%23%23%20volatile%0A%EF%BC%88%E4%B8%8D%E5%B8%B8%E8%A7%81%EF%BC%89%0A!%5B3e07db70b03cb488e425565096b9adf8.png%5D(en-resource%3A%2F%2Fdatabase%2F737%3A1)%0A%0A%60%60%60java%0Apublic%20class%20VolatileTest%20%7B%0A%20%20%20%20private%20volatile%20static%20int%20num%20%3D0%3B%20%2F%2F%E5%8A%A0%E4%BA%86volatile%EF%BC%8C%E5%B0%B1%E7%AE%97%E6%BB%A1cpu%EF%BC%8C%E4%B9%9F%E8%A6%81%E8%AF%BB%E5%8F%96%E6%94%B9%E5%8A%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E3%80%82%0A%20%20%20%20%2F%2Fprivate%20static%20int%20num%20%3D0%3B%0A%20%20%20%20public%20static%20void%20main(String%5B%5D%20args)%20throws%20InterruptedException%20%7B%0A%20%20%20%20%20%20%20%20new%20Thread(()-%3E%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20while(num%20%3D%3D0%20)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%E5%8D%A0%E7%94%A8cpu%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D).start()%3B%0A%20%20%20%20%20%20%20%20Thread.sleep(1000)%3B%0A%20%20%20%20%20%20%20%20num%3D1%3B%0A%20%20%20%20%7D%0A%7D%0A%60%60%60%0A%0A%0A%23%23%23%23%20DCL%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%0A%0A%E5%AF%B9%E5%A4%96%E5%8F%AA%E8%83%BD%E6%9C%89%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%AF%B9%E5%86%85%E4%B8%8D%E9%99%90%E3%80%82%0A-%20volatile%0A-%20double_checking%0A%0A%C2%A0*%20%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%20%EF%BC%9A%E6%87%92%E6%B1%89%E5%BC%8F%E5%A5%97%E8%B7%AF%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%8A%A0%E5%85%A5%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6%EF%BC%8C%E4%BF%9D%E8%AF%81%E5%9C%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%8E%AF%E5%A2%83%E4%B8%8B%EF%BC%8C%E5%AF%B9%E5%A4%96%E5%AD%98%E5%9C%A8%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%0A%0A%C2%A0*%201.%20%E6%9E%84%E9%80%A0%E5%99%A8%E7%A7%81%E6%9C%89%E5%8C%96%20--%E3%80%8B%20%E9%81%BF%E5%85%8D%E5%A4%96%E9%83%A8new%E6%9E%84%E9%80%A0%E5%99%A8%0A%0A%C2%A0*%202.%20%E6%8F%90%E4%BE%9B%E7%A7%81%E6%9C%89%E7%9A%84%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7--%E3%80%8B%E5%AD%98%E5%82%A8%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%9C%B0%E5%9D%80%0A%0A%C2%A0*%203.%20%E6%8F%90%E4%BE%9B%E5%85%AC%E5%85%B1%E7%9A%84%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95--%E3%80%8B%E8%8E%B7%E5%8F%96%E5%B1%9E%E6%80%A7%0A%0A%60%60%60java%0Apublic%20class%20DoubleCheckedLocking%20%7B%0A%20%20%20%20%2F%2F2%EF%BC%8C%E6%8F%90%E4%BE%9B%E7%A7%81%E6%9C%89%E7%9A%84%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7%0A%20%20%20%20private%20static%20volatile%20DoubleCheckedLocking%20instance%3B%20%2F%2F%E5%8A%A0volatile%E9%81%BF%E5%85%8D%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92%EF%BC%8C%E5%AF%BC%E8%87%B4instance%E8%BF%98%E6%B2%A1%E6%9C%89%E8%BF%94%E5%9B%9E%E7%BB%99%E5%BC%95%E7%94%A8%EF%BC%8C%E5%B0%B1%E5%B7%B2%E7%BB%8F%E8%A2%AB%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8Bget%E4%BA%86%E3%80%82%0A%20%20%20%20%0A%20%20%20%20%2F%2F%E6%9E%84%E9%80%A0%E5%99%A8%E7%A7%81%E6%9C%89%E5%8C%96%0A%20%20%20%20private%20DoubleCheckedLocking()%20%7B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20public%20static%20DoubleCheckedLocking%20getInstance(long%20time)%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%E5%86%8D%E6%AC%A1%E6%A3%80%E6%B5%8B%0A%20%20%20%20%20%20%20%20if(null%20%3D%3D%20instance%20)%20%7B%20%2F%2F%E9%81%BF%E5%85%8D%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E5%90%8C%E6%AD%A5%0A%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Thread.sleep(time)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%20catch%20(InterruptedException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2F%20TODO%20Auto-generated%20catch%20block%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20instance%20%3D%20new%20DoubleCheckedLocking()%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20return%20instance%3B%0A%20%20%20%20%7D%0A%20%20%20%20public%20static%20DoubleCheckedLocking%20getInstance1()%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%E5%86%8D%E6%AC%A1%E6%A3%80%E6%B5%8B%0A%20%20%20%20%20%20%20%20if(null%20!%3D%20instance%20)%20%7B%20%2F%2F%E9%81%BF%E5%85%8D%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E5%90%8C%E6%AD%A5%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20instance%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20synchronized(DoubleCheckedLocking.class)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20if(null%20%3D%3D%20instance)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20instance%20%3D%20new%20DoubleCheckedLocking()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2F%2Fnew%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%97%B6%EF%BC%9A%20%201.%20%E5%BC%80%E8%BE%9F%E7%A9%BA%E9%97%B4%20%202%20%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AF%B9%E8%B1%A1%E4%BF%A1%E6%81%AF%203.%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1%E5%9C%B0%E5%9D%80%E7%BB%99%E5%BC%95%E7%94%A8%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20instance%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20public%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%20%20%20%20%20%20%20%20Thread%20t%3Dnew%20Thread(()-%3E%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20System.out.println(DoubleCheckedLocking.getInstance(500))%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%7D)%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20t.start()%3B%0A%20%20%20%20%20%20%20%20System.out.println(DoubleCheckedLocking.getInstance(1000))%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%7D%0A%0A%60%60%60%0A%0A%23%23%23%23%20ThreadLocal%0A-%20%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E5%8C%BA%0A!%5B30e246a697488b8c9f8d76c30b4d0f26.png%5D(en-resource%3A%2F%2Fdatabase%2F739%3A1)%0A%0A%60%60%60java%0A%2F%2F%E5%86%99%E6%B3%95%EF%BC%9A%0Apublic%20static%20ThreadLocal%3CInteger%3E%20threadLocal%20%3D%20new%20ThreadLocal%3C%3E()%3B%20%2F%2F%E4%B8%80%E4%B8%AA%E5%B7%A8%E5%A4%A7%E7%9A%84%E7%BA%BF%E7%A8%8B%E7%A9%BA%E9%97%B4%20%0A%0A%0A%2F%2F%E6%9B%B4%E6%94%B9%E5%88%9D%E5%A7%8B%E5%80%BC%0Apublic%20static%20ThreadLocal%3CInteger%3E%20threadLocal%20%3D%20new%20ThreadLocal%3C%3E()%20%7B%0A%20%20%20%20protected%20Integer%20initialValue()%20%7B%0A%20%20%20%20%20%20%20%20return%20200%3B%0A%20%20%20%20%7D%3B%0A%7D%3B%20%2F%2F%E4%B8%80%E4%B8%AA%E5%B7%A8%E5%A4%A7%E7%9A%84%E7%BA%BF%E7%A8%8B%E7%A9%BA%E9%97%B4%0A%0Aprivate%20static%20ThreadLocal%3CInteger%3E%20threadLocal%20%3D%20ThreadLocal.withInitial(()-%3E1)%3B%0A%0A%0A%2F%2FInheritableTHreadLocal%3C%3E()%3B%20%2F%2F%E5%BB%B6%E7%BB%AD%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%B0%86%E7%88%B6%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E6%8B%B7%E8%B4%9D%E4%B8%80%E4%BB%BD%E7%BB%99%E5%AD%90%E7%BA%BF%E7%A8%8B%0Aprivate%20static%20ThreadLocal%3CInteger%3E%20threadLocal%20%3D%20new%20InheritableThreadLocal%3C%3E()%3B%0A%0A%60%60%60%0A%0A%23%23%23%23%20%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%0A!%5B3090d3211b784e3fbee85c139cb0cf3a.png%5D(en-resource%3A%2F%2Fdatabase%2F741%3A1)%0A%60ReentrantLock%20lock%20%3D%20new%20ReentrantLock()%20%20%2F%2F%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%60%0A%0A-%20%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B%EF%BC%9A%0A%20%60%60%60java%0Apublic%20class%20LockTest%20%7B%0A%20%20%20%20Lock%20lock%3Dnew%20Lock()%3B%0A%20%20%20%20%0A%20%20%20%20public%20void%20a%20()%20throws%20InterruptedException%20%7B%0A%20%20%20%20%20%20%20%20lock.lock()%3B%0A%20%20%20%20%20%20%20%20doSomething()%3B%0A%20%20%20%20%20%20%20%20lock.unlock()%3B%0A%20%20%20%20%7D%0A%20%20%20%20public%20void%20doSomething()%20throws%20InterruptedException%20%7B%0A%20%20%20%20%20%20%20%20lock.lock()%3B%0A%20%20%20%20%20%20%20%20lock.unlock()%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20public%20static%20void%20main(String%5B%5D%20args)%20throws%20InterruptedException%20%7B%0A%20%20%20%20%20%20%20%20LockTest%20test%3Dnew%20LockTest()%3B%0A%20%20%20%20%20%20%20%20test.a()%3B%0A%20%20%20%20%20%20%20%20test.doSomething()%3B%0A%20%20%20%20%7D%0A%7D%0A%0A%2F%2F%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%0Aclass%20Lock%7B%0A%20%20%20%20%2F%2F%E6%98%AF%E5%90%A6%E5%8D%A0%E7%94%A8%0A%20%20%20%20private%20boolean%20isLocked%20%3D%20false%3B%0A%20%20%20%20%2F%2F%E4%BD%BF%E7%94%A8%E9%94%81%0A%20%20%20%20public%20synchronized%20void%20lock()%20throws%20InterruptedException%20%7B%0A%20%20%20%20%20%20%20%20while(isLocked)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20wait()%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20isLocked%3Dtrue%3B%20%20%0A%20%20%20%20%7D%0A%20%20%20%20public%20synchronized%20void%20unlock()%20%7B%0A%20%20%20%20%20%20%20%20isLocked%3Dfalse%3B%0A%20%20%20%20%20%20%20%20notify()%3B%0A%20%20%20%20%7D%0A%7D%0A%0A%2F%2F%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%0Aclass%20ReLock%7B%0A%20%20%20%20%2F%2F%E6%98%AF%E5%90%A6%E5%8D%A0%E7%94%A8%0A%20%20%20%20private%20boolean%20isLocked%20%3D%20false%3B%0A%20%20%20%20private%20Thread%20lockedBy%3Dnull%3B%2F%2F%E5%AD%98%E5%82%A8%E7%BA%BF%E7%A8%8B%0A%20%20%20%20private%20int%20holdCount%3D0%3B%0A%20%20%20%20%2F%2F%E4%BD%BF%E7%94%A8%E9%94%81%0A%20%20%20%20public%20synchronized%20void%20lock()%20throws%20InterruptedException%20%7B%0A%20%20%20%20%20%20%20%20Thread%20t%20%3D%20Thread.currentThread()%3B%0A%20%20%20%20%20%20%20%20while(isLocked%20%26%26%20lockedBy%20!%3D%20Thread.currentThread())%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20wait()%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20isLocked%3Dtrue%3B%20%20%0A%20%20%20%20%20%20%20%20lockedBy%3Dt%3B%0A%20%20%20%20%20%20%20%20holdCount%2B%2B%3B%0A%20%20%20%20%7D%0A%20%20%20%20public%20int%20getHoldCount()%20%7B%0A%20%20%20%20%20%20%20%20return%20holdCount%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20public%20synchronized%20void%20unlock()%20%7B%0A%20%20%20%20%20%20%20%20if(Thread.currentThread()%20%3D%3D%20lockedBy)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20holdCount--%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20if(holdCount%20%3D%3D%200)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20isLocked%3Dfalse%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20notify()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20lockedBy%3Dnull%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%0A%20%20%20%20%7D%0A%7D%0A%60%60%60%0A%0A%23%23%23%23%20CAS%20%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%20(compare%20and%20swap)%E3%80%82%0A!%5B92ef32a79ff513966d80c4848e62e69d.png%5D(en-resource%3A%2F%2Fdatabase%2F743%3A0)%0A%0A!%5B97a51515c95757ece782c952ab1568d1.png%5D(en-resource%3A%2F%2Fdatabase%2F745%3A0)%0A%0A%60%60%60java%0Apublic%20class%20CAS%20%7B%0A%20%20%20%20private%20static%20AtomicInteger%20stock%20%3D%20new%20AtomicInteger(5)%3B%0A%20%20%20%20public%20static%20void%20main(String%5B%5D%20args)%20%7B%0A%20%20%20%20%20%20%20%20for(int%20i%3D0%20%3B%20i%3C5%20%3Bi%2B%2B)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20new%20Thread(()-%3E%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Thread.sleep(1000)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%20catch%20(InterruptedException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20e.printStackTrace()%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Integer%20left%20%3D%20stock.decrementAndGet()%3B%2F%2F%E6%93%8D%E4%BD%9C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if(left%3C1)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20System.out.println(%22%E6%8A%A2%E5%AE%8C%E4%BA%86%22)%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20System.out.println(Thread.currentThread().getName()%2B%22--%3E%E6%8A%A2%E5%88%B0%E4%BA%86%E4%B8%80%E4%BB%B6%22%2B%22--%3E%3E%E8%BF%98%E5%89%A9%22%2Bleft)%3B%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D).start()%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A%60%60%60</center></span>
+</div></body></html> 

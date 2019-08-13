@@ -1,0 +1,185 @@
+<html>
+<head>
+  <title>第六次笔记（异常、容器）</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600667 (zh-CN, DDL); Windows/10.0.0 (Win64);"/>
+  <meta name="content-class" content="yinxiang.markdown"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="676"/>
+<h1>第六次笔记（异常、容器）</h1>
+
+<div><span><div style="font-size: 14px; margin: 0; padding: 0; width: 100%;"><div style="line-height: 160%; box-sizing: content-box;"><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">异常
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">容器
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">泛型
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Collection
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">List
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Map
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Set
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">容器遍历方法
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Collections工具类
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">使用容器存储表格数据
+</a></li></ul></li></ul></div><h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">异常</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">java采用面向对象的方式处理异常：</p>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">抛出异常：发生异常，将异常封装成对象，停止当前执行，将异常对象交给JRE（java runtime environment）</li>
+<li style="line-height: 160%; box-sizing: content-box;">捕获异常：JRE得到一场后，寻找相应代码处理异常。JRE在方法调用栈查找，从生成异常的方法开始回溯。</li>
+</ol>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第六次笔记（异常、容器）_files/Image.png" type="image/png" data-filename="Image.png"/><br/>
+<img src="第六次笔记（异常、容器）_files/Image [1].png" type="image/png" data-filename="Image.png"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">自定义异常：<br/>
+<img src="第六次笔记（异常、容器）_files/Image [2].png" type="image/png" data-filename="Image.png"/></p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">容器</h2>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">泛型</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">泛型：用于建立类型安全的集合</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">泛型：数据类型的参数化。可以把泛型理解为数据类型的占位符。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">在类的声明处增加泛型列表&lt;T,E,V&gt;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">Collection</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第六次笔记（异常、容器）_files/Image [3].png" type="image/png" data-filename="Image.png"/></p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">List</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第六次笔记（异常、容器）_files/Image [4].png" type="image/png" data-filename="Image.png"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">ArrayList底层用数组实现。 查询效率高，增删效率低，线程不安全。一般使用它。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">LInkedList增删效率高。 底层使用双向链表存储。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Vector线程安全。 synchronized</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">Map</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Map接口的实现类有：</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">HashMap：底层是哈希表（<strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">数组+链表</strong>）（链表长度大于8后，转为红黑树）。线程不安全，效率高，允许key或value为nul<br/>
+<img src="第六次笔记（异常、容器）_files/Image [5].png" type="image/png" data-filename="Image.png"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">TreeMap：用于排序。效率较低。<br/>
+HashTable： 线程安全，效率低，不允许key或value为null。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第六次笔记（异常、容器）_files/Image [6].png" type="image/png" data-filename="Image.png"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">哈希取余：<br/>
+直接取余 h%length 和 位运算 （h&amp;（length-1））结果是一致的。 但使用位运算时，length必须是2的整数次幂。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">TreeMap：<br/>
+Map中的key value 需要排序时使用TreeMap。<br/>
+TreeMap使用红黑二叉树为底层。</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> emp implements  Comparable&lt;emp&gt;
+{
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//实现Comparable接口，实现自定义类的排序。</span>
+ <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">comparaTl</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(emp o)</span>
+ </span>{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.salary &gt; p.salary)
+    {
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>;
+    }
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">else</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span> (<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.salary &lt; o.salary)
+    {
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> -<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>;
+    }
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">else</span> <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//如果salary相等，则比较id</span>
+    {
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.id &gt; o.id)
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>;
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">else</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.id &lt; o .id)
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> -<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>;
+    }
+ }
+}
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">Set</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Set就是value固定的Map</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">HashSet<br/>
+TreeSet：通过key存储元素。根据key排序（要实现compareTo接口）</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">容器遍历方法</h4>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// 容器遍历方法</span>
+
+【示例<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">9</span>-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">15</span>】遍历List方法一：普通<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>循环
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>;i&lt;list.size();i++){<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//list为集合的对象名</span>
+    String temp = (String)list.get(i);
+    System.out.println(temp);
+}
+
+【示例<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">9</span>-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">16</span>】遍历List方法二：增强<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>循环(使用泛型!)
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span> (String temp : list) {
+System.out.println(temp);
+}
+
+【示例<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">9</span>-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">17</span>】遍历List方法三：使用Iterator迭代器(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>)
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(Iterator iter= list.iterator();iter.hasNext();){
+    String temp = (String)iter.next();
+    System.out.println(temp);
+}
+
+【示例<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">9</span>-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">18</span>】遍历List方法四：使用Iterator迭代器(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">2</span>
+Iterator  iter =list.iterator();
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">while</span>(iter.hasNext()){
+    Object  obj =  iter.next();
+    iter.remove();<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//如果要遍历时，删除集合中的元素，建议使用这种方式！</span>
+    System.out.println(obj);
+}
+
+【示例<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">9</span>-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">19</span>】遍历Set方法一：增强<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>循环
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(String temp:set){
+System.out.println(temp);
+}
+
+【示例<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">9</span>-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">20</span>】遍历Set方法二：使用Iterator迭代器
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(Iterator iter = set.iterator();iter.hasNext();){
+    String temp = (String)iter.next();
+    System.out.println(temp);
+}
+
+【示例<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">9</span>-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">21</span>】遍历Map方法一：根据key获取value
+Map&lt;Integer, Man&gt; maps = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> HashMap&lt;Integer, Man&gt;();
+Set&lt;Integer&gt;  keySet =  maps.keySet();
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(Integer id : keySet){
+System.out.println(maps.get(id).name);
+}
+
+【示例<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">9</span>-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">22</span>】遍历Map方法二：使用entrySet
+Set&lt;Entry&lt;Integer, Man&gt;&gt;  ss = maps.entrySet();
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span> (Iterator iterator = ss.iterator(); iterator.hasNext();) {
+    Entry e = (Entry) iterator.next(); 
+    System.out.println(e.getKey()+<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;--&quot;</span>+e.getValue());
+
+
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">Collections工具类</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">类 java.util.Collections 提供了对Set、List、Map进行排序、填充、查找元素的辅助方法。</p>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">void sort(List) //对List容器内的元素排序，排序的规则是按照升序进行排序。</li>
+<li style="line-height: 160%; box-sizing: content-box;">void shuffle(List) //对List容器内的元素进行随机排列。</li>
+<li style="line-height: 160%; box-sizing: content-box;">void reverse(List) //对List容器内的元素进行逆续排列 。</li>
+<li style="line-height: 160%; box-sizing: content-box;">void fill(List, Object) //用一个特定的对象重写整个List容器。</li>
+<li style="line-height: 160%; box-sizing: content-box;">int binarySearch(List, Object)//对于顺序的List容器，采用折半查找的方法查找特定对象。</li>
+</ol>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">Test</span> </span>{
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">main</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String[] args)</span> </span>{
+        List&lt;String&gt; aList = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> ArrayList&lt;String&gt;();
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span> (<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i = <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>; i &lt; <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">5</span>; i++){
+            aList.add(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;a&quot;</span> + i);
+        }
+        System.out.println(aList);
+        Collections.shuffle(aList); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// 随机排列</span>
+        System.out.println(aList);
+        Collections.reverse(aList); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// 逆续</span>
+        System.out.println(aList);
+        Collections.sort(aList); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// 排序</span>
+        System.out.println(aList);
+        System.out.println(Collections.binarySearch(aList, <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;a2&quot;</span>)); 
+        Collections.fill(aList, <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;hello&quot;</span>);
+        System.out.println(aList);
+    }
+}
+
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">使用容器存储表格数据</h4>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">每一行数据使用一个Map（多个键值对，映射表头-&gt;内容） ， 整个表格使用一个List （List中放Map）</li>
+<li style="line-height: 160%; box-sizing: content-box;">每一行数据使用一个javabean对象，整个表格使用一个Map/List
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal; margin-top: 0; margin-bottom: 0;">
+<li style="line-height: 160%; box-sizing: content-box;">一个完整的javabean，要有set get方法和一个无参构造器</li>
+<li style="line-height: 160%; box-sizing: content-box;"></li>
+</ol>
+</li>
+</ol>
+</div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%5BTOC%5D%0A%23%23%20%E5%BC%82%E5%B8%B8%0A%0Ajava%E9%87%87%E7%94%A8%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8%EF%BC%9A%0A1.%20%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%EF%BC%9A%E5%8F%91%E7%94%9F%E5%BC%82%E5%B8%B8%EF%BC%8C%E5%B0%86%E5%BC%82%E5%B8%B8%E5%B0%81%E8%A3%85%E6%88%90%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%81%9C%E6%AD%A2%E5%BD%93%E5%89%8D%E6%89%A7%E8%A1%8C%EF%BC%8C%E5%B0%86%E5%BC%82%E5%B8%B8%E5%AF%B9%E8%B1%A1%E4%BA%A4%E7%BB%99JRE%EF%BC%88java%20runtime%20environment%EF%BC%89%0A2.%20%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8%EF%BC%9AJRE%E5%BE%97%E5%88%B0%E4%B8%80%E5%9C%BA%E5%90%8E%EF%BC%8C%E5%AF%BB%E6%89%BE%E7%9B%B8%E5%BA%94%E4%BB%A3%E7%A0%81%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8%E3%80%82JRE%E5%9C%A8%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%A0%88%E6%9F%A5%E6%89%BE%EF%BC%8C%E4%BB%8E%E7%94%9F%E6%88%90%E5%BC%82%E5%B8%B8%E7%9A%84%E6%96%B9%E6%B3%95%E5%BC%80%E5%A7%8B%E5%9B%9E%E6%BA%AF%E3%80%82%0A%0A!%5Bde02b123267eaa6847e5d3735250191a.png%5D(en-resource%3A%2F%2Fdatabase%2F678%3A1)%0A!%5B1103e3c83e3e8f268dedb47c499a7115.png%5D(en-resource%3A%2F%2Fdatabase%2F680%3A1)%0A%0A%0A%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%EF%BC%9A%0A!%5B547348d219979601bc358bf5ef1e16fe.png%5D(en-resource%3A%2F%2Fdatabase%2F682%3A1)%0A%0A%0A%0A%23%23%20%E5%AE%B9%E5%99%A8%0A%23%23%23%23%20%E6%B3%9B%E5%9E%8B%0A%E6%B3%9B%E5%9E%8B%EF%BC%9A%E7%94%A8%E4%BA%8E%E5%BB%BA%E7%AB%8B%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E7%9A%84%E9%9B%86%E5%90%88%0A%0A%E6%B3%9B%E5%9E%8B%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%82%E6%95%B0%E5%8C%96%E3%80%82%E5%8F%AF%E4%BB%A5%E6%8A%8A%E6%B3%9B%E5%9E%8B%E7%90%86%E8%A7%A3%E4%B8%BA%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8D%A0%E4%BD%8D%E7%AC%A6%E3%80%82%0A%0A%E5%9C%A8%E7%B1%BB%E7%9A%84%E5%A3%B0%E6%98%8E%E5%A4%84%E5%A2%9E%E5%8A%A0%E6%B3%9B%E5%9E%8B%E5%88%97%E8%A1%A8%3CT%2CE%2CV%3E%0A%0A%0A%23%23%23%23%20Collection%0A%20%20!%5B80c4c32c1c345117426319d9644d008b.png%5D(en-resource%3A%2F%2Fdatabase%2F684%3A1)%0A%20%20%0A%20%20%0A%23%23%23%23%20List%0A!%5B30e43ad5cfa60f77fb00cf8176cc1f82.png%5D(en-resource%3A%2F%2Fdatabase%2F688%3A1)%0A%0A%0AArrayList%E5%BA%95%E5%B1%82%E7%94%A8%E6%95%B0%E7%BB%84%E5%AE%9E%E7%8E%B0%E3%80%82%20%E6%9F%A5%E8%AF%A2%E6%95%88%E7%8E%87%E9%AB%98%EF%BC%8C%E5%A2%9E%E5%88%A0%E6%95%88%E7%8E%87%E4%BD%8E%EF%BC%8C%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E3%80%82%E4%B8%80%E8%88%AC%E4%BD%BF%E7%94%A8%E5%AE%83%E3%80%82%0A%20%20%0ALInkedList%E5%A2%9E%E5%88%A0%E6%95%88%E7%8E%87%E9%AB%98%E3%80%82%20%E5%BA%95%E5%B1%82%E4%BD%BF%E7%94%A8%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%E5%AD%98%E5%82%A8%E3%80%82%0A%0AVector%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E3%80%82%20synchronized%0A%0A%23%23%23%23%20Map%0AMap%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E7%8E%B0%E7%B1%BB%E6%9C%89%EF%BC%9A%0A%0AHashMap%EF%BC%9A%E5%BA%95%E5%B1%82%E6%98%AF%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%88**%E6%95%B0%E7%BB%84%2B%E9%93%BE%E8%A1%A8**%EF%BC%89%EF%BC%88%E9%93%BE%E8%A1%A8%E9%95%BF%E5%BA%A6%E5%A4%A7%E4%BA%8E8%E5%90%8E%EF%BC%8C%E8%BD%AC%E4%B8%BA%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%89%E3%80%82%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%EF%BC%8C%E6%95%88%E7%8E%87%E9%AB%98%EF%BC%8C%E5%85%81%E8%AE%B8key%E6%88%96value%E4%B8%BAnul%0A!%5Ba8d7c15c9f6ee0ccddee3d90ee140600.png%5D(en-resource%3A%2F%2Fdatabase%2F692%3A1)%0A%0ATreeMap%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%8E%92%E5%BA%8F%E3%80%82%E6%95%88%E7%8E%87%E8%BE%83%E4%BD%8E%E3%80%82%0AHashTable%EF%BC%9A%20%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%8C%E6%95%88%E7%8E%87%E4%BD%8E%EF%BC%8C%E4%B8%8D%E5%85%81%E8%AE%B8key%E6%88%96value%E4%B8%BAnull%E3%80%82%0A%0A%0A!%5Ba160a7b47a9f70fb6e8c634751821b98.png%5D(en-resource%3A%2F%2Fdatabase%2F690%3A1)%0A%0A%0A%0A%E5%93%88%E5%B8%8C%E5%8F%96%E4%BD%99%EF%BC%9A%0A%E7%9B%B4%E6%8E%A5%E5%8F%96%E4%BD%99%20h%25length%20%E5%92%8C%20%E4%BD%8D%E8%BF%90%E7%AE%97%20%EF%BC%88h%26%EF%BC%88length-1%EF%BC%89%EF%BC%89%E7%BB%93%E6%9E%9C%E6%98%AF%E4%B8%80%E8%87%B4%E7%9A%84%E3%80%82%20%E4%BD%86%E4%BD%BF%E7%94%A8%E4%BD%8D%E8%BF%90%E7%AE%97%E6%97%B6%EF%BC%8Clength%E5%BF%85%E9%A1%BB%E6%98%AF2%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E5%B9%82%E3%80%82%0A%0A%0ATreeMap%EF%BC%9A%0AMap%E4%B8%AD%E7%9A%84key%20value%20%E9%9C%80%E8%A6%81%E6%8E%92%E5%BA%8F%E6%97%B6%E4%BD%BF%E7%94%A8TreeMap%E3%80%82%0ATreeMap%E4%BD%BF%E7%94%A8%E7%BA%A2%E9%BB%91%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%BA%E5%BA%95%E5%B1%82%E3%80%82%0A%0A%0A%60%60%60java%0Apublic%20emp%20implements%20%20Comparable%3Cemp%3E%0A%7B%0A%2F%2F%E5%AE%9E%E7%8E%B0Comparable%E6%8E%A5%E5%8F%A3%EF%BC%8C%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E7%9A%84%E6%8E%92%E5%BA%8F%E3%80%82%0A%20public%20int%20comparaTl%20(emp%20o)%0A%20%7B%0A%20%20%20%20if(this.salary%20%3E%20p.salary)%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20%7D%0A%20%20%20%20else%20if%20(this.salary%20%3C%20o.salary)%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20return%20-1%3B%0A%20%20%20%20%7D%0A%20%20%20%20else%20%2F%2F%E5%A6%82%E6%9E%9Csalary%E7%9B%B8%E7%AD%89%EF%BC%8C%E5%88%99%E6%AF%94%E8%BE%83id%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20if(this.id%20%3E%20o.id)%0A%20%20%20%20%20%20%20%20%20%20%20%20return%201%3B%0A%20%20%20%20%20%20%20%20else%20if(this.id%20%3C%20o%20.id)%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20-1%3B%0A%20%20%20%20%7D%0A%20%7D%0A%7D%0A%60%60%60%0A%0A%23%23%23%23%20Set%0ASet%E5%B0%B1%E6%98%AFvalue%E5%9B%BA%E5%AE%9A%E7%9A%84Map%0A%0AHashSet%0ATreeSet%EF%BC%9A%E9%80%9A%E8%BF%87key%E5%AD%98%E5%82%A8%E5%85%83%E7%B4%A0%E3%80%82%E6%A0%B9%E6%8D%AEkey%E6%8E%92%E5%BA%8F%EF%BC%88%E8%A6%81%E5%AE%9E%E7%8E%B0compareTo%E6%8E%A5%E5%8F%A3%EF%BC%89%0A%0A%0A%23%23%23%23%20%E5%AE%B9%E5%99%A8%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95%0A%60%60%60java%0A%2F%2F%20%E5%AE%B9%E5%99%A8%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95%0A%0A%E3%80%90%E7%A4%BA%E4%BE%8B9-15%E3%80%91%E9%81%8D%E5%8E%86List%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E6%99%AE%E9%80%9Afor%E5%BE%AA%E7%8E%AF%0Afor(int%C2%A0i%3D0%3Bi%3Clist.size()%3Bi%2B%2B)%7B%2F%2Flist%E4%B8%BA%E9%9B%86%E5%90%88%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%90%8D%0A%C2%A0%C2%A0%C2%A0%C2%A0String%C2%A0temp%C2%A0%3D%C2%A0(String)list.get(i)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0System.out.println(temp)%3B%0A%7D%0A%0A%E3%80%90%E7%A4%BA%E4%BE%8B9-16%E3%80%91%E9%81%8D%E5%8E%86List%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%A2%9E%E5%BC%BAfor%E5%BE%AA%E7%8E%AF(%E4%BD%BF%E7%94%A8%E6%B3%9B%E5%9E%8B!)%0Afor%C2%A0(String%C2%A0temp%C2%A0%3A%C2%A0list)%C2%A0%7B%0ASystem.out.println(temp)%3B%0A%7D%0A%0A%E3%80%90%E7%A4%BA%E4%BE%8B9-17%E3%80%91%E9%81%8D%E5%8E%86List%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%E4%BD%BF%E7%94%A8Iterator%E8%BF%AD%E4%BB%A3%E5%99%A8(1)%0Afor(Iterator%C2%A0iter%3D%C2%A0list.iterator()%3Biter.hasNext()%3B)%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0String%C2%A0temp%C2%A0%3D%C2%A0(String)iter.next()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0System.out.println(temp)%3B%0A%7D%0A%0A%E3%80%90%E7%A4%BA%E4%BE%8B9-18%E3%80%91%E9%81%8D%E5%8E%86List%E6%96%B9%E6%B3%95%E5%9B%9B%EF%BC%9A%E4%BD%BF%E7%94%A8Iterator%E8%BF%AD%E4%BB%A3%E5%99%A8(2%0AIterator%C2%A0%C2%A0iter%C2%A0%3Dlist.iterator()%3B%0Awhile(iter.hasNext())%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0Object%C2%A0%C2%A0obj%C2%A0%3D%C2%A0%C2%A0iter.next()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0iter.remove()%3B%2F%2F%E5%A6%82%E6%9E%9C%E8%A6%81%E9%81%8D%E5%8E%86%E6%97%B6%EF%BC%8C%E5%88%A0%E9%99%A4%E9%9B%86%E5%90%88%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0%EF%BC%8C%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8%E8%BF%99%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%81%0A%C2%A0%C2%A0%C2%A0%C2%A0System.out.println(obj)%3B%0A%7D%0A%0A%E3%80%90%E7%A4%BA%E4%BE%8B9-19%E3%80%91%E9%81%8D%E5%8E%86Set%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%A2%9E%E5%BC%BAfor%E5%BE%AA%E7%8E%AF%0Afor(String%C2%A0temp%3Aset)%7B%0ASystem.out.println(temp)%3B%0A%7D%0A%0A%E3%80%90%E7%A4%BA%E4%BE%8B9-20%E3%80%91%E9%81%8D%E5%8E%86Set%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%BD%BF%E7%94%A8Iterator%E8%BF%AD%E4%BB%A3%E5%99%A8%0Afor(Iterator%C2%A0iter%C2%A0%3D%C2%A0set.iterator()%3Biter.hasNext()%3B)%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0String%C2%A0temp%C2%A0%3D%C2%A0(String)iter.next()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0System.out.println(temp)%3B%0A%7D%0A%0A%E3%80%90%E7%A4%BA%E4%BE%8B9-21%E3%80%91%E9%81%8D%E5%8E%86Map%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E6%A0%B9%E6%8D%AEkey%E8%8E%B7%E5%8F%96value%0AMap%3CInteger%2C%C2%A0Man%3E%C2%A0maps%C2%A0%3D%C2%A0new%C2%A0HashMap%3CInteger%2C%C2%A0Man%3E()%3B%0ASet%3CInteger%3E%C2%A0%C2%A0keySet%C2%A0%3D%C2%A0%C2%A0maps.keySet()%3B%0Afor(Integer%C2%A0id%C2%A0%3A%C2%A0keySet)%7B%0ASystem.out.println(maps.get(id).name)%3B%0A%7D%0A%0A%E3%80%90%E7%A4%BA%E4%BE%8B9-22%E3%80%91%E9%81%8D%E5%8E%86Map%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%BD%BF%E7%94%A8entrySet%0ASet%3CEntry%3CInteger%2C%C2%A0Man%3E%3E%C2%A0%C2%A0ss%C2%A0%3D%C2%A0maps.entrySet()%3B%0Afor%C2%A0(Iterator%C2%A0iterator%C2%A0%3D%C2%A0ss.iterator()%3B%C2%A0iterator.hasNext()%3B)%C2%A0%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0Entry%C2%A0e%C2%A0%3D%C2%A0(Entry)%C2%A0iterator.next()%3B%C2%A0%0A%C2%A0%C2%A0%C2%A0%C2%A0System.out.println(e.getKey()%2B%22--%22%2Be.getValue())%3B%0A%0A%0A%60%60%60%0A%0A%23%23%23%23%20Collections%E5%B7%A5%E5%85%B7%E7%B1%BB%0A%0A%0A%C2%A0%E7%B1%BB%20java.util.Collections%20%E6%8F%90%E4%BE%9B%E4%BA%86%E5%AF%B9Set%E3%80%81List%E3%80%81Map%E8%BF%9B%E8%A1%8C%E6%8E%92%E5%BA%8F%E3%80%81%E5%A1%AB%E5%85%85%E3%80%81%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E8%BE%85%E5%8A%A9%E6%96%B9%E6%B3%95%E3%80%82%C2%A0%20%C2%A0%20%C2%A0%C2%A0%0A%201.%20void%20sort(List)%20%2F%2F%E5%AF%B9List%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E5%85%83%E7%B4%A0%E6%8E%92%E5%BA%8F%EF%BC%8C%E6%8E%92%E5%BA%8F%E7%9A%84%E8%A7%84%E5%88%99%E6%98%AF%E6%8C%89%E7%85%A7%E5%8D%87%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%8E%92%E5%BA%8F%E3%80%82%C2%A0%20%C2%A0%20%C2%A0%C2%A0%0A%202.%20void%20shuffle(List)%20%2F%2F%E5%AF%B9List%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E5%85%83%E7%B4%A0%E8%BF%9B%E8%A1%8C%E9%9A%8F%E6%9C%BA%E6%8E%92%E5%88%97%E3%80%82%C2%A0%20%C2%A0%20%C2%A0%C2%A0%0A%203.%20void%20reverse(List)%20%2F%2F%E5%AF%B9List%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84%E5%85%83%E7%B4%A0%E8%BF%9B%E8%A1%8C%E9%80%86%E7%BB%AD%E6%8E%92%E5%88%97%20%E3%80%82%C2%A0%20%C2%A0%20%C2%A0%C2%A0%0A%204.%20void%20fill(List%2C%20Object)%20%2F%2F%E7%94%A8%E4%B8%80%E4%B8%AA%E7%89%B9%E5%AE%9A%E7%9A%84%E5%AF%B9%E8%B1%A1%E9%87%8D%E5%86%99%E6%95%B4%E4%B8%AAList%E5%AE%B9%E5%99%A8%E3%80%82%C2%A0%20%C2%A0%20%C2%A0%C2%A0%0A%205.%20int%20binarySearch(List%2C%20Object)%2F%2F%E5%AF%B9%E4%BA%8E%E9%A1%BA%E5%BA%8F%E7%9A%84List%E5%AE%B9%E5%99%A8%EF%BC%8C%E9%87%87%E7%94%A8%E6%8A%98%E5%8D%8A%E6%9F%A5%E6%89%BE%E7%9A%84%E6%96%B9%E6%B3%95%E6%9F%A5%E6%89%BE%E7%89%B9%E5%AE%9A%E5%AF%B9%E8%B1%A1%E3%80%82%0A%20%0A%20%60%60%60java%0A%0Apublic%C2%A0class%C2%A0Test%C2%A0%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0public%C2%A0static%C2%A0void%C2%A0main(String%5B%5D%C2%A0args)%C2%A0%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0List%3CString%3E%C2%A0aList%C2%A0%3D%C2%A0new%C2%A0ArrayList%3CString%3E()%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0for%C2%A0(int%C2%A0i%C2%A0%3D%C2%A00%3B%C2%A0i%C2%A0%3C%C2%A05%3B%C2%A0i%2B%2B)%7B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0aList.add(%22a%22%C2%A0%2B%C2%A0i)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%7D%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0System.out.println(aList)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0Collections.shuffle(aList)%3B%C2%A0%2F%2F%C2%A0%E9%9A%8F%E6%9C%BA%E6%8E%92%E5%88%97%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0System.out.println(aList)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0Collections.reverse(aList)%3B%C2%A0%2F%2F%C2%A0%E9%80%86%E7%BB%AD%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0System.out.println(aList)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0Collections.sort(aList)%3B%C2%A0%2F%2F%C2%A0%E6%8E%92%E5%BA%8F%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0System.out.println(aList)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0System.out.println(Collections.binarySearch(aList%2C%C2%A0%22a2%22))%3B%C2%A0%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0Collections.fill(aList%2C%C2%A0%22hello%22)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0System.out.println(aList)%3B%0A%C2%A0%C2%A0%C2%A0%C2%A0%7D%0A%7D%0A%0A%60%60%60%0A%0A%23%23%23%23%20%E4%BD%BF%E7%94%A8%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%0A1.%20%E6%AF%8F%E4%B8%80%E8%A1%8C%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AAMap%EF%BC%88%E5%A4%9A%E4%B8%AA%E9%94%AE%E5%80%BC%E5%AF%B9%EF%BC%8C%E6%98%A0%E5%B0%84%E8%A1%A8%E5%A4%B4-%3E%E5%86%85%E5%AE%B9%EF%BC%89%20%EF%BC%8C%20%E6%95%B4%E4%B8%AA%E8%A1%A8%E6%A0%BC%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AAList%20%EF%BC%88List%E4%B8%AD%E6%94%BEMap%EF%BC%89%0A2.%20%E6%AF%8F%E4%B8%80%E8%A1%8C%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AAjavabean%E5%AF%B9%E8%B1%A1%EF%BC%8C%E6%95%B4%E4%B8%AA%E8%A1%A8%E6%A0%BC%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AAMap%2FList%0A%20%20%20%201.%20%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E7%9A%84javabean%EF%BC%8C%E8%A6%81%E6%9C%89set%20get%E6%96%B9%E6%B3%95%E5%92%8C%E4%B8%80%E4%B8%AA%E6%97%A0%E5%8F%82%E6%9E%84%E9%80%A0%E5%99%A8%0A%20%20%20%202.%20</center></span>
+</div></body></html> 

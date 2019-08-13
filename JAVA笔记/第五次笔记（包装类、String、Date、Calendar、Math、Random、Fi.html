@@ -1,0 +1,224 @@
+<html>
+<head>
+  <title>第五次笔记（包装类、String、Date、Calendar、Math、Random、File、枚举）</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600667 (zh-CN, DDL); Windows/10.0.0 (Win64);"/>
+  <meta name="content-class" content="yinxiang.markdown"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="654"/>
+<h1>第五次笔记（包装类、String、Date、Calendar、Math、Random、File、枚举）</h1>
+
+<div><span><div style="font-size: 14px; margin: 0; padding: 0; width: 100%;"><div style="line-height: 160%; box-sizing: content-box;"><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">包装类
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">自动装箱和拆箱
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">缓存
+</a></li></ul></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">String类
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">StringBuffer可变字符序列
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">StringBuilder 可变字符序列
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">陷阱
+</a></li></ul></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Date
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">DateFormat类和SimpleDateFormat类
+</a></li></ul></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Calendar日历类
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Math 和 Random类
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">File类
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">枚举
+</a></li></ul></div><h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">包装类</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">将基本数据类型转化为对象。<br/>
+<img src="第五次笔记（包装类、String、Date、Calendar、Math、Random、Fi_files/Image.png" type="image/png" data-filename="Image.png"/><br/>
+<img src="第五次笔记（包装类、String、Date、Calendar、Math、Random、Fi_files/Image [1].png" type="image/png" data-filename="Image.png"/></p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//基本类型转化为Integer对象</span>
+Integer int1=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Integer(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">10</span>);
+Integer int2=Integer.valueOf(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">20</span>);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//推荐写法</span>
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//Integer对象转化int</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> a= int1.intValue(); 
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//字符串转化为Integer对象</span>
+Integer int3=Integer.parseInt(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;335&quot;</span>);
+Integer int4=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Integer(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;123&quot;</span>);
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//Integer转字符串</span>
+String str1=in3.toString();
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//Integer的常量</span>
+Integer.MAX_VALUE == <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">2147483647</span>
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">自动装箱和拆箱</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">装箱：<br/>
+<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">Integer a=234;</code><br/>
+<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">Integer i = Integer.valueOf(100);//编译器自动装箱</code></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">拆箱<br/>
+<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">int b=a;</code><br/>
+<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">int b=a.intValue();//编译器自动拆箱</code></p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">缓存</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">缓存 [-128 , 127]范围内的数字<br/>
+<img src="第五次笔记（包装类、String、Date、Calendar、Math、Random、Fi_files/Image [2].png" type="image/png" data-filename="Image.png"/><br/>
+为-128到127间的数字都生成Integer对象，存在cache中。使用时，先判断数字范围，若在此范围内，直接从cache中获取对象即可。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第五次笔记（包装类、String、Date、Calendar、Math、Random、Fi_files/Image [3].png" type="image/png" data-filename="Image.png"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第五次笔记（包装类、String、Date、Calendar、Math、Random、Fi_files/Image [4].png" type="image/png" data-filename="Image.png"/></p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">String类</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第五次笔记（包装类、String、Date、Calendar、Math、Random、Fi_files/Image [5].png" type="image/png" data-filename="Image.png"/><br/>
+String底层存储是 final char[]。 不可变。</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">StringBuffer可变字符序列</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">线程安全，效率低。</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">StringBuilder 可变字符序列</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">线程不安全，效率高。（一般用它）</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">StringBuilder sb=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> StringBuilder(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;asdfasdf&quot;</span>);
+
+sb.setCharAt(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">2</span>,<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;M&quot;</span>); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//修改字符串内容</span>
+
+
+StringBuilder sb = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> StringBuilder();
+
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span> ; i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">26</span>; ++i)
+{
+    sb.append((<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">char</span>)(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">'a'</span>+i));<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//扩展</span>
+}
+sb.reverse() ; <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//逆序</span>
+
+sb.insert(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>,<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">'I'</span>).insert(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">6</span>,<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;am&quot;</span>);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//插入, return this, 所以可以连续调用</span>
+
+sb.delete(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">20</span>,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">23</span>); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//返回的也是this</span>
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">陷阱</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">循环累加字符串时：</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">错误用法：</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">String str=<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;&quot;</span>;
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>;i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">5000</span>;i++)
+{
+    str=str+i; <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//产生了10000个对象。</span>
+}
+
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">正确用法：</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">StringBuilder sb1= <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> StringBuilder(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;&quot;</span>);
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> i=<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>;i&lt;<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">5000</span>;i++)
+{
+    sb1.append(i);
+}
+
+
+</code></pre>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">Date</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Date类用来处理时间。<br/>
+1970年1月1日00：00:00为基准时间。</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">
+Date d=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Date(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">2000</span>);
+Date d2=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Date();
+System.out.println(d2.after(d));
+
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">处理日期使用Canlendar 日期类。</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">DateFormat类和SimpleDateFormat类</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">DateFormat是一个抽象类，一般使用他的子类SimpleDateFormat类实现。<br/>
+<img src="第五次笔记（包装类、String、Date、Calendar、Math、Random、Fi_files/Image [6].png" type="image/png" data-filename="Image.png"/></p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">DateFormat df=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> SimpleDateFormat(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;yyyy-MM-dd hh:mm:ss&quot;</span>);
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//(ctrl + shift + o  自动导入包）</span>
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">///把时间对象转成日期字符串（按照给定格式）</span>
+String str = df.format(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Date(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">4000000</span>));<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// 1970-01-01 09:06:40</span>
+
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//把字符串转成时间对象</span>
+DateFormat df2=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> SimpleDateFormat(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;yyyy年MM月dd日 hh:mm:ss&quot;</span>);
+
+Date date=df2.parse(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;1982年5月10日 10:49:59&quot;</span>); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//解析日期</span>
+</code></pre>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">Calendar日历类</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Calendar类是一个抽象类，一般使用他的子类GregorianCalendar类。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">获取日期相关元素</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">Calendar calendar = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> GregorianCalendar();
+
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> year = calendar.get(Calendar.YEAR); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//返回年份</span>
+
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> month = calendar.get(Calendar.MONTH);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//返回月份， 0是1月，1是2月</span>
+
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> weekday = calendar.get(Calendar.DAY_OF_WEED); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//星期几，1是星期日，7是星期六</span>
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">设置日期相关元素</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">Calendar c2 = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> GregorianCalendar();
+c2.set(Calendar.YEAR , <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">8012</span>);
+
+c2.add(Calendar.DATE, <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">100</span> ); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//往后100天</span>
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">日期对象和时间对象的转化</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">Date d4=c3.getTime(); 
+
+Calendar c4=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> GregorianCalendar();
+c4.setTime(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Date());
+</code></pre>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">Math 和 Random类</h2>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">Math.ceil(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">3.2</span>);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//取上界</span>
+Math.floor(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">3.2</span>);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//取下界</span>
+Math.round(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">3.2</span>);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//四舍五入</span>
+
+Math.abs(-<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">45</span>);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//取反</span>
+Math.sqrt(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">64</span>); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//平方根</span>
+Math.pow(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">5</span>,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">2</span>); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// 5^2</span>
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//常量</span>
+Math.PI;
+Math.E;
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//随机数</span>
+Math.random();  [<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>,<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>)随机数，取不到<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>
+
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Random：</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">Random rand = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Random();
+rand.nextDouble();
+rand.nextInt();
+rand.nextFloat();
+rand.NextInt(<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">10</span>);<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// [0,10)的整数</span>
+
+</code></pre>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">File类</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">File类代表文件和目录。</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">File f= <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> File(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;d:/a.txt&quot;</span>);
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//File f =new File(&quot;d:\\a.txt&quot;);</span>
+
+f.renameTo(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> File(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;d:/b.txt&quot;</span>);/改名
+
+System.getProperty(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;user.dir&quot;</span>)；<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//获取当前用户目录</span>
+
+File f2=<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FIle(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;gg.txt&quot;</span>);
+f2.createNewFile(); <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">//在当前目录创建gg.txt</span>
+
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><img src="第五次笔记（包装类、String、Date、Calendar、Math、Random、Fi_files/Image [7].png" type="image/png" data-filename="Image.png"/></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">mkdir 和 mkdirs 方法：<br/>
+创建目录，mkdir中间有缺失目录就不创建，mkdirs自动补齐目录，返回bool值。</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">递归打印目录：</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">printFile</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(File file)</span>
+</span>{
+    System.out.println(file.getName());
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(file .isDirectory())
+    {
+        File[] files=file.listFiles();
+        
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">for</span>(File temp : files)
+        {
+            pintFile(temp);
+        }
+    }
+}
+
+</code></pre>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">枚举</h2>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">enum</span> Season
+{
+    SPRING, SUMMER, AUTUMN , WINER
+}
+</code></pre>
+<ol style="line-height: 160%; box-sizing: content-box; display: block; padding-left: 30px; margin: 6px 0 10px; color: #333; list-style-type: decimal;">
+<li style="line-height: 160%; box-sizing: content-box;">需要定义一组常量时，可以使用枚举</li>
+<li style="line-height: 160%; box-sizing: content-box;">尽量不要使用枚举的高级特性。</li>
+</ol>
+</div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%5BTOC%5D%0A%23%23%20%E5%8C%85%E8%A3%85%E7%B1%BB%0A%E5%B0%86%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96%E4%B8%BA%E5%AF%B9%E8%B1%A1%E3%80%82%0A!%5B9b077878753452e16892121aa4a975d6.png%5D(en-resource%3A%2F%2Fdatabase%2F656%3A1)%0A!%5Bb98d6eeccd0f5d92b0f20f1f69460abd.png%5D(en-resource%3A%2F%2Fdatabase%2F660%3A1)%0A%0A%60%60%60java%0A%2F%2F%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96%E4%B8%BAInteger%E5%AF%B9%E8%B1%A1%0AInteger%20int1%3Dnew%20Integer(10)%3B%0AInteger%20int2%3DInteger.valueOf(20)%3B%2F%2F%E6%8E%A8%E8%8D%90%E5%86%99%E6%B3%95%0A%2F%2FInteger%E5%AF%B9%E8%B1%A1%E8%BD%AC%E5%8C%96int%0Aint%20a%3D%20int1.intValue()%3B%20%0A%0A%2F%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%8C%96%E4%B8%BAInteger%E5%AF%B9%E8%B1%A1%0AInteger%20int3%3DInteger.parseInt(%22335%22)%3B%0AInteger%20int4%3Dnew%20Integer(%22123%22)%3B%0A%0A%2F%2FInteger%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%0AString%20str1%3Din3.toString()%3B%0A%0A%2F%2FInteger%E7%9A%84%E5%B8%B8%E9%87%8F%0AInteger.MAX_VALUE%20%3D%3D%202147483647%0A%60%60%60%0A%0A%23%23%23%23%20%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E5%92%8C%E6%8B%86%E7%AE%B1%0A%E8%A3%85%E7%AE%B1%EF%BC%9A%0A%60Integer%20a%3D234%3B%20%20%60%0A%60Integer%20i%20%3D%20Integer.valueOf(100)%3B%2F%2F%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%60%0A%0A%E6%8B%86%E7%AE%B1%0A%60int%20b%3Da%3B%60%0A%60int%20b%3Da.intValue()%3B%2F%2F%E7%BC%96%E8%AF%91%E5%99%A8%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%60%0A%0A%23%23%23%23%20%E7%BC%93%E5%AD%98%0A%0A%E7%BC%93%E5%AD%98%20%5B-128%20%2C%20127%5D%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E6%95%B0%E5%AD%97%0A!%5Bd93d0bb7905f5d0b9097d63437c442b4.png%5D(en-resource%3A%2F%2Fdatabase%2F664%3A1)%0A%E4%B8%BA-128%E5%88%B0127%E9%97%B4%E7%9A%84%E6%95%B0%E5%AD%97%E9%83%BD%E7%94%9F%E6%88%90Integer%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%AD%98%E5%9C%A8cache%E4%B8%AD%E3%80%82%E4%BD%BF%E7%94%A8%E6%97%B6%EF%BC%8C%E5%85%88%E5%88%A4%E6%96%AD%E6%95%B0%E5%AD%97%E8%8C%83%E5%9B%B4%EF%BC%8C%E8%8B%A5%E5%9C%A8%E6%AD%A4%E8%8C%83%E5%9B%B4%E5%86%85%EF%BC%8C%E7%9B%B4%E6%8E%A5%E4%BB%8Ecache%E4%B8%AD%E8%8E%B7%E5%8F%96%E5%AF%B9%E8%B1%A1%E5%8D%B3%E5%8F%AF%E3%80%82%0A%0A!%5Bcafda4f177de639e7c3922ff4fc9dd35.png%5D(en-resource%3A%2F%2Fdatabase%2F666%3A1)%0A%0A!%5Bc20bb70d99134d08a293bb24c5bb7b4d.png%5D(en-resource%3A%2F%2Fdatabase%2F668%3A1)%0A%0A%23%23%20String%E7%B1%BB%0A!%5B09fcaca6dd28153f7b45b18d83aa822a.png%5D(en-resource%3A%2F%2Fdatabase%2F670%3A1)%0AString%E5%BA%95%E5%B1%82%E5%AD%98%E5%82%A8%E6%98%AF%20final%20char%5B%5D%E3%80%82%20%E4%B8%8D%E5%8F%AF%E5%8F%98%E3%80%82%0A%0A%0A%23%23%23%23%20StringBuffer%E5%8F%AF%E5%8F%98%E5%AD%97%E7%AC%A6%E5%BA%8F%E5%88%97%0A%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%8C%E6%95%88%E7%8E%87%E4%BD%8E%E3%80%82%0A%0A%23%23%23%23%20StringBuilder%20%E5%8F%AF%E5%8F%98%E5%AD%97%E7%AC%A6%E5%BA%8F%E5%88%97%0A%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%EF%BC%8C%E6%95%88%E7%8E%87%E9%AB%98%E3%80%82%EF%BC%88%E4%B8%80%E8%88%AC%E7%94%A8%E5%AE%83%EF%BC%89%0A%60%60%60java%0AStringBuilder%20sb%3Dnew%20StringBuilder(%22asdfasdf%22)%3B%0A%0Asb.setCharAt(2%2C%22M%22)%3B%20%2F%2F%E4%BF%AE%E6%94%B9%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%86%85%E5%AE%B9%0A%0A%0AStringBuilder%20sb%20%3D%20new%20StringBuilder()%3B%0A%0Afor(int%20i%3D0%20%3B%20i%3C26%3B%20%2B%2Bi)%0A%7B%0A%20%20%20%20sb.append((char)('a'%2Bi))%3B%2F%2F%E6%89%A9%E5%B1%95%0A%7D%0Asb.reverse()%20%3B%20%2F%2F%E9%80%86%E5%BA%8F%0A%0Asb.insert(0%2C'I').insert(6%2C%22am%22)%3B%2F%2F%E6%8F%92%E5%85%A5%2C%20return%20this%2C%20%E6%89%80%E4%BB%A5%E5%8F%AF%E4%BB%A5%E8%BF%9E%E7%BB%AD%E8%B0%83%E7%94%A8%0A%0Asb.delete(20%2C23)%3B%20%2F%2F%E8%BF%94%E5%9B%9E%E7%9A%84%E4%B9%9F%E6%98%AFthis%0A%60%60%60%0A%0A%23%23%23%23%20%E9%99%B7%E9%98%B1%0A%E5%BE%AA%E7%8E%AF%E7%B4%AF%E5%8A%A0%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%97%B6%EF%BC%9A%0A%0A%E9%94%99%E8%AF%AF%E7%94%A8%E6%B3%95%EF%BC%9A%0A%60%60%60java%0AString%20str%3D%22%22%3B%0Afor(int%20i%3D0%3Bi%3C5000%3Bi%2B%2B)%0A%7B%0A%20%20%20%20str%3Dstr%2Bi%3B%20%2F%2F%E4%BA%A7%E7%94%9F%E4%BA%8610000%E4%B8%AA%E5%AF%B9%E8%B1%A1%E3%80%82%0A%7D%0A%0A%60%60%60%0A%E6%AD%A3%E7%A1%AE%E7%94%A8%E6%B3%95%EF%BC%9A%0A%60%60%60java%0AStringBuilder%20sb1%3D%20new%20StringBuilder(%22%22)%3B%0Afor(int%20i%3D0%3Bi%3C5000%3Bi%2B%2B)%0A%7B%0A%20%20%20%20sb1.append(i)%3B%0A%7D%0A%0A%0A%60%60%60%0A%0A%23%23%20Date%0A%0ADate%E7%B1%BB%E7%94%A8%E6%9D%A5%E5%A4%84%E7%90%86%E6%97%B6%E9%97%B4%E3%80%82%0A1970%E5%B9%B41%E6%9C%881%E6%97%A500%EF%BC%9A00%3A00%E4%B8%BA%E5%9F%BA%E5%87%86%E6%97%B6%E9%97%B4%E3%80%82%0A%60%60%60java%0A%0ADate%20d%3Dnew%20Date(2000)%3B%0ADate%20d2%3Dnew%20Date()%3B%0ASystem.out.println(d2.after(d))%3B%0A%0A%60%60%60%0A%E5%A4%84%E7%90%86%E6%97%A5%E6%9C%9F%E4%BD%BF%E7%94%A8Canlendar%20%E6%97%A5%E6%9C%9F%E7%B1%BB%E3%80%82%0A%0A%23%23%23%23%20DateFormat%E7%B1%BB%E5%92%8CSimpleDateFormat%E7%B1%BB%0A%0ADateFormat%E6%98%AF%E4%B8%80%E4%B8%AA%E6%8A%BD%E8%B1%A1%E7%B1%BB%EF%BC%8C%E4%B8%80%E8%88%AC%E4%BD%BF%E7%94%A8%E4%BB%96%E7%9A%84%E5%AD%90%E7%B1%BBSimpleDateFormat%E7%B1%BB%E5%AE%9E%E7%8E%B0%E3%80%82%0A!%5Bb8e2c74c098bd4959ab9ea557b1a5f08.png%5D(en-resource%3A%2F%2Fdatabase%2F672%3A1)%0A%0A%0A%60%60%60java%0ADateFormat%20df%3Dnew%20SimpleDateFormat(%22yyyy-MM-dd%20hh%3Amm%3Ass%22)%3B%0A%2F%2F(ctrl%20%2B%20shift%20%2B%20o%20%20%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%85%A5%E5%8C%85%EF%BC%89%0A%0A%2F%2F%2F%E6%8A%8A%E6%97%B6%E9%97%B4%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%88%90%E6%97%A5%E6%9C%9F%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88%E6%8C%89%E7%85%A7%E7%BB%99%E5%AE%9A%E6%A0%BC%E5%BC%8F%EF%BC%89%0AString%20str%20%3D%20df.format(new%20Date(4000000))%3B%2F%2F%201970-01-01%2009%3A06%3A40%0A%0A%0A%2F%2F%E6%8A%8A%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%88%90%E6%97%B6%E9%97%B4%E5%AF%B9%E8%B1%A1%0ADateFormat%20df2%3Dnew%20SimpleDateFormat(%22yyyy%E5%B9%B4MM%E6%9C%88dd%E6%97%A5%20hh%3Amm%3Ass%22)%3B%0A%0ADate%20date%3Ddf2.parse(%221982%E5%B9%B45%E6%9C%8810%E6%97%A5%2010%3A49%3A59%22)%3B%20%2F%2F%E8%A7%A3%E6%9E%90%E6%97%A5%E6%9C%9F%0A%60%60%60%0A%0A%23%23%20Calendar%E6%97%A5%E5%8E%86%E7%B1%BB%0ACalendar%E7%B1%BB%E6%98%AF%E4%B8%80%E4%B8%AA%E6%8A%BD%E8%B1%A1%E7%B1%BB%EF%BC%8C%E4%B8%80%E8%88%AC%E4%BD%BF%E7%94%A8%E4%BB%96%E7%9A%84%E5%AD%90%E7%B1%BBGregorianCalendar%E7%B1%BB%E3%80%82%0A%0A%E8%8E%B7%E5%8F%96%E6%97%A5%E6%9C%9F%E7%9B%B8%E5%85%B3%E5%85%83%E7%B4%A0%0A%60%60%60java%0ACalendar%20calendar%20%3D%20new%20GregorianCalendar()%3B%0A%0Aint%20year%20%3D%20calendar.get(Calendar.YEAR)%3B%20%2F%2F%E8%BF%94%E5%9B%9E%E5%B9%B4%E4%BB%BD%0A%0Aint%20month%20%3D%20calendar.get(Calendar.MONTH)%3B%2F%2F%E8%BF%94%E5%9B%9E%E6%9C%88%E4%BB%BD%EF%BC%8C%200%E6%98%AF1%E6%9C%88%EF%BC%8C1%E6%98%AF2%E6%9C%88%0A%0Aint%20weekday%20%3D%20calendar.get(Calendar.DAY_OF_WEED)%3B%20%2F%2F%E6%98%9F%E6%9C%9F%E5%87%A0%EF%BC%8C1%E6%98%AF%E6%98%9F%E6%9C%9F%E6%97%A5%EF%BC%8C7%E6%98%AF%E6%98%9F%E6%9C%9F%E5%85%AD%0A%60%60%60%0A%0A%E8%AE%BE%E7%BD%AE%E6%97%A5%E6%9C%9F%E7%9B%B8%E5%85%B3%E5%85%83%E7%B4%A0%0A%60%60%60java%0ACalendar%20c2%20%3D%20new%20GregorianCalendar()%3B%0Ac2.set(Calendar.YEAR%20%2C%208012)%3B%0A%0Ac2.add(Calendar.DATE%2C%20100%20)%3B%20%2F%2F%E5%BE%80%E5%90%8E100%E5%A4%A9%0A%60%60%60%0A%0A%E6%97%A5%E6%9C%9F%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%97%B6%E9%97%B4%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%BD%AC%E5%8C%96%0A%60%60%60java%0ADate%20d4%3Dc3.getTime()%3B%20%0A%0ACalendar%20c4%3Dnew%20GregorianCalendar()%3B%0Ac4.setTime(new%20Date())%3B%0A%60%60%60%20%20%20%20%0A%0A%23%23%20Math%20%E5%92%8C%20Random%E7%B1%BB%0A%0A%60%60%60java%0AMath.ceil(3.2)%3B%2F%2F%E5%8F%96%E4%B8%8A%E7%95%8C%0AMath.floor(3.2)%3B%2F%2F%E5%8F%96%E4%B8%8B%E7%95%8C%0AMath.round(3.2)%3B%2F%2F%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5%0A%0AMath.abs(-45)%3B%2F%2F%E5%8F%96%E5%8F%8D%0AMath.sqrt(64)%3B%20%2F%2F%E5%B9%B3%E6%96%B9%E6%A0%B9%0AMath.pow(5%2C2)%3B%20%2F%2F%205%5E2%0A%0A%2F%2F%E5%B8%B8%E9%87%8F%0AMath.PI%3B%0AMath.E%3B%0A%0A%2F%2F%E9%9A%8F%E6%9C%BA%E6%95%B0%0AMath.random()%3B%20%20%5B0%2C1)%E9%9A%8F%E6%9C%BA%E6%95%B0%EF%BC%8C%E5%8F%96%E4%B8%8D%E5%88%B01%0A%0A%60%60%60%0A%0ARandom%EF%BC%9A%0A%60%60%60java%0ARandom%20rand%20%3D%20new%20Random()%3B%0Arand.nextDouble()%3B%0Arand.nextInt()%3B%0Arand.nextFloat()%3B%0Arand.NextInt(10)%3B%2F%2F%20%5B0%2C10)%E7%9A%84%E6%95%B4%E6%95%B0%0A%0A%60%60%60%0A%0A%0A%23%23%20File%E7%B1%BB%0AFile%E7%B1%BB%E4%BB%A3%E8%A1%A8%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E3%80%82%0A%0A%60%60%60java%0AFile%20f%3D%20new%20File(%22d%3A%2Fa.txt%22)%3B%0A%2F%2FFile%20f%20%3Dnew%20File(%22d%3A%5C%5Ca.txt%22)%3B%0A%0Af.renameTo(new%20File(%22d%3A%2Fb.txt%22)%3B%2F%E6%94%B9%E5%90%8D%0A%0ASystem.getProperty(%22user.dir%22)%EF%BC%9B%2F%2F%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%0A%0AFile%20f2%3Dnew%20FIle(%22gg.txt%22)%3B%0Af2.createNewFile()%3B%20%2F%2F%E5%9C%A8%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E5%88%9B%E5%BB%BAgg.txt%0A%0A%60%60%60%0A!%5B513aac9542fc2a76f1bcb0a5ff99e349.png%5D(en-resource%3A%2F%2Fdatabase%2F674%3A1)%0A%0Amkdir%20%E5%92%8C%20mkdirs%20%E6%96%B9%E6%B3%95%EF%BC%9A%0A%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95%EF%BC%8Cmkdir%E4%B8%AD%E9%97%B4%E6%9C%89%E7%BC%BA%E5%A4%B1%E7%9B%AE%E5%BD%95%E5%B0%B1%E4%B8%8D%E5%88%9B%E5%BB%BA%EF%BC%8Cmkdirs%E8%87%AA%E5%8A%A8%E8%A1%A5%E9%BD%90%E7%9B%AE%E5%BD%95%EF%BC%8C%E8%BF%94%E5%9B%9Ebool%E5%80%BC%E3%80%82%0A%0A%E9%80%92%E5%BD%92%E6%89%93%E5%8D%B0%E7%9B%AE%E5%BD%95%EF%BC%9A%0A%60%60%60java%0Astatic%20void%20printFile(File%20file)%0A%7B%0A%20%20%20%20System.out.println(file.getName())%3B%0A%20%20%20%20if(file%20.isDirectory())%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20File%5B%5D%20files%3Dfile.listFiles()%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20for(File%20temp%20%3A%20files)%0A%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20pintFile(temp)%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%7D%0A%0A%60%60%60%0A%0A%0A%23%23%20%E6%9E%9A%E4%B8%BE%0A%60%60%60java%0Aenum%20Season%0A%7B%0A%20%20%20%20SPRING%2C%20SUMMER%2C%20AUTUMN%20%2C%20WINER%0A%7D%0A%60%60%60%0A%0A1.%20%E9%9C%80%E8%A6%81%E5%AE%9A%E4%B9%89%E4%B8%80%E7%BB%84%E5%B8%B8%E9%87%8F%E6%97%B6%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E6%9E%9A%E4%B8%BE%0A2.%20%E5%B0%BD%E9%87%8F%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8%E6%9E%9A%E4%B8%BE%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E3%80%82</center></span>
+</div></body></html> 
