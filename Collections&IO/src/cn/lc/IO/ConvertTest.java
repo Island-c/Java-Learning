@@ -1,12 +1,9 @@
 package cn.lc.IO;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.URL;
 
 /**
@@ -20,18 +17,12 @@ public class ConvertTest {
 	public static void main(String[] args) {
 		try(BufferedReader reader = 
 				new BufferedReader (//»º³å
-						new InputStreamReader(//×Ö·û£¨±ÜÃâÂÒÂë£©
-								new URL("http://www.baidu.com").openStream(),"UTF-8"));
-				BufferedWriter writer = 
-						new BufferedWriter (//»º³å
-								new OutputStreamWriter(//×Ö·û£¨±ÜÃâÂÒÂë£©
-										new FileOutputStream("baidu.html"),"UTF-8"));)//×Ö½Ú
+						new InputStreamReader( //×Ö·û£¨±ÜÃâÂÒÂë£©
+								new URL("http://www.baidu.com").openStream(),"UTF-8"));)//×Ö½Ú
 		{
 			 String temp;
 			 while((temp = reader.readLine())!=null){
-				 writer.write(temp); //×Ö·û¼¯²»Í³Ò»³öÏÖÂÒÂë
-				 writer.newLine();
-				 writer.flush();
+				 System.out.print(temp);
 			 }
 			
 		
@@ -65,7 +56,7 @@ public class ConvertTest {
 		{
 			 int temp;
 			 while((temp = is.read())!=-1){
-				 System.out.print((char)temp); //×Ö½ÚÊı²»¹»£¬³öÏÖÂÒÂë
+				 System.out.print((char)temp);
 			 }
 			
 		
