@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js函数学习</title>
+		<script type="text/javascript">
+		//1. 声明函数	
+			/* 方式一 */
+			//function test1(a1, a2){
+			// 	alert("函数声明1");
+			// }
+			/* 方式二 */
+			var test2=new Function("a1","a2","alert('函数声明2')"); 
+			// test2(1,2);
+			
+			/* 方式三 */
+			var test3= function(a1,a2){alert("函数声明3");};
+			// test3();
+		//2.函数的参数
+			function testParam(a1,a2){
+				alert("函数的形参学习");
+			}
+			//testParam();
+		//3.返回值
+			var test_return = function(){
+				alert("函数的返回值");
+				//return "js";
+			}
+			alert(test_return());
+			
+		</script>
+	</head>
+	
+	<body>
+		<h3>函数学习</h3>
+	</body>
+</html>
+
+<!-- 
+	函数学习：
+		1.声明
+			方式1：
+				function test1(a1, a2){
+					alert("函数声明1");
+				}
+			方式2：
+				var test2=new Function("形参1","形参2",....,"函数执行体");
+				注意：此声明表明在js中函数是作为对象存在的。
+			方式3：
+				var 变量名=function(形参1，形参2，形参3){函数体};
+		2.参数
+			js中的函数再调用时，形参可以不赋值，不会报错
+			js中的函数再调用时，形参可以不全部赋值，实参按顺序赋值，没有赋值的取默认值。
+		3.返回值
+			如果函数有返回值，则直接返回
+			没有返回值，默认返回undefined
+		
+	注意：
+		js代码的声明区域和执行区域是一起的，都在js代码的代码域中。
+ -->

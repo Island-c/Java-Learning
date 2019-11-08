@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js的特殊关系运算符</title>
+		<!-- 声明js代码域 -->
+		<script type="text/javascript">
+			/* 声明变量 */
+			var a=1;
+			var a1="1";
+			var a2=true;
+			var a3="true";
+			var a4="a";
+			var a5="a";
+			alert(a==a1);/* true */
+			alert(a==a2);/* true */
+			alert(a==a3);/* false */
+			alert(a1==a2);/* true */
+			alert(a1==a3);/* false */
+			alert(a2==a3);/* false */
+			alert(a4==a5);/* true */
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
+<!-- 
+	等值运算符： ==
+		先判断类型，类型一致则直接比较
+				类型不一致，先使用Number()强转后再进行比较。
+	等同运算符：===
+		先判断类型，如果类型不一致则返回false
+					如果类型一致，再比较内容，内容也一致则返回true
+	注意：
+		null和undefined在做==判断时，返回true
+ -->

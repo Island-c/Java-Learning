@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css的样式使用</title>
+		
+		<!--声明css代码域-->
+		<style type="text/css">
+			/*添加网页背景图*/
+			body{
+				background-image: url(img/ss.jpg) ;
+				background-repeat: no-repeat;
+				
+			}
+			/*使用标签选择器*/
+			table{
+				
+			}
+			/*设置table表格的行高*/
+			tr{
+				height:40px;
+				
+			}
+			/*设置td*/
+			td{
+				border-radius: 10px; /*设置边框角度*/
+				width:100px;/*设置宽*/
+				border:solid 1px indianred; /*边框*/
+				background-color:antiquewhite; /*背景色*/
+				text-align: center; /*文本位置*/
+				color: brown; /*字体颜色*/
+				font-weight: bold; /*字体粗细*/
+				letter-spacing: 10px; /*文本间距*/
+			}
+	/*---------------------------------------------------------------------------*/		
+			ul{
+				background-color: #FAEBD7;
+				height: 50px;
+			}
+			li{
+				list-style-type: none ; /*去除li的标识符*/
+				/*display:inline;*/
+				float:left;  /*设置左悬浮菜单*/
+			}
+			li a{
+				color:#808080;
+				text-decoration: none;/*去除下划线*/
+				font-weight: bold;
+				font-size:20px;
+				margin-left:20px;
+				position:relative;
+				top:10px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<h3>css的样式使用</h3>
+		<hr />
+		<table>
+			<tr>
+				<td width="200px">姓名</td>
+				<td>性别</td>
+				<td>爱好</td>
+			</tr>
+			<tr>
+				<td>张三</td>
+				<td>男</td>
+				<td>吃饭</td>
+			</tr>
+			<tr>
+				<td>李四</td>
+				<td>男</td>
+				<td>睡觉</td>
+			</tr>
+		</table>
+		<hr />
+		<ul>
+			<li><a href="">首页</a></li>
+			<li><a href="">java</a></li>
+			<li><a href="">c++</a></li>
+			<li><a href="">python</a></li>
+		</ul>
+	</body>
+</html>

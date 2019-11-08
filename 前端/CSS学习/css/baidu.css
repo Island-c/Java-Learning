@@ -1,0 +1,22 @@
+/*设置页面基础设置*/
+	*{margin:0px;padding:0px;}
+
+/*设置header头部分的大小*/
+	#header{width:100%;height:45px;}
+	/*设置导航栏样式*/
+		#header_nav{ position:absolute;right:92px; top:10px;}
+		#header_nav li{float:left;list-style-type:none; margin-left:24px;}
+		#header_nav li a{color:#333;font-size: 13px;font-weight: 700;line-height: 24px;  }
+/*设置main主题部分的大小*/
+	#main{witdh:100%;height:384px; text-align: center;}
+		#img_logo{margin-top: 60px;margin-bottom: 10px;}
+		/*设置搜索框样式*/
+		input[type=text]{height:34px;width:539px;border:solid 1px #4992FF;background-image: url(../img/inp.png);background-repeat: no-repeat;background-position-x: 500px;background-position-y: 3px;}
+		input[type=submit]{height:38px;width:100px; background-color: #38f; font-size: 15px;color:#fff;border:solid #38f;letter-spacing: 1px;position:relative;right:4.5px;top:2px;}
+		
+/*设置footer底部部分的大小*/
+	#footer{width:100%;height:206px;	text-align: center;}
+/*使用伪类给标签添加样式*/
+	#header_nav li a:hover {color:#38f; color:ghostwhite}
+	
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js函数</title>
+		<script type="text/javascript">
+			//1.函数的执行符
+			var test1=function(){
+				alert("函数的执行学习");
+				return "js";
+			}
+			//alert(test1());
+			
+			//2.函数作为实参传递
+			// function testobj(a){
+			// 	alert(a());
+			// }
+			// var testParam = function(){alert("我是函数参数");};
+			
+			testobj(testParam);
+			//3.开发中常用的传递方式
+			function testobj2(fn){  //testobj2函数在被调用时,实参必须是一个函数对象.
+				alert(fn());
+			}
+			testobj2(function(){alert("开发");});
+			
+		</script>
+		
+	</head>
+	
+	<body>
+		<h3>js函数</h3>
+	</body>
+</html>
+
+<!-- 
+	函数学习2：
+		1.函数的执行符
+			在js中函数的执行符是() 
+				没有()，则函数名就是一个变量
+				加上()，函数就会被执行
+		2.函数作为实参传递
+			在js中，函数可以作为实参进行传递。
+		3.开发中经常用的传递方式
+			function testobj2(fn){  //testobj2函数在被调用时,实参必须是一个函数对象.
+				alert(fn());
+			}
+			testobj2(function(){alert("开发");});
+ 
+ -->

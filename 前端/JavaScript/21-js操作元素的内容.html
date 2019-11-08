@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js操作元素的内容</title>
+		
+		<!-- 
+			js操作元素内容学习
+				获取元素对象
+					获取
+						元素对象名.innerHTML  //返回当前元素对象的所有内容，包括html标签
+						元素对象名.innerText //返回当前元素对象的文本内容，不包括html标签
+					修改
+						元素对象名.innerHTML="新的值" //会覆盖原有内容，并且html标签会被解析
+							元素对象名.innerHTML += "新的值" ;// 追加
+						元素对象名.innerText="新的值" ; //会覆盖原有内容，但html标签不会被解析，作为普通文本显示
+							
+							
+		 -->
+		<script type="text/javascript">
+			//
+			function getContext(){
+				//获取元素对象
+					var div = document.getElementById("div01");
+				//获取元素内容
+					alert(div.innerHTML); //获取所有内容
+					alert(div.innerText); //获取文本
+			}
+			//修改元素内容
+				function updateContext(){
+					var div=document.getElementById("div01");
+					//修改元素对象内容
+					div.innerHTML+="<h1>海</h1>";
+				}
+				function updateContext2(){
+					var div=document.getElementById("div01");
+					//修改元素对象内容
+					div.innerText += "<h1>海</h1>";
+				}
+		</script>
+		
+		<style type="text/css">
+			#div01{
+				width:200px;
+				height :200px;
+				border:solid 1px #FFA500;
+			}
+		</style>
+		
+	</head>
+	
+	
+	
+	<body>
+		<h3>js操作元素内容</h3>
+		
+		<input type="button" name="" id="" value="测试获取元素内容---innerHTML" onclick="getContext()" />
+		<input type="button" name="" id="" value="测试修改元素内容---innerHTML" onclick="updateContext()" />
+		<input type="button" name="" id="" value="测试修改元素内容---innerText" onclick="updateContext2()" />
+		<hr>
+		<div id="div01">
+			<b>今天是2019年11月6日15:58:25</b>
+		</div>
+	</body>
+</html>

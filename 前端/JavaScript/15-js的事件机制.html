@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>js的事件机制</title>
+		
+		<script type="text/javascript">
+			//单击事件
+			function testOnclick(){
+				alert("我是单击");
+			}
+			function testOndblclick(){
+				alert("我是双击");
+			}
+			//鼠标事件
+			function testOnmouseOver(){
+				alert("我是鼠标悬停");
+			}
+			function testOnmousemove(){
+				alert("我被移动了");
+			}
+			function testOnmouseOut(){
+				alert("我被移出了");
+			}
+			//键盘事件
+			function testOnkeyup(){
+				alert("我是键盘弹起");
+			}
+			function testOnkeydown(){
+				alert("我是键盘按下");
+			}
+			//焦点事件
+			function testOnfocus(){
+				document.getElementById("showdiv").innerHTML="获取焦点";
+				//alert("我是焦点事件");
+			}
+			function testOnblur(){
+				document.getElementById("showdiv").innerHTML="失去焦点";
+			}
+			//页面加载
+			function testOnload(){
+				alert("我是页面加载")
+			}
+			
+		</script>
+		
+		<style type="text/css">
+			#showdiv{
+				width:300px;
+				height:300px;
+				border : solid 1px;
+			}
+		</style>
+	</head>
+	
+	<body onload="testOnload()">
+		<h3>js的事件机制</h3>
+		<hr>
+		<input type="button" name="" id="" value="单击" onclick="testOnclick()">
+		<input type="button" name="" id="" value="双击" ondblclick="testOndblclick()">
+		
+		<hr >
+		<br><br>
+		<div id="showdiv" onmouseover="testOnmouseOver()" onmousemove="testOnmousemove()" onmouseout="testOnmouseOut()">
+		</div>
+		<hr>
+		<br><br>
+		键盘事件学习<br>
+		键盘弹起：<input type="text" name="" id="" value="" onkeyup="testOnkeyup()"/>
+		键盘下压：<input type="text" name="" id="" value=""  onkeydown="testOnkeydown()"/>
+		
+		<hr>
+		<br><br>
+		焦点事件学习<br>
+			<input type="text" name="" id="" value="" onfocus="testOnfocus()" onblur="testOnblur()"/>
+	</body>
+	
+</html> 
+
+<!-- 
+	js的事件机制
+		解释： 当用户的行为动作满足一定的条件后会触发某类事务的执行。
+		作用： 主要是结合JS的函数使用。
+		内容：
+			1. 单双击事件
+				单击： onclick
+				双击： ondblclick
+			2. 鼠标事件
+				onmouseover
+				onmousemove
+				onmouseout
+			3. 键盘事件
+				onkeyup
+				onkeydowm
+			4. 焦点事件
+				onfocus
+				onblur
+			5. 页面加载事件
+				onload()
+		注意：
+			js中添加事件的第一种方式： 
+				在HTML直接使用事件属性进行添加；属性值为所监听执行的函数。
+			js中事件只有在当前HTML元素上有效
+			一个html元素可以添加多个不同的事件
+			一个事件可以触发多个函数的执行，不同的函数直接用分号隔开
+	
+	
+ -->

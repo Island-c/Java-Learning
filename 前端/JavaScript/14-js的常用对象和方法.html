@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js常用对象和方法</title>
+		
+		<!-- 
+			js的常用对象
+				String对象 ： 用来操作字符
+					使用： 字符串.函数名 即可
+					大小写转换
+						toUpperCase()
+						toLowerCase()
+					字符串截取
+						substr(0,1)  //从指定位置开始截取指定长度的字符串
+						substring(0,1) //截取从指定位置开始到指定的结束位置的字符串(含头不含尾)
+					查找字符位置：
+						indexOf : 返回指定字符第一次出现的位置
+						lastIndexOf: 返回指定字符最后一次出现的位置
+						
+				Date对象:
+					使用：var 变量名=new Date();
+					注意： 获取的是客户端时间，不能作为系统功能校验的时间
+					参照：API
+				Math对象：
+					使用： Math.函数名
+					random()  生成随机数
+					round() 四舍五入
+					ceil()  向上取整
+					floor() 向下取整
+				
+				Global对象：
+					eval(); //类似java反射 把字符串转换为js代码执行
+					isNan(); //判断Number强转后是否是数字
+					parseInt() ; //  "123asdfa"  ->  123
+					parseFloat(); // "123.123asdas" -> 123.123
+				
+		 
+		 -->
+		
+		<script type="text/javascript">
+			
+			//String对象
+			function testString(){
+				//创建字符串
+				var str="abcdefg";
+				alert(str.substr(0,1).toUpperCase()+str.substr(1,str.length));
+				
+				
+			}
+			
+			//Date对象
+			function testDate(){
+				//创建日期对象
+				var d = new Date();
+				//操作日期和时间
+					alert(d.getFullYear());//返回从1900到今的年份
+					alert(d.getMonth()+1); //获取当前月份数,记得加1
+					alert(d.getDate());//日期
+					alert(d.getDay());//星期数
+					alert(d.getHours());//小时
+					alert(d.getMinutes());//分钟
+					alert(d.getSeconds());//秒			
+			}
+			
+			//Math对象
+			function testMath(){
+				var a =  Math.random()*10;
+				alert(Math.round(a)); //可以作为验证码
+				
+			}
+			
+			//Global对象
+			function testGlobal(){
+				//把字符串转换为js代码执行
+				eval("var a='123';");
+				alert(a);
+				//isNaN 判断Number强转后是否是数字
+				if(!isNaN(Number(a))){
+					alert("是数字")
+				}
+			}
+			
+		</script>
+		
+		
+		
+	</head>
+	<body>
+		<h3>js的常用对象和方法</h3>
+		<hr>
+		<input type="button" id="" value="测试String对象" onclick="testString()" />
+		
+		<input type="button" id="" value="测试Date对象" onclick="testDate()" />
+		
+		<input type="button" id="" value="测试Math对象" onclick="testMath()" />
+		
+		<input type="button" id="" value="测试Global对象" onclick="testGlobal()" />
+	</body>
+</html>

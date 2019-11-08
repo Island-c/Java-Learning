@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js操作html的元素属性</title>
+		<!-- 
+			js操作html元素属性学习
+				1.获取元素对象
+				2.操作元素属性
+					获取
+						元素对象名.属性名 	//返回当前属性的属性值 ---固有
+						元素对象名.getAttribute("属性名")  //返回自定义属性的值 ---自定义
+					修改
+						元素对象名.属性名=属性值
+						元素对象名.setAttribute("属性名","属性值"); //修改自定义属性的值 ---自定义
+					注意：
+						不要修改元素的name和id
+						使用自定义方式获取固有属性内容，value的值获取的是默认值，不能获取到实时的数据。
+		 -->
+		<script type="text/javascript">
+			//声明函数--- 固有属性
+				//获取元素属性值
+				function testField(){
+					//获取元素对象
+					var inp = document.getElementById("uname");
+					//获取元素属性值
+					alert(inp.type +":"+inp.name+":"+inp.id+":"+inp.value);
+				}
+				//修改元素属性值
+				function testFiled2(){
+					//获取元素对象
+					var inp = document.getElementById("uname");
+					inp.value="asdasd";
+					inp.type="button"
+				}
+			
+			//声明函数---自定义属性
+				//获取
+				function testOwnField(){
+					//获取元素对象
+					var inp = document.getElementById("uname");
+					//获取自定义属性
+					alert(inp.getAttribute("abc"));
+				}
+				//修改
+				function testOwnField2(){
+					//获取元素对象
+					var inp = document.getElementById("uname");
+					//获取自定义属性
+					inp.setAttribute("abc","hahaha");
+					
+				}
+			//使用自定义方式操作固有属性
+				function testOper(){
+					//获取元素对象
+					var inp = document.getElementById("uname");
+					alert(inp.getAttribute("type"))
+					alert(inp.getAttribute("value")); //无法获取用户实时修改的值
+					
+				}
+			
+		</script>
+		
+		
+	</head>
+	
+	
+	
+	<body>
+		<h3>js操作html的元素属性</h3>
+		<hr>
+		<input type="button" name="" id="" value="测试获取元素的属性" onclick="testField()" /><br>
+		<input type="button" name="" id="" value="测试修改元素的属性" onclick="testFiled2()" /><br><br>
+		<input type="button" name="" id="" value="测试获取自定义属性" onclick="testOwnField()" /><br>
+		<input type="button" name="" id="" value="测试修改自定义属性" onclick="testOwnField2()" /><br><br>
+		<input type="button" name="" id="" value="测试使用自定义方式获取固有属性" onclick="testOper()" /><br>
+		<hr>
+		
+		用户名<input type="text" name="uname" id="uname" value="" abc="hhhhhh" >
+		
+	</body>
+</html>

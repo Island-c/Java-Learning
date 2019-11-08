@@ -1,0 +1,100 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>js的window对象学习</title>
+		
+		<script type="text/javascript">
+			//框体方法学习
+				//警告框
+				function testAlert(){
+					window.alert("我是警告框");
+				}
+				//确认框
+				function testConfirm(){
+					window.confirm("确定删除吗?");
+				}
+				
+				//提示框
+				function testPrompt(){
+					var a =window.prompt("请输入昵称:");
+					alert(a);
+				}
+				var id;
+				var ids;
+				//定时执行
+				function testSetTimeout(){
+					id=window.setTimeout(function(){
+						alert("我是定时执行");
+						},3000);
+				}
+				//间隔执行
+				function testSetInterval(){
+					ids = window.setInterval(function(){
+						alert("我是间隔执行");
+						},2000);
+				}
+				//停止当前的定时方法
+				function testClearTimeout(){
+					window.clearTimeout(id);
+				}
+				
+				function testClearInterval(){
+					window.clearInterval(ids);
+				}
+				
+		</script>
+		
+		
+	</head>
+	
+	
+	<body>
+		<h3>window对象学习</h3>
+		<hr >
+		<input type="button" name="" id="" value="测试警告框" onclick="testAlert()" />
+		<input type="button" name="" id="" value="测试确认框" onclick="testConfirm()" />
+		<input type="button" name="" id="" value="测试提示框" onclick="testPrompt()" /><br>
+		<input type="button" name="" id="" value="测试定时执行" onclick="testSetTimeout()" />
+		<input type="button" name="" id="" value="测试间隔执行" onclick="testSetInterval()" /><br>	
+		<input type="button" name="" id="" value="测试clearTimeout --- 停止指定的定时器" onclick="testClearTimeout()" />	
+		<input type="button" name="" id="" value="测试clearInterval --- 停止指定的间隔器" onclick="testClearInterval()" />	
+	</body>
+	
+	
+</html>
+
+
+<!-- 
+	BOM浏览器对象模型： 规范浏览器对js语言的支持(js调用浏览器本身的功能)
+	BOM的具体实现是window对象
+	
+	window对象使用学习：
+		1.window对象不需要new，直接使用即可。 类似Math的使用方式。  window关键字可以省略不写
+		2.框体方法
+			警告框 ：window.alert("我是警告框");
+					没有返回值。
+			确认框 ：window.confirm("确定删除吗?");
+					点击确定，返回true
+					点击取消，返回false
+			提示框 ：window.prompt("请输入昵称:"); 
+					点击确定，返回当前用户录入数据，默认为空字符串
+					点击取消，返回null
+		3.定时和间隔执行方法
+			setTimeout： 指定的时间后执行指定的函数 
+				参数1：函数对象
+				参数2：时间，单位毫秒
+				返回值：当前定时器的id
+				window.setTimeout(fucntion(), time)
+			serInterval：每间隔指定的时间执行指定的函数
+				参数1：函数对象
+				参数2：时间，单位毫秒
+				返回值：当前间隔器的id
+				window.setInterval(function(),2000);
+				}
+			clearTimeout   ：用来停止指定的定时器
+				参数：定时器的id
+			clearInterval ： 用来停止指定的间隔器
+				参数：间隔器的id
+		4.子窗口方法
+ 
+ -->

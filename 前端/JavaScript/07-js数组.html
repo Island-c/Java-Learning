@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数组</title>
+		
+		<script type="text/javascript">
+			/* 数组声明 */
+				var arr = [];
+				arr[0] =2;
+				arr[1]="abc";
+				arr[2]=true;
+				arr[3]=new Date();
+				alert(arr);
+		</script>
+	</head>
+	<body>
+		<h3>数组</h3>
+	</body>
+</html>
+<!-- 
+ 
+	数组学习
+		1.声明
+			var arr=new Array(); //声明一个空数组对象
+			var arr=new Array(length);//声明一个指定长度的数组
+			var arr=[元素];//声明数组 （最常用）
+			
+			注意：js中的数组声明不用指定长度，js的数组长度是不固定的，会随着元素的数量改变而改变。
+		2.赋值和取值
+			js数组可以存储任意类型数据，
+				数组名[角标]=值
+				如果角标不存在，返回undefined;
+		3.length属性
+			作用1：数组名.length//返回当前数组的长度。
+			作用2：数组名.length=新的值//动态的改变数组的长度
+				  注意：length>原有长度，则使用空进行填充。
+					length<原有长度，则从后面进行截取，最后的数据会被删除。
+		4.遍历
+			普通for循环：
+				for(var i=0;i<arr.length;i++){
+					alert(arr[i]);
+				}
+			for-in：
+				for(var i in arr){
+					alert(i);//获取的是角标
+				}
+ -->
+ 
+ 
+ 
