@@ -3,6 +3,7 @@ package com.lc.servlet;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -127,10 +128,12 @@ public class UserServlet extends HttpServlet {
 	
 	//用户退出
 	private void userOut(HttpServletRequest req ,HttpServletResponse resp) throws IOException {
+		
+		/*到时间服务器会自动销毁session，不用手动操作  ，在监听器中实现根据session销毁--count */
 		//获取session对象
-		HttpSession hs= req.getSession();
+		//HttpSession hs= req.getSession();
 		//强制销毁session
-		hs.invalidate();
+		//hs.invalidate();
 		//重定向到登录页面
 		resp.sendRedirect("/manager/login.jsp");
 		return ;

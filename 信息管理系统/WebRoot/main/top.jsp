@@ -50,6 +50,7 @@ $(function(){
      
     <div class="user">
     <span><%=((User)session.getAttribute("user")).getUname()%></span>
+    <span>当前在线人数为  <%=application.getAttribute("count")%></span>
     </div>    
     
     </div>
