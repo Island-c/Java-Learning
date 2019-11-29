@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace ="com.lc.mapper.AccountMapper">
+ 
+ 
+ <!-- 根据账号和密码查询账户信息 -->
+	<select id="selByAccnoPwd" resultType="Account" parameterType="Account">
+		select * from account where accno=#{accNo} and password=#{password}
+	</select>
+
+<!-- 根据账号和姓名，查询账户信息 -->
+
+	<select id="selByAccnoName" resultType="Account" parameterType="Account">
+		select * from account where accno=#{accNo} and name=#{name}
+	</select>
+	
+<!-- 根据账户修改账户余额 -->
+
+	<select id="updBalanceByAccno" parameterType="Account">
+		update account set balance=balance+#{balance} where accno =#{accNo}
+	</select>
+
+</mapper>

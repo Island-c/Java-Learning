@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>尝试使用html+ajax</title>
+<script type="text/javascript" src="/lc/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/lc/js/demo.js"></script>
+<script type="text/javascript">
+
+
+$(function(){
+	var pageSize = "${pageinfo.pageSize}";
+	var pageNumber = "${pageinfo.pageNumber}";
+	var tname = "${pageinfo.teacher_name}";
+	var sname = "${pageinfo.student_name}";
+	var total = "${pageinfo.count}";
+	
+	//i表示循环脚标   n表示迭代变量  n=数组[i]  n是dom对象
+	
+	//dom对象转换成jquery对象?  $(dom对象)
+	//把jquery对象转换成dom对象 ?   jquery对象[0]  jquery对象.get(0)
+	$.each($(":radio"),function(i,n){
+		if($(n).val()==pageSize){
+			$(n).attr("checked","checked");
+		}
+	});
+
+	//点击上一页
+	$(".page_a:eq(0)").click(function(){
+		pageNumber=parseInt(pageNumber)-1;
+		if(pageNumber>=1){
+			location.href="show?pageSize="+pageSize+"&pageNumber="+pageNumber+"&teacher_name="+$(":text[name='tname']").val()+"&student_name="+$(":text[name='sname']").val();
+		}else{
+			pageNumber = 1;
+		}
+		return false;
+	});
+	//点击上一页
+	$(".page_a:eq(1)").click(function(){
+		pageNumber=parseInt(pageNumber)+1;
+		if(pageNumber<=total){
+			location.href="show?pageSize="+pageSize+"&pageNumber="+pageNumber+"&teacher_name="+$(":text[name='tname']").val()+"&student_name="+$(":text[name='sname']").val();
+		}else{
+			pageNumber = total;
+		}
+		return false;
+	});
+	
+	//查询按钮点击事件
+	$("button").click(function(){
+		
+		getDate();
+		
+	});
+	
+
+});
+
+var ajax;
+function getDate(){
+	//创建ajax引擎对象
+	
+	if(window.XMLHttpRequest){
+		ajax = new XMLHttpRequest();
+	}else if (window.ActiveXObject){
+		ajax = new ActiveXObject("Msxm12.XMLHTTP");
+	}
+	
+	//复写onreadystatement函数
+	ajax.onreadystatechange=function(){
+		//判断ajax状态码
+		if(ajax.readyState==4){
+			//判断响应状态码s
+			if(ajax.status ==200){
+				//获取响应内容
+				var result = ajax.responseText;
+				//将响应内容显示出来
+				alert(result);
+				showData(result);//我们仅做数据展示
+			}else if(ajax.status==404){
+				//请求资源不存在
+			}else if(ajax.status==500){
+				//服务器繁忙
+			}
+		}
+	}
+	var requestText="page?pageSize="+2+"&pageNumber=1&teacher_name="+$(":text[name='teacher_name']").val()+"&student_name="+$(":text[name='student_name']").val();
+	alert(requestText)
+	ajax.open("get",requestText);
+	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); //声明请求内容是键值对，让服务器按键值对解析 
+	ajax.send(null);
+}
+	
+
+function showData(data) {
+	var json = JSON.parse(data);
+    var str = "";//定义用于拼接的字符串
+    for (var i = 0; i < json.length; i++) {
+        //拼接表格的行和列
+        str = "<tr><td>" + json[i].id + "</td><td>" + json[i].student_name + "</td><td>" + json[i].age + "</td><td>" + json[i].teacher_name + "</td></tr>";
+        //追加到table中
+        $("#tab").append(str);
+        }
+}
+
+</script>
+
+</head>
+<body>
+
+
+<body>
+
+<h1>学生信息</h1>
+
+
+
+每页显示条数：  2<input type="radio" name="pageSize" value=2 checked="true">   3<input type="radio" name="pageSize" value=3>  4<input type="radio" name="pageSize" value=4> <br/>
+学生姓名： <input type="text" name="student_name">  老师姓名：<input type="text" name="teacher_name"><button>查询</button> 
+
+
+
+<table border="1" id="tab">
+	<tr>
+		<th>编号 </th>
+		<th>学生姓名</th>
+		<th>年龄</th>
+		<th>老师姓名</th>
+	</tr>
+</table> 
+
+<a href="" class="page_a">上一页</a> <a href="" class="page_a">下一页</a>
+<p>第 <b id="now_page"></b>页 ， 共<b id="total_page"></b>页</p>
+
+
+</body>
+</html>
