@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">  
+        
+        <!-- 扫描哪些包下有注解 -->
+         <context:component-scan base-package="com.lc.advice,com.lc.test"></context:component-scan>
+         
+         <!-- 
+         	proxy-target-class
+         	true : 使用cglib动态代理
+			false ：使用jdk动态代理         	
+          -->
+         <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+                  
+        
+<!--        <bean id="demo" class="com.lc.test.Demo"></bean>
+		<bean  id= "myadvice" class="com.lc.advice.MyAdvice"></bean>
+        <aop:config>
+        	<aop:pointcut expression="execution(* com.lc.test.Demo.demo1(String,int)) and args(name1,age1)" id="mypoint"/>
+        	<aop:aspect ref="myadvice"> 
+        		<aop:before method="mybefore" pointcut-ref="mypoint" arg-names="name1,age1"/>
+         		<aop:after-throwing method="mythrow" pointcut-ref="mypoint"  arg-names="name1,age1"/>
+        		<aop:after method="myafter" pointcut-ref="mypoint"  arg-names="name1,age1"/>
+        		<aop:after-returning method="myaftering" pointcut-ref="mypoint"  arg-names="name1,age1"/>
+        		<aop:around method="myarround" pointcut-ref="mypoint"/> 
+        	</aop:aspect>
+        </aop:config> -->
+	
+</beans>

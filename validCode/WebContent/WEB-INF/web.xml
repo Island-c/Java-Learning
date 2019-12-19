@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+<!-- 上下文参数：其实就是配置servlet的application -->
+<!-- 设置spring配置文件路径, 当tomcat加载web.xml时，就会把spring配置文件信息存放在application中 -->
+<!-- WebApplicationContext容器，是ApplicationContext的子接口 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<!-- spring配置文件 -->
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+  
+	<!-- 封装了一个监听器，帮助加载spring的配置文件 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+</web-app>

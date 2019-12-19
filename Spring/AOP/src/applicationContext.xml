@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">   
+        
+        <!--配置前、后置通知的对象， 在切面引入 -->
+	<bean id= "mybefore" class="com.lc.advice.MyBeforeAdvice"></bean>
+	<bean id= "myafter" class="com.lc.advice.MyAfterAdvice"> </bean>
+	
+	<!-- 配置切面 -->
+<!-- 	<aop:config>
+		配置切点
+		 <aop:pointcut expression="execution(* com.lc.test.Demo.*(..))" id="mypoint"/>
+		配置通知
+		<aop:advisor advice-ref="mybefore" pointcut-ref="mypoint"/>
+		<aop:advisor advice-ref="myafter" pointcut-ref="mypoint"/>
+	</aop:config> -->
+	<!-- 配置Demo类，测试用 -->
+	<bean id="demo" class="com.lc.test.Demo"></bean> 
+	<bean id="mythrow" class="com.lc.advice.MyThrowAdvice"></bean>
+	<aop:config>
+		<aop:aspect ref="mythrow">
+			<aop:pointcut expression="execution(* com.lc.test.Demo.demo1())" id="mypoint"/>
+			<aop:after-throwing method="myexception" pointcut-ref="mypoint" throwing="e"/>
+		</aop:aspect>
+	</aop:config> 
+	
+</beans>
